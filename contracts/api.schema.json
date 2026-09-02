@@ -1,0 +1,1358 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://razorshield.local/contracts/api.schema.json",
+  "title": "RazorShield API Contract v1.3",
+  "description": "Frozen response contract for every RazorShield endpoint. Backend responses and frontend expectations are both validated against this file. Changing it is a deliberate act, not a side effect.",
+  "version": "1.3.0",
+  "$defs": {
+    "RiskLevel": {
+      "type": "string",
+      "enum": [
+        "LOW",
+        "MEDIUM",
+        "HIGH",
+        "CRITICAL"
+      ]
+    },
+    "PolicyAction": {
+      "type": "string",
+      "enum": [
+        "ALLOW",
+        "MONITOR",
+        "VERIFY",
+        "MANUAL_REVIEW"
+      ]
+    },
+    "EvidenceKind": {
+      "type": "string",
+      "enum": [
+        "FACT",
+        "INFERENCE"
+      ],
+      "description": "FACT is directly observed in the event log. INFERENCE is produced by a model and carries uncertainty. The UI must render these differently."
+    },
+    "NodeType": {
+      "type": "string",
+      "enum": [
+        "customer",
+        "device",
+        "ip",
+        "address",
+        "order",
+        "payment",
+        "coupon",
+        "refund",
+        "return"
+      ]
+    },
+    "ConfusionMatrix": {
+      "type": "object",
+      "required": [
+        "tp",
+        "fp",
+        "tn",
+        "fn"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "tp": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fp": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "tn": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "fn": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "ClassifierMetrics": {
+      "type": "object",
+      "required": [
+        "model_name",
+        "precision",
+        "recall",
+        "f1",
+        "pr_auc",
+        "confusion_matrix",
+        "decision_threshold",
+        "support",
+        "positive_rate"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "model_name": {
+          "type": "string"
+        },
+        "precision": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "recall": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "f1": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "pr_auc": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "roc_auc": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "accuracy": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Displayed but never headlined. Classes are imbalanced."
+        },
+        "decision_threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confusion_matrix": {
+          "$ref": "#/$defs/ConfusionMatrix"
+        },
+        "support": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "positive_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "RingLevelMetrics": {
+      "type": "object",
+      "description": "Cluster-granularity evaluation. Separate from transaction-level metrics and never merged with them.",
+      "required": [
+        "precision",
+        "recall",
+        "f1",
+        "confusion_matrix",
+        "n_true_rings",
+        "n_true_rings_detected",
+        "n_hard_negative_clusters",
+        "n_hard_negatives_flagged"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "precision": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "recall": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "f1": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confusion_matrix": {
+          "$ref": "#/$defs/ConfusionMatrix"
+        },
+        "n_true_rings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_true_rings_detected": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_hard_negative_clusters": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Legitimate clusters that structurally resemble rings: shared-address families, office IPs, hostels, resellers, flash sales."
+        },
+        "n_hard_negatives_flagged": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The headline honesty number. How many legitimate lookalike clusters were flagged for review."
+        }
+      }
+    },
+    "FinancialAssumption": {
+      "type": "object",
+      "required": [
+        "key",
+        "label",
+        "value",
+        "unit",
+        "description",
+        "adjustable"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "INR",
+            "ratio",
+            "count"
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "adjustable": {
+          "type": "boolean"
+        },
+        "min": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "max": {
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      }
+    },
+    "FinancialImpact": {
+      "type": "object",
+      "required": [
+        "currency",
+        "exposure_detected",
+        "prevented_loss",
+        "false_positive_cost",
+        "net_protected_value",
+        "assumptions"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "currency": {
+          "type": "string",
+          "const": "INR"
+        },
+        "exposure_detected": {
+          "type": "number",
+          "minimum": 0
+        },
+        "prevented_loss": {
+          "type": "number",
+          "minimum": 0,
+          "description": "exposure_detected * recovery_rate. Never assume 100% of detected exposure was actually preventable."
+        },
+        "false_positive_cost": {
+          "type": "number",
+          "minimum": 0
+        },
+        "net_protected_value": {
+          "type": "number",
+          "description": "prevented_loss - false_positive_cost. May be negative; the UI must render negatives honestly."
+        },
+        "assumptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FinancialAssumption"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "DatasetInfo": {
+      "type": "object",
+      "required": [
+        "seed",
+        "n_transactions",
+        "n_customers",
+        "n_rings_injected",
+        "n_hard_negative_clusters",
+        "split_method",
+        "splits"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "seed": {
+          "type": "integer"
+        },
+        "n_transactions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_customers": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_rings_injected": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_hard_negative_clusters": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "split_method": {
+          "type": "string",
+          "enum": [
+            "time_aware",
+            "random"
+          ]
+        },
+        "splits": {
+          "type": "object",
+          "required": [
+            "train",
+            "validation",
+            "test"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "train": {
+              "$ref": "#/$defs/SplitInfo"
+            },
+            "validation": {
+              "$ref": "#/$defs/SplitInfo"
+            },
+            "test": {
+              "$ref": "#/$defs/SplitInfo"
+            }
+          }
+        }
+      }
+    },
+    "SplitInfo": {
+      "type": "object",
+      "required": [
+        "n_rows",
+        "start",
+        "end",
+        "positive_rate"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "n_rows": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "end": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "positive_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "Signal": {
+      "type": "object",
+      "required": [
+        "name",
+        "value",
+        "contribution"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": [
+            "number",
+            "string"
+          ]
+        },
+        "contribution": {
+          "type": "number",
+          "description": "Signed contribution to the risk score."
+        }
+      }
+    },
+    "FeedItem": {
+      "type": "object",
+      "required": [
+        "transaction_id",
+        "timestamp",
+        "amount",
+        "currency",
+        "customer_id",
+        "payment_method",
+        "product_category",
+        "risk_score",
+        "risk_level",
+        "policy_action",
+        "top_signals",
+        "ring_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "transaction_id": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "const": "INR"
+        },
+        "customer_id": {
+          "type": "string"
+        },
+        "payment_method": {
+          "type": "string"
+        },
+        "product_category": {
+          "type": "string"
+        },
+        "risk_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "risk_level": {
+          "$ref": "#/$defs/RiskLevel"
+        },
+        "policy_action": {
+          "$ref": "#/$defs/PolicyAction"
+        },
+        "top_signals": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Signal"
+          },
+          "maxItems": 5
+        },
+        "ring_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "EvidenceItem": {
+      "type": "object",
+      "required": [
+        "code",
+        "kind",
+        "statement",
+        "observed_value",
+        "baseline_value",
+        "unit",
+        "weight"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Stable machine code, e.g. SHARED_DEVICE_DENSITY."
+        },
+        "kind": {
+          "$ref": "#/$defs/EvidenceKind"
+        },
+        "statement": {
+          "type": "string",
+          "description": "Merchant-readable sentence. Deterministically templated."
+        },
+        "observed_value": {
+          "type": [
+            "number",
+            "string"
+          ]
+        },
+        "baseline_value": {
+          "type": [
+            "number",
+            "string",
+            "null"
+          ]
+        },
+        "unit": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "GraphNode": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "label",
+        "risk_score"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/NodeType"
+        },
+        "label": {
+          "type": "string"
+        },
+        "risk_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "attributes": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "GraphEdge": {
+      "type": "object",
+      "required": [
+        "source",
+        "target",
+        "relation",
+        "weight"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        },
+        "relation": {
+          "type": "string",
+          "description": "e.g. used_device, shipped_to, paid_with, redeemed_coupon"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "Explanation": {
+      "type": "object",
+      "required": [
+        "source",
+        "text",
+        "facts",
+        "inferences",
+        "degraded"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "type": "string",
+          "enum": [
+            "llm",
+            "deterministic"
+          ]
+        },
+        "text": {
+          "type": "string"
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "inferences": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "degraded": {
+          "type": "boolean",
+          "description": "True when the LLM was unavailable and the deterministic fallback was used. The UI must surface this."
+        }
+      }
+    },
+    "PolicyDecision": {
+      "type": "object",
+      "required": [
+        "recommended_action",
+        "requires_merchant_approval",
+        "reason",
+        "policy_version",
+        "risk_band",
+        "amount_cap_applied"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "recommended_action": {
+          "$ref": "#/$defs/PolicyAction"
+        },
+        "requires_merchant_approval": {
+          "type": "boolean"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "policy_version": {
+          "type": "string"
+        },
+        "risk_band": {
+          "type": "string"
+        },
+        "amount_cap_applied": {
+          "type": "boolean",
+          "description": "True when the automatic-intervention amount cap forced escalation to human approval."
+        }
+      }
+    },
+    "RingSummary": {
+      "type": "object",
+      "required": [
+        "ring_id",
+        "risk_score",
+        "risk_level",
+        "confidence",
+        "n_accounts",
+        "n_devices",
+        "n_addresses",
+        "n_ips",
+        "n_transactions",
+        "financial_exposure",
+        "detected_at",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ring_id": {
+          "type": "string"
+        },
+        "risk_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "risk_level": {
+          "$ref": "#/$defs/RiskLevel"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "n_accounts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_devices": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_addresses": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_ips": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_transactions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "financial_exposure": {
+          "type": "number",
+          "minimum": 0
+        },
+        "detected_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "OPEN",
+            "AWAITING_APPROVAL",
+            "APPROVED",
+            "DISMISSED"
+          ]
+        }
+      }
+    },
+    "RingDetail": {
+      "type": "object",
+      "required": [
+        "summary",
+        "evidence",
+        "graph",
+        "policy",
+        "explanation",
+        "component_features"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "summary": {
+          "$ref": "#/$defs/RingSummary"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/EvidenceItem"
+          }
+        },
+        "graph": {
+          "type": "object",
+          "required": [
+            "nodes",
+            "edges",
+            "truncated"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "nodes": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/GraphNode"
+              }
+            },
+            "edges": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/GraphEdge"
+              }
+            },
+            "truncated": {
+              "type": "boolean",
+              "description": "True when the render cap hid nodes."
+            }
+          }
+        },
+        "policy": {
+          "$ref": "#/$defs/PolicyDecision"
+        },
+        "explanation": {
+          "$ref": "#/$defs/Explanation"
+        },
+        "component_features": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "RecoveryWorkflow": {
+      "type": "object",
+      "required": [
+        "workflow_id",
+        "ring_id",
+        "loss_type",
+        "bounded_action",
+        "recommended_step",
+        "expected_protected_value",
+        "requires_merchant_approval",
+        "stopping_rule",
+        "audit_subject_id"
+      ],
+      "additionalProperties": false,
+      "description": "A bounded, merchant-controlled next step derived from an already-detected risk case. This does not execute a Razorpay production money action.",
+      "properties": {
+        "workflow_id": {
+          "type": "string"
+        },
+        "ring_id": {
+          "type": "string"
+        },
+        "loss_type": {
+          "type": "string",
+          "enum": [
+            "refund_abuse",
+            "return_abuse",
+            "payment_failure_abuse",
+            "promo_or_account_abuse",
+            "coordinated_abuse"
+          ]
+        },
+        "bounded_action": {
+          "type": "string",
+          "enum": [
+            "MONITOR_ONLY",
+            "REQUEST_VERIFICATION",
+            "PREPARE_EVIDENCE",
+            "MANUAL_REVIEW"
+          ]
+        },
+        "recommended_step": {
+          "type": "string"
+        },
+        "expected_protected_value": {
+          "type": "number",
+          "minimum": 0
+        },
+        "requires_merchant_approval": {
+          "type": "boolean"
+        },
+        "stopping_rule": {
+          "type": "string"
+        },
+        "audit_subject_id": {
+          "type": "string"
+        }
+      }
+    },
+    "RecoveryWorkflowListResponse": {
+      "type": "object",
+      "required": [
+        "workflows",
+        "total",
+        "caveat"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "workflows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RecoveryWorkflow"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "caveat": {
+          "type": "string"
+        }
+      }
+    },
+    "SpikeWindow": {
+      "type": "object",
+      "required": [
+        "spike_id",
+        "metric",
+        "window_start",
+        "window_end",
+        "observed",
+        "baseline",
+        "z_score",
+        "affected_transactions",
+        "estimated_exposure",
+        "contributing_signals"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "spike_id": {
+          "type": "string"
+        },
+        "metric": {
+          "type": "string"
+        },
+        "window_start": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "window_end": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "observed": {
+          "type": "number"
+        },
+        "baseline": {
+          "type": "number"
+        },
+        "z_score": {
+          "type": "number"
+        },
+        "affected_transactions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "estimated_exposure": {
+          "type": "number",
+          "minimum": 0
+        },
+        "contributing_signals": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "AuditEntry": {
+      "type": "object",
+      "required": [
+        "entry_id",
+        "timestamp",
+        "event",
+        "actor",
+        "subject_id",
+        "input_summary",
+        "decision",
+        "reason",
+        "policy",
+        "result"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "entry_id": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "event": {
+          "type": "string"
+        },
+        "actor": {
+          "type": "string",
+          "enum": [
+            "system",
+            "model",
+            "policy_engine",
+            "llm",
+            "merchant"
+          ]
+        },
+        "subject_id": {
+          "type": "string"
+        },
+        "input_summary": {
+          "type": "string"
+        },
+        "decision": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "policy": {
+          "type": "string"
+        },
+        "result": {
+          "type": "string"
+        }
+      }
+    },
+    "SimulationStep": {
+      "type": "object",
+      "required": [
+        "phase",
+        "phase_name",
+        "narrative",
+        "feed_items",
+        "ring",
+        "audit_entries",
+        "financial_delta",
+        "is_final"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "phase": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 9
+        },
+        "phase_name": {
+          "type": "string"
+        },
+        "narrative": {
+          "type": "string"
+        },
+        "feed_items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FeedItem"
+          }
+        },
+        "ring": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/RingDetail"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "audit_entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AuditEntry"
+          }
+        },
+        "financial_delta": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "is_final": {
+          "type": "boolean"
+        }
+      }
+    },
+    "MerchantDecision": {
+      "type": "object",
+      "required": [
+        "ring_id",
+        "decision",
+        "recorded_at",
+        "audit_entry_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ring_id": {
+          "type": "string"
+        },
+        "decision": {
+          "type": "string",
+          "enum": [
+            "APPROVED",
+            "DISMISSED"
+          ]
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "audit_entry_id": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "endpoints": {
+    "GET /api/health": {
+      "type": "object",
+      "required": [
+        "status",
+        "version",
+        "artifacts_loaded",
+        "llm_available",
+        "phase"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "ok",
+            "degraded"
+          ]
+        },
+        "version": {
+          "type": "string"
+        },
+        "artifacts_loaded": {
+          "type": "boolean"
+        },
+        "llm_available": {
+          "type": "boolean"
+        },
+        "phase": {
+          "type": "integer"
+        }
+      }
+    },
+    "GET /api/metrics": {
+      "type": "object",
+      "required": [
+        "generated_at",
+        "is_placeholder",
+        "dataset",
+        "transaction_model",
+        "baseline_model",
+        "ring_model",
+        "financial",
+        "caveats"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "generated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "is_placeholder": {
+          "type": "boolean",
+          "description": "True until artifacts/metrics.json exists. The dashboard must visibly mark placeholder numbers so no fake metric can ever be demoed by accident."
+        },
+        "dataset": {
+          "$ref": "#/$defs/DatasetInfo"
+        },
+        "transaction_model": {
+          "$ref": "#/$defs/ClassifierMetrics"
+        },
+        "baseline_model": {
+          "$ref": "#/$defs/ClassifierMetrics"
+        },
+        "ring_model": {
+          "$ref": "#/$defs/RingLevelMetrics"
+        },
+        "financial": {
+          "$ref": "#/$defs/FinancialImpact"
+        },
+        "caveats": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "ring_baseline_model": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/RingLevelMetrics"
+            }
+          ],
+          "description": "Optional. The naive shared-device detector that uses no graph structure. Reported alongside ring_model so the graph's contribution is attributable rather than asserted."
+        }
+      }
+    },
+    "GET /api/feed": {
+      "type": "object",
+      "required": [
+        "items",
+        "total"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/FeedItem"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "GET /api/rings": {
+      "type": "object",
+      "required": [
+        "rings",
+        "total"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "rings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RingSummary"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "GET /api/rings/{ring_id}": {
+      "$ref": "#/$defs/RingDetail"
+    },
+    "GET /api/recovery/workflows": {
+      "$ref": "#/$defs/RecoveryWorkflowListResponse"
+    },
+    "GET /api/spikes": {
+      "type": "object",
+      "required": [
+        "spikes",
+        "total"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "spikes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SpikeWindow"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "GET /api/audit": {
+      "type": "object",
+      "required": [
+        "entries",
+        "total"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "entries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AuditEntry"
+          }
+        },
+        "total": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "GET /api/policy/config": {
+      "type": "object",
+      "required": [
+        "policy_version",
+        "bands",
+        "max_auto_intervention_amount",
+        "currency"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "policy_version": {
+          "type": "string"
+        },
+        "bands": {
+          "type": "array",
+          "minItems": 4,
+          "items": {
+            "type": "object",
+            "required": [
+              "min_score",
+              "max_score",
+              "action"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "min_score": {
+                "type": "number"
+              },
+              "max_score": {
+                "type": "number"
+              },
+              "action": {
+                "$ref": "#/$defs/PolicyAction"
+              }
+            }
+          }
+        },
+        "max_auto_intervention_amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "const": "INR"
+        }
+      }
+    },
+    "POST /api/financial/recompute": {
+      "$ref": "#/$defs/FinancialImpact"
+    },
+    "POST /api/simulate/start": {
+      "type": "object",
+      "required": [
+        "run_id",
+        "total_phases",
+        "seed"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "run_id": {
+          "type": "string"
+        },
+        "total_phases": {
+          "type": "integer",
+          "const": 9
+        },
+        "seed": {
+          "type": "integer"
+        }
+      }
+    },
+    "GET /api/simulate/step": {
+      "$ref": "#/$defs/SimulationStep"
+    },
+    "POST /api/rings/{ring_id}/decision": {
+      "$ref": "#/$defs/MerchantDecision"
+    },
+    "GET /api/audit/verify": {
+      "type": "object",
+      "required": [
+        "valid",
+        "checked",
+        "broken_at",
+        "detail"
+      ],
+      "additionalProperties": false,
+      "description": "Recomputes the audit hash chain. Every entry stores the hash of its predecessor, so an altered historical row breaks every hash after it.",
+      "properties": {
+        "valid": {
+          "type": "boolean"
+        },
+        "checked": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "broken_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "detail": {
+          "type": "string"
+        }
+      }
+    },
+    "GET /api/rings/{ring_id}/explanation": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Explanation"
+        }
+      ],
+      "description": "Regenerates the investigator summary. Pass simulate_failure=true to force the deterministic fallback for the graceful-degradation demo."
+    }
+  }
+}

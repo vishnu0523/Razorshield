@@ -1,0 +1,238 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   RazorShield design tokens
+
+   The product is a measuring instrument, so it is typeset like one: every
+   number in the interface is monospace and tabular, and the surfaces are
+   quiet enough that the numbers are the only thing with contrast.
+
+   Palette is presentation-clean: #FFFFFF is the base, primary text is crisp
+   black, and the RazorShield title bar uses a black surface with a soft cream
+   finish. Accent colors remain only where they carry product meaning.
+--------------------------------------------------------------------------- */
+
+@theme {
+  --color-ink-900: #ffffff;
+  --color-ink-850: #fffdf7;
+  --color-ink-800: #f7f2e8;
+  --color-ink-700: #e7dccb;
+  --color-ink-600: #cdbfae;
+
+  --color-paper: #0f0f0f;
+  --color-muted: #303030;
+  --color-faint: #646464;
+
+  --color-signal: #107c6f;
+  --color-signal-dim: #7ec8bd;
+  --color-warn: #b7791f;
+  --color-alert: #c74336;
+  --color-critical: #b91c1c;
+
+  /* Accent palette. Used only where color is identifying something (an entity
+     type on the graph, a first-glance impression) rather than carrying a
+     judgment (good/bad money, pass/fail) — those keep the signal/warn/alert
+     tones above so green-means-good stays unambiguous. Flat blocks, no
+     gradients, matching the rest of the surface language. */
+  --color-coral: #ff8243;
+  --color-blossom: #ffc0cb;
+  --color-butter: #fce883;
+  --color-teal-deep: #069494;
+
+  --font-display: Arial, "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+@layer base {
+  html {
+    /* Every size in this file is rem-based, including spacing, so bumping the
+       root scales the whole page proportionally — text, padding and gaps move
+       together instead of text growing into cramped boxes. */
+    font-size: 108%;
+    background-color: var(--color-ink-900);
+    color-scheme: light;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-ink-900);
+    color: var(--color-paper);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01";
+  }
+
+  /* Every figure is tabular so columns of money align to the digit. */
+  .num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+  }
+
+  /* Section eyebrows. These label real structure, they are not decoration. */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-faint);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .panel {
+    background-color: var(--color-ink-850);
+    border: 1px solid var(--color-ink-700);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgb(15 15 15 / 0.04);
+    transition: box-shadow 180ms ease, border-color 180ms ease, transform 180ms ease;
+  }
+
+  .panel:hover {
+    border-color: var(--color-ink-600);
+    box-shadow: 0 10px 28px -16px rgb(15 15 15 / 0.16), 0 2px 6px rgb(15 15 15 / 0.05);
+  }
+
+  /* The net figure settles on load. */
+  @keyframes rs-settle {
+    from {
+      opacity: 0;
+      transform: translateY(0.35rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .settle {
+    animation: rs-settle 320ms cubic-bezier(0.16, 0.84, 0.44, 1) both;
+  }
+
+  /* Panels rise into place, staggered by --i so a page reads as a sequence
+     rather than a flash of everything at once. */
+  @keyframes rs-rise {
+    from {
+      opacity: 0;
+      transform: translateY(0.6rem);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .reveal {
+    animation: rs-rise 380ms cubic-bezier(0.16, 0.84, 0.44, 1) both;
+    animation-delay: calc(var(--i, 0) * 50ms);
+  }
+
+  /* Tab content slides in the direction of travel between tabs. */
+  @keyframes rs-slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(calc(var(--dir, 1) * 0.9rem));
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .page-transition {
+    animation: rs-slide-in 240ms cubic-bezier(0.16, 0.84, 0.44, 1) both;
+  }
+
+  /* Slim scrollbar for scrolling lists (case queue, transaction feed). */
+  .thin-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-ink-600) transparent;
+  }
+  .thin-scroll::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  .thin-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .thin-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--color-ink-600);
+    border-radius: 999px;
+  }
+
+  /* Custom range slider: a two-layer track (fill behind a transparent
+     native input) so the assumption knobs on the ledger look built rather
+     than default-browser. */
+  .range-input {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+  }
+  .range-input::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    height: 100%;
+    background: transparent;
+  }
+  .range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    margin-top: 0;
+    border-radius: 999px;
+    background: var(--color-ink-850);
+    border: 2.5px solid var(--color-signal);
+    box-shadow: 0 1px 3px rgb(15 15 15 / 0.25);
+    cursor: pointer;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+  .range-input:hover::-webkit-slider-thumb {
+    transform: scale(1.12);
+  }
+  .range-input:active::-webkit-slider-thumb {
+    transform: scale(1.24);
+    box-shadow: 0 0 0 6px rgb(16 124 111 / 0.15);
+  }
+  .range-input::-moz-range-track {
+    background: transparent;
+    border: none;
+  }
+  .range-input::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 999px;
+    background: var(--color-ink-850);
+    border: 2.5px solid var(--color-signal);
+    box-shadow: 0 1px 3px rgb(15 15 15 / 0.25);
+    cursor: pointer;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+  .range-input:active::-moz-range-thumb {
+    transform: scale(1.24);
+    box-shadow: 0 0 0 6px rgb(16 124 111 / 0.15);
+  }
+
+  button {
+    transition: background-color 200ms ease, color 200ms ease,
+      border-color 200ms ease, opacity 200ms ease, transform 120ms ease;
+  }
+  button:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
