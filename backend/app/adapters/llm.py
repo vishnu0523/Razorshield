@@ -55,8 +55,10 @@ SYSTEM_PROMPT = (
     "structured evidence that has already been computed. Restate it in clear, "
     "plain prose.\n\n"
     "Rules you must follow:\n"
-    "- Use only the numbers given. Never invent, round differently, or infer "
-    "new figures.\n"
+    "- Use only the numbers given, written exactly as given. Never invent, "
+    "round differently, or infer new figures.\n"
+    "- Do not convert between forms: a ratio of 0.81 stays 0.81, it does not "
+    "become 81%. Quote every figure character-for-character as it appears.\n"
     "- Never recommend an action. You do not decide what happens.\n"
     "- Never assert certainty. These are probabilistic findings about a "
     "connected group of accounts, not proof about people.\n"
@@ -106,7 +108,7 @@ class NullProvider:
 class AnthropicProvider:
     name = "anthropic"
 
-    def __init__(self, api_key: str | None = None, model: str = "claude-sonnet-4-5"):
+    def __init__(self, api_key: str | None = None, model: str = "claude-sonnet-5"):
         self._api_key = api_key or os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("LLM_API_KEY") or ""
         self._model = os.environ.get("ANTHROPIC_MODEL", model)
 
@@ -181,7 +183,7 @@ class OpenAIProvider:
 class GeminiProvider:
     name = "gemini"
 
-    def __init__(self, api_key: str | None = None, model: str = "gemini-1.5-flash"):
+    def __init__(self, api_key: str | None = None, model: str = "gemini-2.5-flash"):
         self._api_key = api_key or os.environ.get("GEMINI_API_KEY") or os.environ.get("LLM_API_KEY") or ""
         self._model = os.environ.get("GEMINI_MODEL", model)
 
@@ -199,7 +201,15 @@ class GeminiProvider:
                 {
                     "system_instruction": {"parts": [{"text": system}]},
                     "contents": [{"parts": [{"text": user}]}],
-                    "generationConfig": {"maxOutputTokens": 400},
+                    "generationConfig": {
+                        "maxOutputTokens": 800,
+                        # 2.5-series models spend output budget on internal
+                        # reasoning before they emit anything. Left on, the
+                        # thinking consumes the allowance and the summary comes
+                        # back truncated mid-sentence. This task is a rewrite of
+                        # evidence we already computed, not a reasoning problem.
+                        "thinkingConfig": {"thinkingBudget": 0},
+                    },
                 }
             ).encode(),
             headers={"content-type": "application/json"},
@@ -210,7 +220,13 @@ class GeminiProvider:
         candidates = body.get("candidates", [])
         if not candidates:
             return ""
-        return candidates[0]["content"]["parts"][0]["text"].strip()
+        # A candidate that hit its token ceiling comes back with no parts at
+        # all. Treat that as "no answer" so the caller degrades cleanly,
+        # rather than raising a KeyError out of the adapter.
+        parts = candidates[0].get("content", {}).get("parts") or []
+        if not parts:
+            return ""
+        return parts[0].get("text", "").strip()
 
 
 def get_provider() -> Provider:
@@ -270,22 +286,19 @@ def validate(text: str, ring: dict) -> tuple[bool, str]:
 
     # Figures must come from the evidence. A model that invents a plausible
     # rupee number is more dangerous than one that says nothing.
-    allowed = {
-        str(int(ring["summary"]["financial_exposure"])),
-        f"{int(ring['summary']['financial_exposure']):,}",
-        str(int(ring["summary"]["risk_score"])),
-        str(ring["summary"]["n_accounts"]),
-        str(ring["summary"]["n_devices"]),
-        str(ring["summary"]["n_addresses"]),
-        str(ring["summary"]["n_ips"]),
-        str(ring["summary"]["n_transactions"]),
-        "100",
-    }
-    for item in ring["evidence"]:
-        value = item["observed_value"]
-        allowed.update({str(value), str(int(float(value)))} if _numeric(value) else {})
-        if item["baseline_value"] is not None and _numeric(item["baseline_value"]):
-            allowed.add(str(int(float(item["baseline_value"]))))
+    # The allow-list is derived from the prompt we actually sent, not
+    # reassembled from the fields we think it contained. The rule this encodes
+    # is simply "the model may repeat any figure it was handed, and no other" --
+    # which is the real requirement. Rebuilding the list by hand drifted from
+    # the prompt twice: it truncated where the prompt rounded (270,168 vs the
+    # 270,169 the model was shown), and it missed ratios like "6.9x the
+    # merchant baseline" that appear inside evidence statements. Both made the
+    # guardrail reject the model for quoting its own input.
+    allowed: set[str] = {"100"}
+    for figure in re.findall(r"\d[\d,]*\.?\d*", build_prompt(ring)):
+        figure = figure.rstrip(".")
+        allowed.add(figure)
+        allowed.update(_renderings(figure.replace(",", "")))
 
     for number in re.findall(r"\d[\d,]*\.?\d*", text):
         cleaned = number.rstrip(".")
@@ -302,6 +315,26 @@ def validate(text: str, ring: dict) -> tuple[bool, str]:
         return False, f"response contained a figure not in the evidence ({cleaned})"
 
     return True, ""
+
+
+def _renderings(value) -> set[str]:
+    """Every way one figure may legitimately appear in the prose.
+
+    Rounded and truncated, with and without thousands separators, because the
+    prompt and this check must not disagree about what the same number looks
+    like.
+    """
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return set()
+    out: set[str] = set()
+    for whole in {int(number), round(number)}:
+        out.add(str(whole))
+        out.add(f"{whole:,}")
+    if number != int(number):
+        out.add(str(number))
+    return out
 
 
 def _numeric(value) -> bool:
