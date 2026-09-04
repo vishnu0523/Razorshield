@@ -1,0 +1,65 @@
+{
+  "sub_scores": [
+    "transaction_risk",
+    "ring_risk",
+    "spike_risk",
+    "refund_abuse_risk"
+  ],
+  "regularisation_C": 0.01,
+  "sub_score_correlation": {
+    "transaction_risk": {
+      "transaction_risk": 1.0,
+      "ring_risk": 0.789,
+      "spike_risk": 0.356,
+      "refund_abuse_risk": 0.738
+    },
+    "ring_risk": {
+      "transaction_risk": 0.789,
+      "ring_risk": 1.0,
+      "spike_risk": 0.327,
+      "refund_abuse_risk": 0.74
+    },
+    "spike_risk": {
+      "transaction_risk": 0.356,
+      "ring_risk": 0.327,
+      "spike_risk": 1.0,
+      "refund_abuse_risk": 0.208
+    },
+    "refund_abuse_risk": {
+      "transaction_risk": 0.738,
+      "ring_risk": 0.74,
+      "spike_risk": 0.208,
+      "refund_abuse_risk": 1.0
+    }
+  },
+  "stacker_coefficients": {
+    "transaction_risk": 0.3328,
+    "ring_risk": 1.4487,
+    "spike_risk": 0.1059,
+    "refund_abuse_risk": 0.3579
+  },
+  "stacker_fit_on": "validation split",
+  "decision_threshold": 0.7764,
+  "held_out_pr_auc": {
+    "fused": 0.4241,
+    "transaction_model_alone": 0.4359,
+    "improvement": -0.0118
+  },
+  "sub_score_pr_auc_alone": {
+    "transaction_risk": 0.4359,
+    "ring_risk": 0.405,
+    "spike_risk": 0.094,
+    "refund_abuse_risk": 0.4006
+  },
+  "refund_scorer_coefficients": {
+    "customer_prior_return_rate": -0.1125,
+    "customer_prior_refund_rate": 0.0981,
+    "customer_prior_refund_value_ratio": 0.063,
+    "account_age_days": -11.4774,
+    "device_distinct_customers": 0.6272,
+    "address_distinct_customers": -0.099,
+    "coupon_distinct_customers": -0.1458,
+    "has_coupon": -0.2433
+  },
+  "fusion_helps": false
+}

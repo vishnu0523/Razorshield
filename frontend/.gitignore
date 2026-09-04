@@ -1,3 +1,4 @@
 node_modules/
-dist/
 .vite/
+
+# dist/ is intentionally tracked -- see the note in the root .gitignore.

@@ -1,0 +1,144 @@
+{
+  "generated_at": "2026-08-30T11:18:28.516199+00:00",
+  "is_placeholder": false,
+  "dataset": {
+    "seed": 42,
+    "n_transactions": 19319,
+    "n_customers": 4234,
+    "n_rings_injected": 95,
+    "n_hard_negative_clusters": 112,
+    "split_method": "time_aware",
+    "splits": {
+      "train": {
+        "n_rows": 13523,
+        "start": "2026-01-06T00:03:55+00:00",
+        "end": "2026-03-30T18:33:43.611310+00:00",
+        "positive_rate": 0.09414
+      },
+      "validation": {
+        "n_rows": 2898,
+        "start": "2026-03-30T18:43:15.937924+00:00",
+        "end": "2026-04-15T02:07:14+00:00",
+        "positive_rate": 0.07143
+      },
+      "test": {
+        "n_rows": 2898,
+        "start": "2026-04-15T02:08:52.804066+00:00",
+        "end": "2026-05-05T23:48:42+00:00",
+        "positive_rate": 0.08696
+      }
+    }
+  },
+  "transaction_model": {
+    "model_name": "hist_gradient_boosting",
+    "precision": 0.4461,
+    "recall": 0.6071,
+    "f1": 0.5143,
+    "pr_auc": 0.4359,
+    "roc_auc": 0.9297,
+    "accuracy": 0.9003,
+    "decision_threshold": 0.2544,
+    "confusion_matrix": {
+      "tp": 153,
+      "fp": 190,
+      "tn": 2456,
+      "fn": 99
+    },
+    "support": 2898,
+    "positive_rate": 0.08696
+  },
+  "baseline_model": {
+    "model_name": "logistic_regression",
+    "precision": 0.4511,
+    "recall": 0.4762,
+    "f1": 0.4633,
+    "pr_auc": 0.4036,
+    "roc_auc": 0.925,
+    "accuracy": 0.9041,
+    "decision_threshold": 0.8071,
+    "confusion_matrix": {
+      "tp": 120,
+      "fp": 146,
+      "tn": 2500,
+      "fn": 132
+    },
+    "support": 2898,
+    "positive_rate": 0.08696
+  },
+  "ring_model": {
+    "precision": 0.9333,
+    "recall": 0.9333,
+    "f1": 0.9333,
+    "confusion_matrix": {
+      "tp": 14,
+      "fp": 1,
+      "tn": 10,
+      "fn": 1
+    },
+    "n_true_rings": 15,
+    "n_true_rings_detected": 14,
+    "n_hard_negative_clusters": 11,
+    "n_hard_negatives_flagged": 1
+  },
+  "ring_baseline_model": {
+    "precision": 1.0,
+    "recall": 0.6,
+    "f1": 0.75,
+    "confusion_matrix": {
+      "tp": 9,
+      "fp": 0,
+      "tn": 11,
+      "fn": 6
+    },
+    "n_true_rings": 15,
+    "n_true_rings_detected": 9,
+    "n_hard_negative_clusters": 11,
+    "n_hard_negatives_flagged": 0
+  },
+  "financial": {
+    "currency": "INR",
+    "exposure_detected": 471965.76,
+    "prevented_loss": 330376.03,
+    "false_positive_cost": 118481.53,
+    "net_protected_value": 211894.5,
+    "assumptions": [
+      {
+        "key": "recovery_rate",
+        "label": "Recovery rate",
+        "value": 0.7,
+        "unit": "ratio",
+        "description": "Share of detected exposure genuinely preventable. Some fraud would have failed anyway; some flagged activity would have resolved legitimately. We do not claim 100%.",
+        "adjustable": true,
+        "min": 0.0,
+        "max": 1.0
+      },
+      {
+        "key": "cost_per_false_review",
+        "label": "Cost per false manual review",
+        "value": 120.0,
+        "unit": "INR",
+        "description": "Analyst time plus checkout friction when a legitimate transaction is escalated to human review.",
+        "adjustable": true,
+        "min": 0.0,
+        "max": 2000.0
+      },
+      {
+        "key": "cost_per_false_block_ratio",
+        "label": "Lost-margin ratio on a false block",
+        "value": 0.18,
+        "unit": "ratio",
+        "description": "Contribution margin forfeited when a legitimate order is stopped and the customer abandons. Applied to order value.",
+        "adjustable": true,
+        "min": 0.0,
+        "max": 1.0
+      }
+    ]
+  },
+  "caveats": [
+    "Dataset is synthetic. Metrics measure recovery of injected patterns under the generative assumptions documented in ml/config.py, not real-world fraud performance.",
+    "Transaction features are point-in-time correct and verified by test. Graph and ring detection run retrospectively over a trailing window, not in the online scoring path.",
+    "The decision threshold was selected on the validation split. The held-out test split was scored once and never used for tuning.",
+    "Ring-level metrics come from the graph detector. The naive shared-device baseline, which uses no graph structure, is reported alongside it so the graph's contribution is attributable rather than asserted. Both are scored on the same held-out clusters with the same credit rule.",
+    "Ring-level metrics rest on a small sample and should be read as indicative."
+  ]
+}

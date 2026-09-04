@@ -1,0 +1,4752 @@
+{
+  "run_id": "SIM-AR-0063",
+  "total_phases": 9,
+  "seed": 42,
+  "rationale": "AR-0063: component scores 99/100 while its hottest single transaction reaches only 59.",
+  "steps": [
+    {
+      "phase": 1,
+      "phase_name": "Normal activity",
+      "narrative": "Ordinary merchant traffic. Every order scores low and is allowed through without friction.",
+      "feed_items": [
+        {
+          "transaction_id": "TXN-019297",
+          "timestamp": "2026-01-06T00:03:55+00:00",
+          "amount": 807.02,
+          "currency": "INR",
+          "customer_id": "CUST-004230",
+          "payment_method": "card",
+          "product_category": "home",
+          "risk_score": 0.1,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        },
+        {
+          "transaction_id": "TXN-016457",
+          "timestamp": "2026-01-06T00:17:31+00:00",
+          "amount": 6003.56,
+          "currency": "INR",
+          "customer_id": "CUST-003892",
+          "payment_method": "wallet",
+          "product_category": "fashion",
+          "risk_score": 0.1,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        },
+        {
+          "transaction_id": "TXN-016424",
+          "timestamp": "2026-01-06T00:19:15+00:00",
+          "amount": 4998.71,
+          "currency": "INR",
+          "customer_id": "CUST-003888",
+          "payment_method": "wallet",
+          "product_category": "electronics",
+          "risk_score": 0.1,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        },
+        {
+          "transaction_id": "TXN-012433",
+          "timestamp": "2026-01-06T00:57:24+00:00",
+          "amount": 1562.83,
+          "currency": "INR",
+          "customer_id": "CUST-003396",
+          "payment_method": "wallet",
+          "product_category": "fashion",
+          "risk_score": 0.1,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        },
+        {
+          "transaction_id": "TXN-016142",
+          "timestamp": "2026-01-06T01:07:01+00:00",
+          "amount": 817.73,
+          "currency": "INR",
+          "customer_id": "CUST-003850",
+          "payment_method": "upi",
+          "product_category": "grocery",
+          "risk_score": 0.1,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        },
+        {
+          "transaction_id": "TXN-014386",
+          "timestamp": "2026-01-06T01:19:01+00:00",
+          "amount": 2780.14,
+          "currency": "INR",
+          "customer_id": "CUST-003625",
+          "payment_method": "upi",
+          "product_category": "electronics",
+          "risk_score": 0.1,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        }
+      ],
+      "ring": null,
+      "audit_entries": [],
+      "financial_delta": null,
+      "is_final": false
+    },
+    {
+      "phase": 2,
+      "phase_name": "Unremarkable orders",
+      "narrative": "New orders arrive. None of them would trigger an intervention on its own \u2014 a row-level model sees nothing worth stopping.",
+      "feed_items": [
+        {
+          "transaction_id": "TXN-001216",
+          "timestamp": "2026-04-11T22:43:47.302087+00:00",
+          "amount": 10209.38,
+          "currency": "INR",
+          "customer_id": "CUST-000355",
+          "payment_method": "netbanking",
+          "product_category": "electronics",
+          "risk_score": 10.5,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        },
+        {
+          "transaction_id": "TXN-001234",
+          "timestamp": "2026-04-12T00:34:33.302087+00:00",
+          "amount": 1178.83,
+          "currency": "INR",
+          "customer_id": "CUST-000360",
+          "payment_method": "upi",
+          "product_category": "fashion",
+          "risk_score": 8.7,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        },
+        {
+          "transaction_id": "TXN-001204",
+          "timestamp": "2026-04-12T02:52:46.302087+00:00",
+          "amount": 881.73,
+          "currency": "INR",
+          "customer_id": "CUST-000351",
+          "payment_method": "upi",
+          "product_category": "fashion",
+          "risk_score": 8.0,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        },
+        {
+          "transaction_id": "TXN-001229",
+          "timestamp": "2026-04-12T03:50:19.302087+00:00",
+          "amount": 2078.68,
+          "currency": "INR",
+          "customer_id": "CUST-000359",
+          "payment_method": "netbanking",
+          "product_category": "home",
+          "risk_score": 7.1,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        }
+      ],
+      "ring": null,
+      "audit_entries": [],
+      "financial_delta": null,
+      "is_final": false
+    },
+    {
+      "phase": 3,
+      "phase_name": "Relationships accumulate",
+      "narrative": "More orders from different accounts. They share 5 devices and 3 delivery addresses, but no single order looks wrong.",
+      "feed_items": [
+        {
+          "transaction_id": "TXN-001228",
+          "timestamp": "2026-04-12T09:51:55.302087+00:00",
+          "amount": 818.51,
+          "currency": "INR",
+          "customer_id": "CUST-000359",
+          "payment_method": "card",
+          "product_category": "beauty",
+          "risk_score": 7.1,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        },
+        {
+          "transaction_id": "TXN-001256",
+          "timestamp": "2026-04-12T11:59:52.302087+00:00",
+          "amount": 2141.6,
+          "currency": "INR",
+          "customer_id": "CUST-000367",
+          "payment_method": "upi",
+          "product_category": "home",
+          "risk_score": 8.8,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        },
+        {
+          "transaction_id": "TXN-001203",
+          "timestamp": "2026-04-12T12:05:20.302087+00:00",
+          "amount": 432.43,
+          "currency": "INR",
+          "customer_id": "CUST-000351",
+          "payment_method": "upi",
+          "product_category": "fashion",
+          "risk_score": 6.0,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        },
+        {
+          "transaction_id": "TXN-001220",
+          "timestamp": "2026-04-13T20:15:06.302087+00:00",
+          "amount": 926.0,
+          "currency": "INR",
+          "customer_id": "CUST-000356",
+          "payment_method": "card",
+          "product_category": "grocery",
+          "risk_score": 3.7,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        },
+        {
+          "transaction_id": "TXN-001240",
+          "timestamp": "2026-04-14T05:30:17.302087+00:00",
+          "amount": 816.3,
+          "currency": "INR",
+          "customer_id": "CUST-000362",
+          "payment_method": "netbanking",
+          "product_category": "grocery",
+          "risk_score": 10.8,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        },
+        {
+          "transaction_id": "TXN-001253",
+          "timestamp": "2026-04-14T06:29:24.302087+00:00",
+          "amount": 2212.45,
+          "currency": "INR",
+          "customer_id": "CUST-000367",
+          "payment_method": "upi",
+          "product_category": "home",
+          "risk_score": 26.4,
+          "risk_level": "LOW",
+          "policy_action": "ALLOW",
+          "top_signals": [],
+          "ring_id": null
+        }
+      ],
+      "ring": null,
+      "audit_entries": [],
+      "financial_delta": null,
+      "is_final": false
+    },
+    {
+      "phase": 4,
+      "phase_name": "Graph analysis",
+      "narrative": "The risk graph runs over the trailing window, linking accounts through the entities they share.",
+      "feed_items": [],
+      "ring": null,
+      "audit_entries": [
+        {
+          "entry_id": "SIM-0001",
+          "timestamp": "2026-05-05T23:48:42+00:00",
+          "policy": "v1",
+          "event": "graph_analysis_completed",
+          "actor": "system",
+          "subject_id": "AR-0063",
+          "input_summary": "56 orders in the window",
+          "decision": "component formed",
+          "reason": "40 entities linked",
+          "result": "component queued for scoring"
+        }
+      ],
+      "financial_delta": null,
+      "is_final": false
+    },
+    {
+      "phase": 5,
+      "phase_name": "Coordinated abuse detected",
+      "narrative": "17 accounts form one connected group scoring 99 out of 100. Exposure is INR 270,169.",
+      "feed_items": [],
+      "ring": {
+        "summary": {
+          "ring_id": "AR-0063",
+          "risk_score": 99.1,
+          "risk_level": "CRITICAL",
+          "confidence": 0.882,
+          "n_accounts": 17,
+          "n_devices": 5,
+          "n_addresses": 3,
+          "n_ips": 3,
+          "n_transactions": 56,
+          "financial_exposure": 270168.76,
+          "detected_at": "2026-05-05T23:48:42+00:00",
+          "status": "AWAITING_APPROVAL"
+        },
+        "evidence": [
+          {
+            "code": "CLUSTER_SHAPE",
+            "kind": "FACT",
+            "statement": "17 accounts are connected through 5 devices, 3 delivery addresses and 3 IP addresses.",
+            "observed_value": 17,
+            "baseline_value": null,
+            "unit": "accounts",
+            "weight": 0.0
+          },
+          {
+            "code": "REFUND_VALUE_RATIO",
+            "kind": "FACT",
+            "statement": "Refunded share of captured value is 0.74 (6.9x the merchant baseline).",
+            "observed_value": 0.7387,
+            "baseline_value": 0.1069,
+            "unit": "ratio",
+            "weight": 0.5659
+          },
+          {
+            "code": "SIGNUP_SPAN",
+            "kind": "FACT",
+            "statement": "Days between first and last account signup is 13.13 (merchant baseline 144.10).",
+            "observed_value": 13.1307,
+            "baseline_value": 144.0966,
+            "unit": "days",
+            "weight": 0.169
+          },
+          {
+            "code": "BRIDGING_ENTITIES",
+            "kind": "FACT",
+            "statement": "Share of devices, addresses and codes shared between accounts is 0.91 (1.5x the merchant baseline).",
+            "observed_value": 0.9091,
+            "baseline_value": 0.6065,
+            "unit": "ratio",
+            "weight": 0.1131
+          },
+          {
+            "code": "SIGNUP_BURST",
+            "kind": "FACT",
+            "statement": "Share of accounts created within 24 hours of the first is 0.06 (merchant baseline 0.33).",
+            "observed_value": 0.0588,
+            "baseline_value": 0.3333,
+            "unit": "ratio",
+            "weight": 0.0857
+          },
+          {
+            "code": "ACCOUNTS_PER_DEVICE",
+            "kind": "FACT",
+            "statement": "Accounts per device is 3.40 (2.0x the merchant baseline).",
+            "observed_value": 3.4,
+            "baseline_value": 1.6667,
+            "unit": "accounts",
+            "weight": 0.0662
+          }
+        ],
+        "graph": {
+          "nodes": [
+            {
+              "id": "c:CUST-000363",
+              "type": "customer",
+              "label": "CUST-000363",
+              "risk_score": 14.9,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000362",
+              "type": "customer",
+              "label": "CUST-000362",
+              "risk_score": 28.1,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000355",
+              "type": "customer",
+              "label": "CUST-000355",
+              "risk_score": 11.3,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000356",
+              "type": "customer",
+              "label": "CUST-000356",
+              "risk_score": 6.7,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000357",
+              "type": "customer",
+              "label": "CUST-000357",
+              "risk_score": 17.5,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000353",
+              "type": "customer",
+              "label": "CUST-000353",
+              "risk_score": 23.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000352",
+              "type": "customer",
+              "label": "CUST-000352",
+              "risk_score": 30.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000365",
+              "type": "customer",
+              "label": "CUST-000365",
+              "risk_score": 38.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000361",
+              "type": "customer",
+              "label": "CUST-000361",
+              "risk_score": 24.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000359",
+              "type": "customer",
+              "label": "CUST-000359",
+              "risk_score": 13.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000364",
+              "type": "customer",
+              "label": "CUST-000364",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000367",
+              "type": "customer",
+              "label": "CUST-000367",
+              "risk_score": 28.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000354",
+              "type": "customer",
+              "label": "CUST-000354",
+              "risk_score": 28.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000358",
+              "type": "customer",
+              "label": "CUST-000358",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000351",
+              "type": "customer",
+              "label": "CUST-000351",
+              "risk_score": 7.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000360",
+              "type": "customer",
+              "label": "CUST-000360",
+              "risk_score": 24.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000366",
+              "type": "customer",
+              "label": "CUST-000366",
+              "risk_score": 8.2,
+              "attributes": {}
+            },
+            {
+              "id": "d:DEV-AR-031-4",
+              "type": "device",
+              "label": "DEV-AR-031-4",
+              "risk_score": 12.5,
+              "attributes": {
+                "shared_by": 3
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-1",
+              "type": "device",
+              "label": "DEV-AR-031-1",
+              "risk_score": 25.0,
+              "attributes": {
+                "shared_by": 5
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-2",
+              "type": "device",
+              "label": "DEV-AR-031-2",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-3",
+              "type": "device",
+              "label": "DEV-AR-031-3",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-0",
+              "type": "device",
+              "label": "DEV-AR-031-0",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-0",
+              "type": "address",
+              "label": "ADDR-AR-031-0",
+              "risk_score": 37.5,
+              "attributes": {
+                "shared_by": 7
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-1",
+              "type": "address",
+              "label": "ADDR-AR-031-1",
+              "risk_score": 43.8,
+              "attributes": {
+                "shared_by": 8
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-2",
+              "type": "address",
+              "label": "ADDR-AR-031-2",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "i:49.11.247.206",
+              "type": "ip",
+              "label": "49.11.247.206",
+              "risk_score": 37.5,
+              "attributes": {
+                "shared_by": 7
+              }
+            },
+            {
+              "id": "i:49.7.84.13",
+              "type": "ip",
+              "label": "49.7.84.13",
+              "risk_score": 31.2,
+              "attributes": {
+                "shared_by": 6
+              }
+            },
+            {
+              "id": "i:49.6.70.172",
+              "type": "ip",
+              "label": "49.6.70.172",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "p:SAVE008",
+              "type": "coupon",
+              "label": "SAVE008",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE036",
+              "type": "coupon",
+              "label": "SAVE036",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE015",
+              "type": "coupon",
+              "label": "SAVE015",
+              "risk_score": 25.0,
+              "attributes": {
+                "shared_by": 5
+              }
+            },
+            {
+              "id": "p:SAVE039",
+              "type": "coupon",
+              "label": "SAVE039",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE006",
+              "type": "coupon",
+              "label": "SAVE006",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE016",
+              "type": "coupon",
+              "label": "SAVE016",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE018",
+              "type": "coupon",
+              "label": "SAVE018",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE020",
+              "type": "coupon",
+              "label": "SAVE020",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE021",
+              "type": "coupon",
+              "label": "SAVE021",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE024",
+              "type": "coupon",
+              "label": "SAVE024",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE007",
+              "type": "coupon",
+              "label": "SAVE007",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE029",
+              "type": "coupon",
+              "label": "SAVE029",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            }
+          ],
+          "edges": [
+            {
+              "source": "c:CUST-000355",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "d:DEV-AR-031-3",
+              "relation": "uses_device",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "a:ADDR-AR-031-2",
+              "relation": "uses_address",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "a:ADDR-AR-031-2",
+              "relation": "uses_address",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "p:SAVE008",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "p:SAVE036",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "p:SAVE039",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "p:SAVE006",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "p:SAVE016",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "p:SAVE018",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "p:SAVE020",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "p:SAVE021",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE021",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "p:SAVE024",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "p:SAVE007",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE006",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "p:SAVE029",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "p:SAVE036",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "p:SAVE008",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "p:SAVE029",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            }
+          ],
+          "truncated": true
+        },
+        "policy": {
+          "recommended_action": "MANUAL_REVIEW",
+          "requires_merchant_approval": true,
+          "reason": "Risk score 99 falls in the 90-100 band, which always requires human review.",
+          "policy_version": "v1",
+          "risk_band": "90-100",
+          "amount_cap_applied": true
+        },
+        "explanation": {
+          "source": "deterministic",
+          "text": "17 customer accounts are linked through 5 shared devices, 3 delivery addresses and 3 IP addresses, across 56 orders. Taken together these signals put the group at 99 out of 100. Individually none of these orders would stand out; the pattern is only visible across the connected accounts.",
+          "facts": [
+            "17 accounts are connected through 5 devices, 3 delivery addresses and 3 IP addresses.",
+            "Refunded share of captured value is 0.74 (6.9x the merchant baseline).",
+            "Days between first and last account signup is 13.13 (merchant baseline 144.10).",
+            "Share of devices, addresses and codes shared between accounts is 0.91 (1.5x the merchant baseline).",
+            "Share of accounts created within 24 hours of the first is 0.06 (merchant baseline 0.33).",
+            "Accounts per device is 3.40 (2.0x the merchant baseline)."
+          ],
+          "inferences": [
+            "Taken together these signals put the group at 99 out of 100. Individually none of these orders would stand out; the pattern is only visible across the connected accounts."
+          ],
+          "degraded": false
+        },
+        "component_features": {
+          "refund_value_ratio": 0.7387,
+          "accounts_per_device": 3.4,
+          "signup_span_days_log": 2.6484,
+          "bridging_entity_ratio": 0.9091,
+          "return_rate": 0.1667,
+          "failed_payment_rate": 0.0357,
+          "signup_burst_ratio": 0.0588,
+          "txn_velocity": 0.3179
+        }
+      },
+      "audit_entries": [
+        {
+          "entry_id": "SIM-0002",
+          "timestamp": "2026-05-05T23:48:44+00:00",
+          "policy": "v1",
+          "event": "component_scored",
+          "actor": "model",
+          "subject_id": "AR-0063",
+          "input_summary": "component feature vector",
+          "decision": "risk 99/100",
+          "reason": "17 accounts are connected through 5 devices, 3 delivery addresses and 3 IP addresses.",
+          "result": "CRITICAL"
+        },
+        {
+          "entry_id": "SIM-0003",
+          "timestamp": "2026-05-05T23:48:45+00:00",
+          "policy": "v1",
+          "event": "exposure_calculated",
+          "actor": "system",
+          "subject_id": "AR-0063",
+          "input_summary": "refunds issued plus captured value still open",
+          "decision": "INR 270,169",
+          "reason": "Upper bound; recovery rate applied downstream.",
+          "result": "exposure recorded"
+        }
+      ],
+      "financial_delta": null,
+      "is_final": false
+    },
+    {
+      "phase": 6,
+      "phase_name": "Investigator explains",
+      "narrative": "17 customer accounts are linked through 5 shared devices, 3 delivery addresses and 3 IP addresses, across 56 orders. Taken together these signals put the group at 99 out of 100. Individually none of these orders would stand out; the pattern is only visible across the connected accounts.",
+      "feed_items": [],
+      "ring": {
+        "summary": {
+          "ring_id": "AR-0063",
+          "risk_score": 99.1,
+          "risk_level": "CRITICAL",
+          "confidence": 0.882,
+          "n_accounts": 17,
+          "n_devices": 5,
+          "n_addresses": 3,
+          "n_ips": 3,
+          "n_transactions": 56,
+          "financial_exposure": 270168.76,
+          "detected_at": "2026-05-05T23:48:42+00:00",
+          "status": "AWAITING_APPROVAL"
+        },
+        "evidence": [
+          {
+            "code": "CLUSTER_SHAPE",
+            "kind": "FACT",
+            "statement": "17 accounts are connected through 5 devices, 3 delivery addresses and 3 IP addresses.",
+            "observed_value": 17,
+            "baseline_value": null,
+            "unit": "accounts",
+            "weight": 0.0
+          },
+          {
+            "code": "REFUND_VALUE_RATIO",
+            "kind": "FACT",
+            "statement": "Refunded share of captured value is 0.74 (6.9x the merchant baseline).",
+            "observed_value": 0.7387,
+            "baseline_value": 0.1069,
+            "unit": "ratio",
+            "weight": 0.5659
+          },
+          {
+            "code": "SIGNUP_SPAN",
+            "kind": "FACT",
+            "statement": "Days between first and last account signup is 13.13 (merchant baseline 144.10).",
+            "observed_value": 13.1307,
+            "baseline_value": 144.0966,
+            "unit": "days",
+            "weight": 0.169
+          },
+          {
+            "code": "BRIDGING_ENTITIES",
+            "kind": "FACT",
+            "statement": "Share of devices, addresses and codes shared between accounts is 0.91 (1.5x the merchant baseline).",
+            "observed_value": 0.9091,
+            "baseline_value": 0.6065,
+            "unit": "ratio",
+            "weight": 0.1131
+          },
+          {
+            "code": "SIGNUP_BURST",
+            "kind": "FACT",
+            "statement": "Share of accounts created within 24 hours of the first is 0.06 (merchant baseline 0.33).",
+            "observed_value": 0.0588,
+            "baseline_value": 0.3333,
+            "unit": "ratio",
+            "weight": 0.0857
+          },
+          {
+            "code": "ACCOUNTS_PER_DEVICE",
+            "kind": "FACT",
+            "statement": "Accounts per device is 3.40 (2.0x the merchant baseline).",
+            "observed_value": 3.4,
+            "baseline_value": 1.6667,
+            "unit": "accounts",
+            "weight": 0.0662
+          }
+        ],
+        "graph": {
+          "nodes": [
+            {
+              "id": "c:CUST-000363",
+              "type": "customer",
+              "label": "CUST-000363",
+              "risk_score": 14.9,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000362",
+              "type": "customer",
+              "label": "CUST-000362",
+              "risk_score": 28.1,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000355",
+              "type": "customer",
+              "label": "CUST-000355",
+              "risk_score": 11.3,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000356",
+              "type": "customer",
+              "label": "CUST-000356",
+              "risk_score": 6.7,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000357",
+              "type": "customer",
+              "label": "CUST-000357",
+              "risk_score": 17.5,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000353",
+              "type": "customer",
+              "label": "CUST-000353",
+              "risk_score": 23.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000352",
+              "type": "customer",
+              "label": "CUST-000352",
+              "risk_score": 30.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000365",
+              "type": "customer",
+              "label": "CUST-000365",
+              "risk_score": 38.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000361",
+              "type": "customer",
+              "label": "CUST-000361",
+              "risk_score": 24.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000359",
+              "type": "customer",
+              "label": "CUST-000359",
+              "risk_score": 13.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000364",
+              "type": "customer",
+              "label": "CUST-000364",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000367",
+              "type": "customer",
+              "label": "CUST-000367",
+              "risk_score": 28.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000354",
+              "type": "customer",
+              "label": "CUST-000354",
+              "risk_score": 28.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000358",
+              "type": "customer",
+              "label": "CUST-000358",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000351",
+              "type": "customer",
+              "label": "CUST-000351",
+              "risk_score": 7.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000360",
+              "type": "customer",
+              "label": "CUST-000360",
+              "risk_score": 24.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000366",
+              "type": "customer",
+              "label": "CUST-000366",
+              "risk_score": 8.2,
+              "attributes": {}
+            },
+            {
+              "id": "d:DEV-AR-031-4",
+              "type": "device",
+              "label": "DEV-AR-031-4",
+              "risk_score": 12.5,
+              "attributes": {
+                "shared_by": 3
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-1",
+              "type": "device",
+              "label": "DEV-AR-031-1",
+              "risk_score": 25.0,
+              "attributes": {
+                "shared_by": 5
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-2",
+              "type": "device",
+              "label": "DEV-AR-031-2",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-3",
+              "type": "device",
+              "label": "DEV-AR-031-3",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-0",
+              "type": "device",
+              "label": "DEV-AR-031-0",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-0",
+              "type": "address",
+              "label": "ADDR-AR-031-0",
+              "risk_score": 37.5,
+              "attributes": {
+                "shared_by": 7
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-1",
+              "type": "address",
+              "label": "ADDR-AR-031-1",
+              "risk_score": 43.8,
+              "attributes": {
+                "shared_by": 8
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-2",
+              "type": "address",
+              "label": "ADDR-AR-031-2",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "i:49.11.247.206",
+              "type": "ip",
+              "label": "49.11.247.206",
+              "risk_score": 37.5,
+              "attributes": {
+                "shared_by": 7
+              }
+            },
+            {
+              "id": "i:49.7.84.13",
+              "type": "ip",
+              "label": "49.7.84.13",
+              "risk_score": 31.2,
+              "attributes": {
+                "shared_by": 6
+              }
+            },
+            {
+              "id": "i:49.6.70.172",
+              "type": "ip",
+              "label": "49.6.70.172",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "p:SAVE008",
+              "type": "coupon",
+              "label": "SAVE008",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE036",
+              "type": "coupon",
+              "label": "SAVE036",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE015",
+              "type": "coupon",
+              "label": "SAVE015",
+              "risk_score": 25.0,
+              "attributes": {
+                "shared_by": 5
+              }
+            },
+            {
+              "id": "p:SAVE039",
+              "type": "coupon",
+              "label": "SAVE039",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE006",
+              "type": "coupon",
+              "label": "SAVE006",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE016",
+              "type": "coupon",
+              "label": "SAVE016",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE018",
+              "type": "coupon",
+              "label": "SAVE018",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE020",
+              "type": "coupon",
+              "label": "SAVE020",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE021",
+              "type": "coupon",
+              "label": "SAVE021",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE024",
+              "type": "coupon",
+              "label": "SAVE024",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE007",
+              "type": "coupon",
+              "label": "SAVE007",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE029",
+              "type": "coupon",
+              "label": "SAVE029",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            }
+          ],
+          "edges": [
+            {
+              "source": "c:CUST-000355",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "d:DEV-AR-031-3",
+              "relation": "uses_device",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "a:ADDR-AR-031-2",
+              "relation": "uses_address",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "a:ADDR-AR-031-2",
+              "relation": "uses_address",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "p:SAVE008",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "p:SAVE036",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "p:SAVE039",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "p:SAVE006",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "p:SAVE016",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "p:SAVE018",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "p:SAVE020",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "p:SAVE021",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE021",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "p:SAVE024",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "p:SAVE007",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE006",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "p:SAVE029",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "p:SAVE036",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "p:SAVE008",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "p:SAVE029",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            }
+          ],
+          "truncated": true
+        },
+        "policy": {
+          "recommended_action": "MANUAL_REVIEW",
+          "requires_merchant_approval": true,
+          "reason": "Risk score 99 falls in the 90-100 band, which always requires human review.",
+          "policy_version": "v1",
+          "risk_band": "90-100",
+          "amount_cap_applied": true
+        },
+        "explanation": {
+          "source": "deterministic",
+          "text": "17 customer accounts are linked through 5 shared devices, 3 delivery addresses and 3 IP addresses, across 56 orders. Taken together these signals put the group at 99 out of 100. Individually none of these orders would stand out; the pattern is only visible across the connected accounts.",
+          "facts": [
+            "17 accounts are connected through 5 devices, 3 delivery addresses and 3 IP addresses.",
+            "Refunded share of captured value is 0.74 (6.9x the merchant baseline).",
+            "Days between first and last account signup is 13.13 (merchant baseline 144.10).",
+            "Share of devices, addresses and codes shared between accounts is 0.91 (1.5x the merchant baseline).",
+            "Share of accounts created within 24 hours of the first is 0.06 (merchant baseline 0.33).",
+            "Accounts per device is 3.40 (2.0x the merchant baseline)."
+          ],
+          "inferences": [
+            "Taken together these signals put the group at 99 out of 100. Individually none of these orders would stand out; the pattern is only visible across the connected accounts."
+          ],
+          "degraded": false
+        },
+        "component_features": {
+          "refund_value_ratio": 0.7387,
+          "accounts_per_device": 3.4,
+          "signup_span_days_log": 2.6484,
+          "bridging_entity_ratio": 0.9091,
+          "return_rate": 0.1667,
+          "failed_payment_rate": 0.0357,
+          "signup_burst_ratio": 0.0588,
+          "txn_velocity": 0.3179
+        }
+      },
+      "audit_entries": [
+        {
+          "entry_id": "SIM-0004",
+          "timestamp": "2026-05-05T23:48:47+00:00",
+          "policy": "v1",
+          "event": "explanation_generated",
+          "actor": "system",
+          "subject_id": "AR-0063",
+          "input_summary": "6 evidence items",
+          "decision": "summary written",
+          "reason": "Explains evidence; does not decide.",
+          "result": "deterministic"
+        }
+      ],
+      "financial_delta": null,
+      "is_final": false
+    },
+    {
+      "phase": 7,
+      "phase_name": "Policy engine decides",
+      "narrative": "Risk score 99 falls in the 90-100 band, which always requires human review.",
+      "feed_items": [],
+      "ring": {
+        "summary": {
+          "ring_id": "AR-0063",
+          "risk_score": 99.1,
+          "risk_level": "CRITICAL",
+          "confidence": 0.882,
+          "n_accounts": 17,
+          "n_devices": 5,
+          "n_addresses": 3,
+          "n_ips": 3,
+          "n_transactions": 56,
+          "financial_exposure": 270168.76,
+          "detected_at": "2026-05-05T23:48:42+00:00",
+          "status": "AWAITING_APPROVAL"
+        },
+        "evidence": [
+          {
+            "code": "CLUSTER_SHAPE",
+            "kind": "FACT",
+            "statement": "17 accounts are connected through 5 devices, 3 delivery addresses and 3 IP addresses.",
+            "observed_value": 17,
+            "baseline_value": null,
+            "unit": "accounts",
+            "weight": 0.0
+          },
+          {
+            "code": "REFUND_VALUE_RATIO",
+            "kind": "FACT",
+            "statement": "Refunded share of captured value is 0.74 (6.9x the merchant baseline).",
+            "observed_value": 0.7387,
+            "baseline_value": 0.1069,
+            "unit": "ratio",
+            "weight": 0.5659
+          },
+          {
+            "code": "SIGNUP_SPAN",
+            "kind": "FACT",
+            "statement": "Days between first and last account signup is 13.13 (merchant baseline 144.10).",
+            "observed_value": 13.1307,
+            "baseline_value": 144.0966,
+            "unit": "days",
+            "weight": 0.169
+          },
+          {
+            "code": "BRIDGING_ENTITIES",
+            "kind": "FACT",
+            "statement": "Share of devices, addresses and codes shared between accounts is 0.91 (1.5x the merchant baseline).",
+            "observed_value": 0.9091,
+            "baseline_value": 0.6065,
+            "unit": "ratio",
+            "weight": 0.1131
+          },
+          {
+            "code": "SIGNUP_BURST",
+            "kind": "FACT",
+            "statement": "Share of accounts created within 24 hours of the first is 0.06 (merchant baseline 0.33).",
+            "observed_value": 0.0588,
+            "baseline_value": 0.3333,
+            "unit": "ratio",
+            "weight": 0.0857
+          },
+          {
+            "code": "ACCOUNTS_PER_DEVICE",
+            "kind": "FACT",
+            "statement": "Accounts per device is 3.40 (2.0x the merchant baseline).",
+            "observed_value": 3.4,
+            "baseline_value": 1.6667,
+            "unit": "accounts",
+            "weight": 0.0662
+          }
+        ],
+        "graph": {
+          "nodes": [
+            {
+              "id": "c:CUST-000363",
+              "type": "customer",
+              "label": "CUST-000363",
+              "risk_score": 14.9,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000362",
+              "type": "customer",
+              "label": "CUST-000362",
+              "risk_score": 28.1,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000355",
+              "type": "customer",
+              "label": "CUST-000355",
+              "risk_score": 11.3,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000356",
+              "type": "customer",
+              "label": "CUST-000356",
+              "risk_score": 6.7,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000357",
+              "type": "customer",
+              "label": "CUST-000357",
+              "risk_score": 17.5,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000353",
+              "type": "customer",
+              "label": "CUST-000353",
+              "risk_score": 23.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000352",
+              "type": "customer",
+              "label": "CUST-000352",
+              "risk_score": 30.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000365",
+              "type": "customer",
+              "label": "CUST-000365",
+              "risk_score": 38.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000361",
+              "type": "customer",
+              "label": "CUST-000361",
+              "risk_score": 24.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000359",
+              "type": "customer",
+              "label": "CUST-000359",
+              "risk_score": 13.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000364",
+              "type": "customer",
+              "label": "CUST-000364",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000367",
+              "type": "customer",
+              "label": "CUST-000367",
+              "risk_score": 28.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000354",
+              "type": "customer",
+              "label": "CUST-000354",
+              "risk_score": 28.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000358",
+              "type": "customer",
+              "label": "CUST-000358",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000351",
+              "type": "customer",
+              "label": "CUST-000351",
+              "risk_score": 7.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000360",
+              "type": "customer",
+              "label": "CUST-000360",
+              "risk_score": 24.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000366",
+              "type": "customer",
+              "label": "CUST-000366",
+              "risk_score": 8.2,
+              "attributes": {}
+            },
+            {
+              "id": "d:DEV-AR-031-4",
+              "type": "device",
+              "label": "DEV-AR-031-4",
+              "risk_score": 12.5,
+              "attributes": {
+                "shared_by": 3
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-1",
+              "type": "device",
+              "label": "DEV-AR-031-1",
+              "risk_score": 25.0,
+              "attributes": {
+                "shared_by": 5
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-2",
+              "type": "device",
+              "label": "DEV-AR-031-2",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-3",
+              "type": "device",
+              "label": "DEV-AR-031-3",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-0",
+              "type": "device",
+              "label": "DEV-AR-031-0",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-0",
+              "type": "address",
+              "label": "ADDR-AR-031-0",
+              "risk_score": 37.5,
+              "attributes": {
+                "shared_by": 7
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-1",
+              "type": "address",
+              "label": "ADDR-AR-031-1",
+              "risk_score": 43.8,
+              "attributes": {
+                "shared_by": 8
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-2",
+              "type": "address",
+              "label": "ADDR-AR-031-2",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "i:49.11.247.206",
+              "type": "ip",
+              "label": "49.11.247.206",
+              "risk_score": 37.5,
+              "attributes": {
+                "shared_by": 7
+              }
+            },
+            {
+              "id": "i:49.7.84.13",
+              "type": "ip",
+              "label": "49.7.84.13",
+              "risk_score": 31.2,
+              "attributes": {
+                "shared_by": 6
+              }
+            },
+            {
+              "id": "i:49.6.70.172",
+              "type": "ip",
+              "label": "49.6.70.172",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "p:SAVE008",
+              "type": "coupon",
+              "label": "SAVE008",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE036",
+              "type": "coupon",
+              "label": "SAVE036",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE015",
+              "type": "coupon",
+              "label": "SAVE015",
+              "risk_score": 25.0,
+              "attributes": {
+                "shared_by": 5
+              }
+            },
+            {
+              "id": "p:SAVE039",
+              "type": "coupon",
+              "label": "SAVE039",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE006",
+              "type": "coupon",
+              "label": "SAVE006",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE016",
+              "type": "coupon",
+              "label": "SAVE016",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE018",
+              "type": "coupon",
+              "label": "SAVE018",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE020",
+              "type": "coupon",
+              "label": "SAVE020",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE021",
+              "type": "coupon",
+              "label": "SAVE021",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE024",
+              "type": "coupon",
+              "label": "SAVE024",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE007",
+              "type": "coupon",
+              "label": "SAVE007",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE029",
+              "type": "coupon",
+              "label": "SAVE029",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            }
+          ],
+          "edges": [
+            {
+              "source": "c:CUST-000355",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "d:DEV-AR-031-3",
+              "relation": "uses_device",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "a:ADDR-AR-031-2",
+              "relation": "uses_address",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "a:ADDR-AR-031-2",
+              "relation": "uses_address",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "p:SAVE008",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "p:SAVE036",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "p:SAVE039",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "p:SAVE006",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "p:SAVE016",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "p:SAVE018",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "p:SAVE020",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "p:SAVE021",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE021",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "p:SAVE024",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "p:SAVE007",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE006",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "p:SAVE029",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "p:SAVE036",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "p:SAVE008",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "p:SAVE029",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            }
+          ],
+          "truncated": true
+        },
+        "policy": {
+          "recommended_action": "MANUAL_REVIEW",
+          "requires_merchant_approval": true,
+          "reason": "Risk score 99 falls in the 90-100 band, which always requires human review.",
+          "policy_version": "v1",
+          "risk_band": "90-100",
+          "amount_cap_applied": true
+        },
+        "explanation": {
+          "source": "deterministic",
+          "text": "17 customer accounts are linked through 5 shared devices, 3 delivery addresses and 3 IP addresses, across 56 orders. Taken together these signals put the group at 99 out of 100. Individually none of these orders would stand out; the pattern is only visible across the connected accounts.",
+          "facts": [
+            "17 accounts are connected through 5 devices, 3 delivery addresses and 3 IP addresses.",
+            "Refunded share of captured value is 0.74 (6.9x the merchant baseline).",
+            "Days between first and last account signup is 13.13 (merchant baseline 144.10).",
+            "Share of devices, addresses and codes shared between accounts is 0.91 (1.5x the merchant baseline).",
+            "Share of accounts created within 24 hours of the first is 0.06 (merchant baseline 0.33).",
+            "Accounts per device is 3.40 (2.0x the merchant baseline)."
+          ],
+          "inferences": [
+            "Taken together these signals put the group at 99 out of 100. Individually none of these orders would stand out; the pattern is only visible across the connected accounts."
+          ],
+          "degraded": false
+        },
+        "component_features": {
+          "refund_value_ratio": 0.7387,
+          "accounts_per_device": 3.4,
+          "signup_span_days_log": 2.6484,
+          "bridging_entity_ratio": 0.9091,
+          "return_rate": 0.1667,
+          "failed_payment_rate": 0.0357,
+          "signup_burst_ratio": 0.0588,
+          "txn_velocity": 0.3179
+        }
+      },
+      "audit_entries": [
+        {
+          "entry_id": "SIM-0005",
+          "timestamp": "2026-05-05T23:48:48+00:00",
+          "policy": "v1",
+          "event": "policy_evaluated",
+          "actor": "policy_engine",
+          "subject_id": "AR-0063",
+          "input_summary": "risk 99, exposure INR 270,169",
+          "decision": "MANUAL_REVIEW",
+          "reason": "Risk score 99 falls in the 90-100 band, which always requires human review.",
+          "result": "awaiting merchant approval"
+        }
+      ],
+      "financial_delta": null,
+      "is_final": false
+    },
+    {
+      "phase": 8,
+      "phase_name": "Merchant approves",
+      "narrative": "The recommendation is held for a person. Nothing is actioned until the merchant agrees, and the decision is appended to the audit trail rather than overwriting anything.",
+      "feed_items": [],
+      "ring": {
+        "summary": {
+          "ring_id": "AR-0063",
+          "risk_score": 99.1,
+          "risk_level": "CRITICAL",
+          "confidence": 0.882,
+          "n_accounts": 17,
+          "n_devices": 5,
+          "n_addresses": 3,
+          "n_ips": 3,
+          "n_transactions": 56,
+          "financial_exposure": 270168.76,
+          "detected_at": "2026-05-05T23:48:42+00:00",
+          "status": "AWAITING_APPROVAL"
+        },
+        "evidence": [
+          {
+            "code": "CLUSTER_SHAPE",
+            "kind": "FACT",
+            "statement": "17 accounts are connected through 5 devices, 3 delivery addresses and 3 IP addresses.",
+            "observed_value": 17,
+            "baseline_value": null,
+            "unit": "accounts",
+            "weight": 0.0
+          },
+          {
+            "code": "REFUND_VALUE_RATIO",
+            "kind": "FACT",
+            "statement": "Refunded share of captured value is 0.74 (6.9x the merchant baseline).",
+            "observed_value": 0.7387,
+            "baseline_value": 0.1069,
+            "unit": "ratio",
+            "weight": 0.5659
+          },
+          {
+            "code": "SIGNUP_SPAN",
+            "kind": "FACT",
+            "statement": "Days between first and last account signup is 13.13 (merchant baseline 144.10).",
+            "observed_value": 13.1307,
+            "baseline_value": 144.0966,
+            "unit": "days",
+            "weight": 0.169
+          },
+          {
+            "code": "BRIDGING_ENTITIES",
+            "kind": "FACT",
+            "statement": "Share of devices, addresses and codes shared between accounts is 0.91 (1.5x the merchant baseline).",
+            "observed_value": 0.9091,
+            "baseline_value": 0.6065,
+            "unit": "ratio",
+            "weight": 0.1131
+          },
+          {
+            "code": "SIGNUP_BURST",
+            "kind": "FACT",
+            "statement": "Share of accounts created within 24 hours of the first is 0.06 (merchant baseline 0.33).",
+            "observed_value": 0.0588,
+            "baseline_value": 0.3333,
+            "unit": "ratio",
+            "weight": 0.0857
+          },
+          {
+            "code": "ACCOUNTS_PER_DEVICE",
+            "kind": "FACT",
+            "statement": "Accounts per device is 3.40 (2.0x the merchant baseline).",
+            "observed_value": 3.4,
+            "baseline_value": 1.6667,
+            "unit": "accounts",
+            "weight": 0.0662
+          }
+        ],
+        "graph": {
+          "nodes": [
+            {
+              "id": "c:CUST-000363",
+              "type": "customer",
+              "label": "CUST-000363",
+              "risk_score": 14.9,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000362",
+              "type": "customer",
+              "label": "CUST-000362",
+              "risk_score": 28.1,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000355",
+              "type": "customer",
+              "label": "CUST-000355",
+              "risk_score": 11.3,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000356",
+              "type": "customer",
+              "label": "CUST-000356",
+              "risk_score": 6.7,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000357",
+              "type": "customer",
+              "label": "CUST-000357",
+              "risk_score": 17.5,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000353",
+              "type": "customer",
+              "label": "CUST-000353",
+              "risk_score": 23.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000352",
+              "type": "customer",
+              "label": "CUST-000352",
+              "risk_score": 30.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000365",
+              "type": "customer",
+              "label": "CUST-000365",
+              "risk_score": 38.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000361",
+              "type": "customer",
+              "label": "CUST-000361",
+              "risk_score": 24.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000359",
+              "type": "customer",
+              "label": "CUST-000359",
+              "risk_score": 13.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000364",
+              "type": "customer",
+              "label": "CUST-000364",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000367",
+              "type": "customer",
+              "label": "CUST-000367",
+              "risk_score": 28.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000354",
+              "type": "customer",
+              "label": "CUST-000354",
+              "risk_score": 28.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000358",
+              "type": "customer",
+              "label": "CUST-000358",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000351",
+              "type": "customer",
+              "label": "CUST-000351",
+              "risk_score": 7.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000360",
+              "type": "customer",
+              "label": "CUST-000360",
+              "risk_score": 24.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000366",
+              "type": "customer",
+              "label": "CUST-000366",
+              "risk_score": 8.2,
+              "attributes": {}
+            },
+            {
+              "id": "d:DEV-AR-031-4",
+              "type": "device",
+              "label": "DEV-AR-031-4",
+              "risk_score": 12.5,
+              "attributes": {
+                "shared_by": 3
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-1",
+              "type": "device",
+              "label": "DEV-AR-031-1",
+              "risk_score": 25.0,
+              "attributes": {
+                "shared_by": 5
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-2",
+              "type": "device",
+              "label": "DEV-AR-031-2",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-3",
+              "type": "device",
+              "label": "DEV-AR-031-3",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-0",
+              "type": "device",
+              "label": "DEV-AR-031-0",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-0",
+              "type": "address",
+              "label": "ADDR-AR-031-0",
+              "risk_score": 37.5,
+              "attributes": {
+                "shared_by": 7
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-1",
+              "type": "address",
+              "label": "ADDR-AR-031-1",
+              "risk_score": 43.8,
+              "attributes": {
+                "shared_by": 8
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-2",
+              "type": "address",
+              "label": "ADDR-AR-031-2",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "i:49.11.247.206",
+              "type": "ip",
+              "label": "49.11.247.206",
+              "risk_score": 37.5,
+              "attributes": {
+                "shared_by": 7
+              }
+            },
+            {
+              "id": "i:49.7.84.13",
+              "type": "ip",
+              "label": "49.7.84.13",
+              "risk_score": 31.2,
+              "attributes": {
+                "shared_by": 6
+              }
+            },
+            {
+              "id": "i:49.6.70.172",
+              "type": "ip",
+              "label": "49.6.70.172",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "p:SAVE008",
+              "type": "coupon",
+              "label": "SAVE008",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE036",
+              "type": "coupon",
+              "label": "SAVE036",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE015",
+              "type": "coupon",
+              "label": "SAVE015",
+              "risk_score": 25.0,
+              "attributes": {
+                "shared_by": 5
+              }
+            },
+            {
+              "id": "p:SAVE039",
+              "type": "coupon",
+              "label": "SAVE039",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE006",
+              "type": "coupon",
+              "label": "SAVE006",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE016",
+              "type": "coupon",
+              "label": "SAVE016",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE018",
+              "type": "coupon",
+              "label": "SAVE018",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE020",
+              "type": "coupon",
+              "label": "SAVE020",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE021",
+              "type": "coupon",
+              "label": "SAVE021",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE024",
+              "type": "coupon",
+              "label": "SAVE024",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE007",
+              "type": "coupon",
+              "label": "SAVE007",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE029",
+              "type": "coupon",
+              "label": "SAVE029",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            }
+          ],
+          "edges": [
+            {
+              "source": "c:CUST-000355",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "d:DEV-AR-031-3",
+              "relation": "uses_device",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "a:ADDR-AR-031-2",
+              "relation": "uses_address",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "a:ADDR-AR-031-2",
+              "relation": "uses_address",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "p:SAVE008",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "p:SAVE036",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "p:SAVE039",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "p:SAVE006",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "p:SAVE016",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "p:SAVE018",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "p:SAVE020",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "p:SAVE021",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE021",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "p:SAVE024",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "p:SAVE007",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE006",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "p:SAVE029",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "p:SAVE036",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "p:SAVE008",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "p:SAVE029",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            }
+          ],
+          "truncated": true
+        },
+        "policy": {
+          "recommended_action": "MANUAL_REVIEW",
+          "requires_merchant_approval": true,
+          "reason": "Risk score 99 falls in the 90-100 band, which always requires human review.",
+          "policy_version": "v1",
+          "risk_band": "90-100",
+          "amount_cap_applied": true
+        },
+        "explanation": {
+          "source": "deterministic",
+          "text": "17 customer accounts are linked through 5 shared devices, 3 delivery addresses and 3 IP addresses, across 56 orders. Taken together these signals put the group at 99 out of 100. Individually none of these orders would stand out; the pattern is only visible across the connected accounts.",
+          "facts": [
+            "17 accounts are connected through 5 devices, 3 delivery addresses and 3 IP addresses.",
+            "Refunded share of captured value is 0.74 (6.9x the merchant baseline).",
+            "Days between first and last account signup is 13.13 (merchant baseline 144.10).",
+            "Share of devices, addresses and codes shared between accounts is 0.91 (1.5x the merchant baseline).",
+            "Share of accounts created within 24 hours of the first is 0.06 (merchant baseline 0.33).",
+            "Accounts per device is 3.40 (2.0x the merchant baseline)."
+          ],
+          "inferences": [
+            "Taken together these signals put the group at 99 out of 100. Individually none of these orders would stand out; the pattern is only visible across the connected accounts."
+          ],
+          "degraded": false
+        },
+        "component_features": {
+          "refund_value_ratio": 0.7387,
+          "accounts_per_device": 3.4,
+          "signup_span_days_log": 2.6484,
+          "bridging_entity_ratio": 0.9091,
+          "return_rate": 0.1667,
+          "failed_payment_rate": 0.0357,
+          "signup_burst_ratio": 0.0588,
+          "txn_velocity": 0.3179
+        }
+      },
+      "audit_entries": [
+        {
+          "entry_id": "SIM-0006",
+          "timestamp": "2026-05-05T23:49:42+00:00",
+          "policy": "v1",
+          "event": "merchant_decision",
+          "actor": "merchant",
+          "subject_id": "AR-0063",
+          "input_summary": "recommended MANUAL_REVIEW",
+          "decision": "APPROVED",
+          "reason": "Shared devices and addresses confirmed.",
+          "result": "recorded"
+        }
+      ],
+      "financial_delta": null,
+      "is_final": false
+    },
+    {
+      "phase": 9,
+      "phase_name": "Net protected",
+      "narrative": "INR 189,118 protected from this group after applying a 70% recovery rate. Not one of these orders would have been stopped by scoring transactions alone.",
+      "feed_items": [],
+      "ring": {
+        "summary": {
+          "ring_id": "AR-0063",
+          "risk_score": 99.1,
+          "risk_level": "CRITICAL",
+          "confidence": 0.882,
+          "n_accounts": 17,
+          "n_devices": 5,
+          "n_addresses": 3,
+          "n_ips": 3,
+          "n_transactions": 56,
+          "financial_exposure": 270168.76,
+          "detected_at": "2026-05-05T23:48:42+00:00",
+          "status": "AWAITING_APPROVAL"
+        },
+        "evidence": [
+          {
+            "code": "CLUSTER_SHAPE",
+            "kind": "FACT",
+            "statement": "17 accounts are connected through 5 devices, 3 delivery addresses and 3 IP addresses.",
+            "observed_value": 17,
+            "baseline_value": null,
+            "unit": "accounts",
+            "weight": 0.0
+          },
+          {
+            "code": "REFUND_VALUE_RATIO",
+            "kind": "FACT",
+            "statement": "Refunded share of captured value is 0.74 (6.9x the merchant baseline).",
+            "observed_value": 0.7387,
+            "baseline_value": 0.1069,
+            "unit": "ratio",
+            "weight": 0.5659
+          },
+          {
+            "code": "SIGNUP_SPAN",
+            "kind": "FACT",
+            "statement": "Days between first and last account signup is 13.13 (merchant baseline 144.10).",
+            "observed_value": 13.1307,
+            "baseline_value": 144.0966,
+            "unit": "days",
+            "weight": 0.169
+          },
+          {
+            "code": "BRIDGING_ENTITIES",
+            "kind": "FACT",
+            "statement": "Share of devices, addresses and codes shared between accounts is 0.91 (1.5x the merchant baseline).",
+            "observed_value": 0.9091,
+            "baseline_value": 0.6065,
+            "unit": "ratio",
+            "weight": 0.1131
+          },
+          {
+            "code": "SIGNUP_BURST",
+            "kind": "FACT",
+            "statement": "Share of accounts created within 24 hours of the first is 0.06 (merchant baseline 0.33).",
+            "observed_value": 0.0588,
+            "baseline_value": 0.3333,
+            "unit": "ratio",
+            "weight": 0.0857
+          },
+          {
+            "code": "ACCOUNTS_PER_DEVICE",
+            "kind": "FACT",
+            "statement": "Accounts per device is 3.40 (2.0x the merchant baseline).",
+            "observed_value": 3.4,
+            "baseline_value": 1.6667,
+            "unit": "accounts",
+            "weight": 0.0662
+          }
+        ],
+        "graph": {
+          "nodes": [
+            {
+              "id": "c:CUST-000363",
+              "type": "customer",
+              "label": "CUST-000363",
+              "risk_score": 14.9,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000362",
+              "type": "customer",
+              "label": "CUST-000362",
+              "risk_score": 28.1,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000355",
+              "type": "customer",
+              "label": "CUST-000355",
+              "risk_score": 11.3,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000356",
+              "type": "customer",
+              "label": "CUST-000356",
+              "risk_score": 6.7,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000357",
+              "type": "customer",
+              "label": "CUST-000357",
+              "risk_score": 17.5,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000353",
+              "type": "customer",
+              "label": "CUST-000353",
+              "risk_score": 23.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000352",
+              "type": "customer",
+              "label": "CUST-000352",
+              "risk_score": 30.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000365",
+              "type": "customer",
+              "label": "CUST-000365",
+              "risk_score": 38.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000361",
+              "type": "customer",
+              "label": "CUST-000361",
+              "risk_score": 24.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000359",
+              "type": "customer",
+              "label": "CUST-000359",
+              "risk_score": 13.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000364",
+              "type": "customer",
+              "label": "CUST-000364",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000367",
+              "type": "customer",
+              "label": "CUST-000367",
+              "risk_score": 28.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000354",
+              "type": "customer",
+              "label": "CUST-000354",
+              "risk_score": 28.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000358",
+              "type": "customer",
+              "label": "CUST-000358",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000351",
+              "type": "customer",
+              "label": "CUST-000351",
+              "risk_score": 7.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000360",
+              "type": "customer",
+              "label": "CUST-000360",
+              "risk_score": 24.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000366",
+              "type": "customer",
+              "label": "CUST-000366",
+              "risk_score": 8.2,
+              "attributes": {}
+            },
+            {
+              "id": "d:DEV-AR-031-4",
+              "type": "device",
+              "label": "DEV-AR-031-4",
+              "risk_score": 12.5,
+              "attributes": {
+                "shared_by": 3
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-1",
+              "type": "device",
+              "label": "DEV-AR-031-1",
+              "risk_score": 25.0,
+              "attributes": {
+                "shared_by": 5
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-2",
+              "type": "device",
+              "label": "DEV-AR-031-2",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-3",
+              "type": "device",
+              "label": "DEV-AR-031-3",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "d:DEV-AR-031-0",
+              "type": "device",
+              "label": "DEV-AR-031-0",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-0",
+              "type": "address",
+              "label": "ADDR-AR-031-0",
+              "risk_score": 37.5,
+              "attributes": {
+                "shared_by": 7
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-1",
+              "type": "address",
+              "label": "ADDR-AR-031-1",
+              "risk_score": 43.8,
+              "attributes": {
+                "shared_by": 8
+              }
+            },
+            {
+              "id": "a:ADDR-AR-031-2",
+              "type": "address",
+              "label": "ADDR-AR-031-2",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "i:49.11.247.206",
+              "type": "ip",
+              "label": "49.11.247.206",
+              "risk_score": 37.5,
+              "attributes": {
+                "shared_by": 7
+              }
+            },
+            {
+              "id": "i:49.7.84.13",
+              "type": "ip",
+              "label": "49.7.84.13",
+              "risk_score": 31.2,
+              "attributes": {
+                "shared_by": 6
+              }
+            },
+            {
+              "id": "i:49.6.70.172",
+              "type": "ip",
+              "label": "49.6.70.172",
+              "risk_score": 18.8,
+              "attributes": {
+                "shared_by": 4
+              }
+            },
+            {
+              "id": "p:SAVE008",
+              "type": "coupon",
+              "label": "SAVE008",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE036",
+              "type": "coupon",
+              "label": "SAVE036",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE015",
+              "type": "coupon",
+              "label": "SAVE015",
+              "risk_score": 25.0,
+              "attributes": {
+                "shared_by": 5
+              }
+            },
+            {
+              "id": "p:SAVE039",
+              "type": "coupon",
+              "label": "SAVE039",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE006",
+              "type": "coupon",
+              "label": "SAVE006",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE016",
+              "type": "coupon",
+              "label": "SAVE016",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE018",
+              "type": "coupon",
+              "label": "SAVE018",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE020",
+              "type": "coupon",
+              "label": "SAVE020",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE021",
+              "type": "coupon",
+              "label": "SAVE021",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            },
+            {
+              "id": "p:SAVE024",
+              "type": "coupon",
+              "label": "SAVE024",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE007",
+              "type": "coupon",
+              "label": "SAVE007",
+              "risk_score": 0.0,
+              "attributes": {
+                "shared_by": 1
+              }
+            },
+            {
+              "id": "p:SAVE029",
+              "type": "coupon",
+              "label": "SAVE029",
+              "risk_score": 6.2,
+              "attributes": {
+                "shared_by": 2
+              }
+            }
+          ],
+          "edges": [
+            {
+              "source": "c:CUST-000355",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "d:DEV-AR-031-3",
+              "relation": "uses_device",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "d:DEV-AR-031-1",
+              "relation": "uses_device",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "d:DEV-AR-031-0",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "d:DEV-AR-031-2",
+              "relation": "uses_device",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "d:DEV-AR-031-4",
+              "relation": "uses_device",
+              "weight": 3.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "a:ADDR-AR-031-2",
+              "relation": "uses_address",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "a:ADDR-AR-031-1",
+              "relation": "uses_address",
+              "weight": 8.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "a:ADDR-AR-031-2",
+              "relation": "uses_address",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "a:ADDR-AR-031-0",
+              "relation": "uses_address",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000360",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "i:49.6.70.172",
+              "relation": "uses_ip",
+              "weight": 4.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000353",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000365",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "i:49.11.247.206",
+              "relation": "uses_ip",
+              "weight": 7.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "i:49.7.84.13",
+              "relation": "uses_ip",
+              "weight": 6.0
+            },
+            {
+              "source": "c:CUST-000359",
+              "target": "p:SAVE008",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "p:SAVE036",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000356",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000362",
+              "target": "p:SAVE039",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000357",
+              "target": "p:SAVE006",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "p:SAVE016",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000351",
+              "target": "p:SAVE018",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000354",
+              "target": "p:SAVE020",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000363",
+              "target": "p:SAVE021",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE021",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000355",
+              "target": "p:SAVE024",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000352",
+              "target": "p:SAVE007",
+              "relation": "uses_coupon",
+              "weight": 1.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000367",
+              "target": "p:SAVE015",
+              "relation": "uses_coupon",
+              "weight": 5.0
+            },
+            {
+              "source": "c:CUST-000358",
+              "target": "p:SAVE006",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000361",
+              "target": "p:SAVE029",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000364",
+              "target": "p:SAVE036",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "p:SAVE008",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            },
+            {
+              "source": "c:CUST-000366",
+              "target": "p:SAVE029",
+              "relation": "uses_coupon",
+              "weight": 2.0
+            }
+          ],
+          "truncated": true
+        },
+        "policy": {
+          "recommended_action": "MANUAL_REVIEW",
+          "requires_merchant_approval": true,
+          "reason": "Risk score 99 falls in the 90-100 band, which always requires human review.",
+          "policy_version": "v1",
+          "risk_band": "90-100",
+          "amount_cap_applied": true
+        },
+        "explanation": {
+          "source": "deterministic",
+          "text": "17 customer accounts are linked through 5 shared devices, 3 delivery addresses and 3 IP addresses, across 56 orders. Taken together these signals put the group at 99 out of 100. Individually none of these orders would stand out; the pattern is only visible across the connected accounts.",
+          "facts": [
+            "17 accounts are connected through 5 devices, 3 delivery addresses and 3 IP addresses.",
+            "Refunded share of captured value is 0.74 (6.9x the merchant baseline).",
+            "Days between first and last account signup is 13.13 (merchant baseline 144.10).",
+            "Share of devices, addresses and codes shared between accounts is 0.91 (1.5x the merchant baseline).",
+            "Share of accounts created within 24 hours of the first is 0.06 (merchant baseline 0.33).",
+            "Accounts per device is 3.40 (2.0x the merchant baseline)."
+          ],
+          "inferences": [
+            "Taken together these signals put the group at 99 out of 100. Individually none of these orders would stand out; the pattern is only visible across the connected accounts."
+          ],
+          "degraded": false
+        },
+        "component_features": {
+          "refund_value_ratio": 0.7387,
+          "accounts_per_device": 3.4,
+          "signup_span_days_log": 2.6484,
+          "bridging_entity_ratio": 0.9091,
+          "return_rate": 0.1667,
+          "failed_payment_rate": 0.0357,
+          "signup_burst_ratio": 0.0588,
+          "txn_velocity": 0.3179
+        }
+      },
+      "audit_entries": [],
+      "financial_delta": 189118.13,
+      "is_final": true
+    }
+  ]
+}

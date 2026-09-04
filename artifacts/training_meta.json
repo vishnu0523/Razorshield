@@ -1,0 +1,62 @@
+{
+  "seed": 42,
+  "feature_columns": [
+    "amount",
+    "amount_log",
+    "amount_vs_customer_mean",
+    "amount_zscore_customer",
+    "amount_vs_category_mean",
+    "account_age_days",
+    "customer_prior_txn_count",
+    "customer_purchase_frequency",
+    "seconds_since_prev_txn_log",
+    "customer_txns_last_24h",
+    "customer_txns_last_7d",
+    "customer_prior_failed_rate",
+    "customer_failed_last_24h",
+    "customer_prior_return_count",
+    "customer_prior_return_rate",
+    "customer_prior_refund_count",
+    "customer_prior_refund_rate",
+    "customer_prior_refund_value_ratio",
+    "device_distinct_customers",
+    "device_txns_so_far",
+    "device_txns_last_24h",
+    "ip_distinct_customers",
+    "ip_txns_so_far",
+    "address_distinct_customers",
+    "address_txns_so_far",
+    "address_txns_last_7d",
+    "has_coupon",
+    "coupon_uses_so_far",
+    "coupon_distinct_customers",
+    "hour_of_day",
+    "is_night",
+    "day_of_week",
+    "pm_upi",
+    "pm_card",
+    "pm_netbanking",
+    "pm_wallet",
+    "pm_cod",
+    "merchant_txns_last_1h"
+  ],
+  "n_train": 13523,
+  "n_validation": 2898,
+  "train_positive_rate": 0.09414,
+  "validation_positive_rate": 0.07143,
+  "primary_model": "hist_gradient_boosting",
+  "baseline_model": "logistic_regression",
+  "models": {
+    "logistic_regression": {
+      "name": "logistic_regression",
+      "threshold": 0.8070891673457666,
+      "validation_pr_auc": 0.4662989834864997
+    },
+    "hist_gradient_boosting": {
+      "name": "hist_gradient_boosting",
+      "threshold": 0.2543896208861751,
+      "validation_pr_auc": 0.502785048283192
+    }
+  },
+  "threshold_selection": "max F1 on the validation split; test never used"
+}

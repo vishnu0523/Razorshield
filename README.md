@@ -859,7 +859,27 @@ money, block payments autonomously, or act on any real account.
 
 ## Quick start
 
-### macOS / Linux
+### The 60-second path (no Node required)
+
+This repo ships with real, already-generated results committed
+(`artifacts/*`, a seeded `razorshield.db`, and a production frontend build in
+`frontend/dist/`) so a fresh clone works immediately — nobody has to run the
+ML pipeline or an `npm install` just to look at it. One process, one command:
+
+```bash
+git clone <repo> && cd razorshield
+python -m pip install -r requirements.txt
+python -m uvicorn backend.app.main:app --port 8000
+```
+
+Open **http://localhost:8000** — the API serves the built dashboard directly.
+Every number on screen is real, from seed 42, exactly as documented below.
+
+To confirm those numbers were actually computed rather than typed in by hand,
+run `make reproduce` (below) — it regenerates every one of those committed
+files byte-for-byte from the same seed.
+
+### macOS / Linux — full dev setup
 
 ```bash
 git clone <repo> && cd razorshield

@@ -1,18 +1,26 @@
 .env
 *.db
+!razorshield.db
 __pycache__/
 *.py[cod]
 .pytest_cache/
 .venv/
 venv/
 node_modules/
-dist/
 frontend/tsconfig.tsbuildinfo
-artifacts/*
-!artifacts/.gitkeep
 data/*.parquet
 data/*.csv
 data/events/
 data/labels/
 data/features.parquet
-razorshield.db
+.claude/
+
+# artifacts/ and frontend/dist/ are intentionally tracked, not ignored.
+#
+# This repo ships a working snapshot: a fresh clone runs immediately with
+# real numbers (no ML pipeline run, no `npm install`, one process, one
+# command) instead of showing an untrained placeholder or a broken screen
+# until someone finds and runs the right setup commands. `make reproduce`
+# still regenerates every one of these files byte-for-byte from seed 42 --
+# shipping the snapshot does not weaken that claim, it just means nobody has
+# to run the regeneration before they're allowed to look at the product.

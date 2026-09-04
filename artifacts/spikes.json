@@ -1,0 +1,1733 @@
+{
+  "spikes": [
+    {
+      "spike_id": "SPK-0019",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-15T15:00:00+00:00",
+      "window_end": "2026-04-15T16:00:00+00:00",
+      "observed": 1.0,
+      "baseline": 0.0,
+      "z_score": 8.43,
+      "affected_transactions": [
+        "TXN-001881",
+        "TXN-016236",
+        "TXN-000374"
+      ],
+      "estimated_exposure": 0.0,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 5.6)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0023",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-29T18:00:00+00:00",
+      "window_end": "2026-04-29T19:00:00+00:00",
+      "observed": 1.0,
+      "baseline": 0.0,
+      "z_score": 8.43,
+      "affected_transactions": [
+        "TXN-000705"
+      ],
+      "estimated_exposure": 0.0,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 8.4)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0052",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-10T11:00:00+00:00",
+      "window_end": "2026-04-10T12:00:00+00:00",
+      "observed": 1.0,
+      "baseline": 0.0,
+      "z_score": 8.43,
+      "affected_transactions": [
+        "TXN-001089"
+      ],
+      "estimated_exposure": 1741.36,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0076",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-29T18:00:00+00:00",
+      "window_end": "2026-04-29T19:00:00+00:00",
+      "observed": 1.0,
+      "baseline": 0.0,
+      "z_score": 8.43,
+      "affected_transactions": [
+        "TXN-000705"
+      ],
+      "estimated_exposure": 0.0,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 8.4)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0073",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-28T22:00:00+00:00",
+      "window_end": "2026-04-28T23:00:00+00:00",
+      "observed": 0.75,
+      "baseline": 0.0,
+      "z_score": 6.32,
+      "affected_transactions": [
+        "TXN-000701",
+        "TXN-000715",
+        "TXN-000706",
+        "TXN-006857"
+      ],
+      "estimated_exposure": 1813.84,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0061",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-14T09:00:00+00:00",
+      "window_end": "2026-04-14T10:00:00+00:00",
+      "observed": 0.7,
+      "baseline": 0.0,
+      "z_score": 5.9,
+      "affected_transactions": [
+        "TXN-001550",
+        "TXN-002098",
+        "TXN-001594",
+        "TXN-000338",
+        "TXN-002088",
+        "TXN-001585",
+        "TXN-001241",
+        "TXN-000319",
+        "TXN-001576",
+        "TXN-001569"
+      ],
+      "estimated_exposure": 3618.59,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 5.1)",
+        "orders from accounts under 7 days old elevated (z 4.0)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0008",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-03-13T08:00:00+00:00",
+      "window_end": "2026-03-13T09:00:00+00:00",
+      "observed": 0.6667,
+      "baseline": 0.0,
+      "z_score": 5.62,
+      "affected_transactions": [
+        "TXN-001706",
+        "TXN-010992",
+        "TXN-000898",
+        "TXN-001685",
+        "TXN-002866",
+        "TXN-001688"
+      ],
+      "estimated_exposure": 2302.81,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 2.5)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0010",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-13T22:00:00+00:00",
+      "window_end": "2026-04-13T23:00:00+00:00",
+      "observed": 0.6667,
+      "baseline": 0.0,
+      "z_score": 5.62,
+      "affected_transactions": [
+        "TXN-001592",
+        "TXN-001559",
+        "TXN-001589",
+        "TXN-000343",
+        "TXN-001584",
+        "TXN-015934"
+      ],
+      "estimated_exposure": 1361.86,
+      "contributing_signals": [
+        "orders from accounts under 7 days old elevated (z 2.7)",
+        "share of orders scored high risk elevated (z 5.6)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0024",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-30T01:00:00+00:00",
+      "window_end": "2026-04-30T02:00:00+00:00",
+      "observed": 0.6667,
+      "baseline": 0.0,
+      "z_score": 5.62,
+      "affected_transactions": [
+        "TXN-000687",
+        "TXN-017186",
+        "TXN-000724"
+      ],
+      "estimated_exposure": 1308.98,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 2.8)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0044",
+      "metric": "high_risk_rate",
+      "window_start": "2026-02-28T19:00:00+00:00",
+      "window_end": "2026-02-28T20:00:00+00:00",
+      "observed": 0.6667,
+      "baseline": 0.0,
+      "z_score": 5.62,
+      "affected_transactions": [
+        "TXN-002320",
+        "TXN-003251",
+        "TXN-002308",
+        "TXN-002310",
+        "TXN-017018",
+        "TXN-006761"
+      ],
+      "estimated_exposure": 13202.45,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 2.8)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0045",
+      "metric": "high_risk_rate",
+      "window_start": "2026-02-28T22:00:00+00:00",
+      "window_end": "2026-02-28T23:00:00+00:00",
+      "observed": 0.6667,
+      "baseline": 0.0,
+      "z_score": 5.62,
+      "affected_transactions": [
+        "TXN-002305",
+        "TXN-005555",
+        "TXN-001857"
+      ],
+      "estimated_exposure": 5233.69,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0056",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-13T22:00:00+00:00",
+      "window_end": "2026-04-13T23:00:00+00:00",
+      "observed": 0.6667,
+      "baseline": 0.0,
+      "z_score": 5.62,
+      "affected_transactions": [
+        "TXN-001592",
+        "TXN-001559",
+        "TXN-001589",
+        "TXN-000343",
+        "TXN-001584",
+        "TXN-015934"
+      ],
+      "estimated_exposure": 1361.86,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 5.6)",
+        "orders from accounts under 7 days old elevated (z 2.7)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0063",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-14T11:00:00+00:00",
+      "window_end": "2026-04-14T12:00:00+00:00",
+      "observed": 0.6667,
+      "baseline": 0.0,
+      "z_score": 5.62,
+      "affected_transactions": [
+        "TXN-000336",
+        "TXN-001436",
+        "TXN-001590",
+        "TXN-017611",
+        "TXN-001591",
+        "TXN-000344",
+        "TXN-000356",
+        "TXN-005311",
+        "TXN-000333"
+      ],
+      "estimated_exposure": 13264.6,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 2.8)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0069",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-15T15:00:00+00:00",
+      "window_end": "2026-04-15T16:00:00+00:00",
+      "observed": 0.6667,
+      "baseline": 0.0,
+      "z_score": 5.62,
+      "affected_transactions": [
+        "TXN-001881",
+        "TXN-016236",
+        "TXN-000374"
+      ],
+      "estimated_exposure": 0.0,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 8.4)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0029",
+      "metric": "new_account_rate",
+      "window_start": "2026-04-13T21:00:00+00:00",
+      "window_end": "2026-04-13T22:00:00+00:00",
+      "observed": 4.0,
+      "baseline": 0.0,
+      "z_score": 5.4,
+      "affected_transactions": [
+        "TXN-001570",
+        "TXN-001587",
+        "TXN-005333",
+        "TXN-009888",
+        "TXN-018152",
+        "TXN-001597",
+        "TXN-000362",
+        "TXN-001565",
+        "TXN-018712",
+        "TXN-001595"
+      ],
+      "estimated_exposure": 6332.59,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 3.4)",
+        "share of orders scored high risk elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0030",
+      "metric": "new_account_rate",
+      "window_start": "2026-04-14T00:00:00+00:00",
+      "window_end": "2026-04-14T01:00:00+00:00",
+      "observed": 4.0,
+      "baseline": 0.0,
+      "z_score": 5.4,
+      "affected_transactions": [
+        "TXN-001574",
+        "TXN-001577",
+        "TXN-009409",
+        "TXN-000346",
+        "TXN-001907",
+        "TXN-014924",
+        "TXN-001588",
+        "TXN-012206",
+        "TXN-000364",
+        "TXN-001547",
+        "TXN-005280",
+        "TXN-012578",
+        "TXN-007558",
+        "TXN-012934",
+        "TXN-000349",
+        "TXN-001573",
+        "TXN-000363",
+        "TXN-005258"
+      ],
+      "estimated_exposure": 56004.75,
+      "contributing_signals": [
+        "orders placed elevated (z 3.7)",
+        "share of payment attempts failing elevated (z 4.7)",
+        "refunds issued elevated (z 2.0)",
+        "share of orders scored high risk elevated (z 3.7)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0031",
+      "metric": "new_account_rate",
+      "window_start": "2026-04-14T05:00:00+00:00",
+      "window_end": "2026-04-14T06:00:00+00:00",
+      "observed": 4.0,
+      "baseline": 0.0,
+      "z_score": 5.4,
+      "affected_transactions": [
+        "TXN-001553",
+        "TXN-001561",
+        "TXN-001549",
+        "TXN-005319",
+        "TXN-001551",
+        "TXN-001240",
+        "TXN-011869",
+        "TXN-010363",
+        "TXN-000365",
+        "TXN-000339",
+        "TXN-003111",
+        "TXN-009723"
+      ],
+      "estimated_exposure": 16506.87,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 3.5)",
+        "refunds issued elevated (z 2.7)",
+        "share of orders scored high risk elevated (z 3.5)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0014",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-14T09:00:00+00:00",
+      "window_end": "2026-04-14T10:00:00+00:00",
+      "observed": 0.6,
+      "baseline": 0.0,
+      "z_score": 5.06,
+      "affected_transactions": [
+        "TXN-001550",
+        "TXN-002098",
+        "TXN-001594",
+        "TXN-000338",
+        "TXN-002088",
+        "TXN-001585",
+        "TXN-001241",
+        "TXN-000319",
+        "TXN-001576",
+        "TXN-001569"
+      ],
+      "estimated_exposure": 3618.59,
+      "contributing_signals": [
+        "orders from accounts under 7 days old elevated (z 4.0)",
+        "share of orders scored high risk elevated (z 5.9)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0004",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-02-04T16:00:00+00:00",
+      "window_end": "2026-02-04T17:00:00+00:00",
+      "observed": 0.5714,
+      "baseline": 0.0,
+      "z_score": 4.82,
+      "affected_transactions": [
+        "TXN-013689",
+        "TXN-002213",
+        "TXN-000777",
+        "TXN-002218",
+        "TXN-002206",
+        "TXN-013916",
+        "TXN-002970"
+      ],
+      "estimated_exposure": 24128.72,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 2.0)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0016",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-14T13:00:00+00:00",
+      "window_end": "2026-04-14T14:00:00+00:00",
+      "observed": 0.5714,
+      "baseline": 0.0,
+      "z_score": 4.82,
+      "affected_transactions": [
+        "TXN-000369",
+        "TXN-001567",
+        "TXN-001557",
+        "TXN-000318",
+        "TXN-007604",
+        "TXN-005321",
+        "TXN-014892"
+      ],
+      "estimated_exposure": 9092.61,
+      "contributing_signals": [
+        "orders from accounts under 7 days old elevated (z 2.7)",
+        "share of orders scored high risk elevated (z 3.6)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0075",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-29T10:00:00+00:00",
+      "window_end": "2026-04-29T11:00:00+00:00",
+      "observed": 0.5714,
+      "baseline": 0.0,
+      "z_score": 4.82,
+      "affected_transactions": [
+        "TXN-000716",
+        "TXN-018158",
+        "TXN-012765",
+        "TXN-006889",
+        "TXN-002553",
+        "TXN-000710",
+        "TXN-000697"
+      ],
+      "estimated_exposure": 10163.06,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 3.6)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0011",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-14T00:00:00+00:00",
+      "window_end": "2026-04-14T01:00:00+00:00",
+      "observed": 0.5556,
+      "baseline": 0.0,
+      "z_score": 4.68,
+      "affected_transactions": [
+        "TXN-001574",
+        "TXN-001577",
+        "TXN-009409",
+        "TXN-000346",
+        "TXN-001907",
+        "TXN-014924",
+        "TXN-001588",
+        "TXN-012206",
+        "TXN-000364",
+        "TXN-001547",
+        "TXN-005280",
+        "TXN-012578",
+        "TXN-007558",
+        "TXN-012934",
+        "TXN-000349",
+        "TXN-001573",
+        "TXN-000363",
+        "TXN-005258"
+      ],
+      "estimated_exposure": 56004.75,
+      "contributing_signals": [
+        "orders placed elevated (z 3.7)",
+        "refunds issued elevated (z 2.0)",
+        "orders from accounts under 7 days old elevated (z 5.4)",
+        "share of orders scored high risk elevated (z 3.7)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0037",
+      "metric": "high_risk_rate",
+      "window_start": "2026-01-13T10:00:00+00:00",
+      "window_end": "2026-01-13T11:00:00+00:00",
+      "observed": 0.5556,
+      "baseline": 0.0,
+      "z_score": 4.68,
+      "affected_transactions": [
+        "TXN-003142",
+        "TXN-002262",
+        "TXN-009765",
+        "TXN-012883",
+        "TXN-002265",
+        "TXN-002269",
+        "TXN-002270",
+        "TXN-003135",
+        "TXN-009353"
+      ],
+      "estimated_exposure": 6002.13,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0035",
+      "metric": "high_risk_rate",
+      "window_start": "2026-01-13T04:00:00+00:00",
+      "window_end": "2026-01-13T05:00:00+00:00",
+      "observed": 0.5455,
+      "baseline": 0.0,
+      "z_score": 4.6,
+      "affected_transactions": [
+        "TXN-015391",
+        "TXN-002256",
+        "TXN-010262",
+        "TXN-002268",
+        "TXN-014725",
+        "TXN-002255",
+        "TXN-000090",
+        "TXN-009044",
+        "TXN-015095",
+        "TXN-002280",
+        "TXN-002276"
+      ],
+      "estimated_exposure": 17358.37,
+      "contributing_signals": [
+        "orders placed elevated (z 2.0)",
+        "share of payment attempts failing elevated (z 2.3)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0060",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-14T06:00:00+00:00",
+      "window_end": "2026-04-14T07:00:00+00:00",
+      "observed": 0.5455,
+      "baseline": 0.0,
+      "z_score": 4.6,
+      "affected_transactions": [
+        "TXN-010859",
+        "TXN-001580",
+        "TXN-001578",
+        "TXN-007570",
+        "TXN-016306",
+        "TXN-001253",
+        "TXN-001583",
+        "TXN-006856",
+        "TXN-000314",
+        "TXN-000299",
+        "TXN-006881"
+      ],
+      "estimated_exposure": 7998.52,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 3.8)",
+        "orders from accounts under 7 days old elevated (z 4.0)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0051",
+      "metric": "high_risk_rate",
+      "window_start": "2026-03-28T22:00:00+00:00",
+      "window_end": "2026-03-28T23:00:00+00:00",
+      "observed": 0.5556,
+      "baseline": 0.0312,
+      "z_score": 4.42,
+      "affected_transactions": [
+        "TXN-001004",
+        "TXN-005148",
+        "TXN-000528",
+        "TXN-014556",
+        "TXN-002415",
+        "TXN-001180",
+        "TXN-001173",
+        "TXN-000284",
+        "TXN-004620"
+      ],
+      "estimated_exposure": 24305.2,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0002",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-01-13T12:00:00+00:00",
+      "window_end": "2026-01-13T13:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-002266",
+        "TXN-015209"
+      ],
+      "estimated_exposure": 2153.74,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0005",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-02-18T20:00:00+00:00",
+      "window_end": "2026-02-18T21:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-000011",
+        "TXN-003802"
+      ],
+      "estimated_exposure": 1165.59,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 3.9)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0007",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-02-28T13:00:00+00:00",
+      "window_end": "2026-02-28T14:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-007793",
+        "TXN-002332"
+      ],
+      "estimated_exposure": 2067.28,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0009",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-13T20:00:00+00:00",
+      "window_end": "2026-04-13T21:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-003091",
+        "TXN-001059",
+        "TXN-001220",
+        "TXN-001562",
+        "TXN-001579",
+        "TXN-001563",
+        "TXN-018502",
+        "TXN-000307"
+      ],
+      "estimated_exposure": 4262.42,
+      "contributing_signals": [
+        "orders from accounts under 7 days old elevated (z 4.0)",
+        "share of orders scored high risk elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0018",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-14T19:00:00+00:00",
+      "window_end": "2026-04-14T20:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-003735",
+        "TXN-000324",
+        "TXN-019250",
+        "TXN-012713"
+      ],
+      "estimated_exposure": 19908.21,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 2.1)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0020",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-28T22:00:00+00:00",
+      "window_end": "2026-04-28T23:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-000701",
+        "TXN-000715",
+        "TXN-000706",
+        "TXN-006857"
+      ],
+      "estimated_exposure": 1813.84,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 6.3)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0021",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-29T01:00:00+00:00",
+      "window_end": "2026-04-29T02:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-011264",
+        "TXN-000689",
+        "TXN-015330",
+        "TXN-000694",
+        "TXN-015167",
+        "TXN-000688"
+      ],
+      "estimated_exposure": 5934.66,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0025",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-30T04:00:00+00:00",
+      "window_end": "2026-04-30T05:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-002592",
+        "TXN-013765",
+        "TXN-019042",
+        "TXN-019270"
+      ],
+      "estimated_exposure": 5368.05,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 2.1)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0026",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-30T05:00:00+00:00",
+      "window_end": "2026-04-30T06:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-000714",
+        "TXN-012224"
+      ],
+      "estimated_exposure": 1736.39,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0027",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-30T11:00:00+00:00",
+      "window_end": "2026-04-30T12:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-000690",
+        "TXN-011605"
+      ],
+      "estimated_exposure": 3200.85,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0039",
+      "metric": "high_risk_rate",
+      "window_start": "2026-01-13T12:00:00+00:00",
+      "window_end": "2026-01-13T13:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-002266",
+        "TXN-015209"
+      ],
+      "estimated_exposure": 2153.74,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0042",
+      "metric": "high_risk_rate",
+      "window_start": "2026-02-28T13:00:00+00:00",
+      "window_end": "2026-02-28T14:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-007793",
+        "TXN-002332"
+      ],
+      "estimated_exposure": 2067.28,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0043",
+      "metric": "high_risk_rate",
+      "window_start": "2026-02-28T18:00:00+00:00",
+      "window_end": "2026-02-28T19:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-019048",
+        "TXN-001858"
+      ],
+      "estimated_exposure": 1325.37,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0048",
+      "metric": "high_risk_rate",
+      "window_start": "2026-03-15T12:00:00+00:00",
+      "window_end": "2026-03-15T13:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-000662",
+        "TXN-017527",
+        "TXN-003457",
+        "TXN-003435"
+      ],
+      "estimated_exposure": 28896.3,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0049",
+      "metric": "high_risk_rate",
+      "window_start": "2026-03-15T15:00:00+00:00",
+      "window_end": "2026-03-15T16:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-016013",
+        "TXN-002890"
+      ],
+      "estimated_exposure": 4676.45,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0050",
+      "metric": "high_risk_rate",
+      "window_start": "2026-03-15T22:00:00+00:00",
+      "window_end": "2026-03-15T23:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-012885",
+        "TXN-000660",
+        "TXN-011565",
+        "TXN-002221"
+      ],
+      "estimated_exposure": 16976.86,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0054",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-13T20:00:00+00:00",
+      "window_end": "2026-04-13T21:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-003091",
+        "TXN-001059",
+        "TXN-001220",
+        "TXN-001562",
+        "TXN-001579",
+        "TXN-001563",
+        "TXN-018502",
+        "TXN-000307"
+      ],
+      "estimated_exposure": 4262.42,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 4.2)",
+        "orders from accounts under 7 days old elevated (z 4.0)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0055",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-13T21:00:00+00:00",
+      "window_end": "2026-04-13T22:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-001570",
+        "TXN-001587",
+        "TXN-005333",
+        "TXN-009888",
+        "TXN-018152",
+        "TXN-001597",
+        "TXN-000362",
+        "TXN-001565",
+        "TXN-018712",
+        "TXN-001595"
+      ],
+      "estimated_exposure": 6332.59,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 3.4)",
+        "orders from accounts under 7 days old elevated (z 5.4)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0058",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-14T01:00:00+00:00",
+      "window_end": "2026-04-14T02:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-009258",
+        "TXN-000296",
+        "TXN-013714",
+        "TXN-000300",
+        "TXN-000352",
+        "TXN-001601"
+      ],
+      "estimated_exposure": 8401.99,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 2.8)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0067",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-15T06:00:00+00:00",
+      "window_end": "2026-04-15T07:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-016481",
+        "TXN-000322",
+        "TXN-018289",
+        "TXN-000323",
+        "TXN-000332",
+        "TXN-019247"
+      ],
+      "estimated_exposure": 15573.3,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 2.8)",
+        "refunds issued elevated (z 2.7)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0068",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-15T07:00:00+00:00",
+      "window_end": "2026-04-15T08:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-000337",
+        "TXN-010639"
+      ],
+      "estimated_exposure": 10989.84,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0072",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-28T18:00:00+00:00",
+      "window_end": "2026-04-28T19:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-011974",
+        "TXN-000713"
+      ],
+      "estimated_exposure": 9260.39,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0074",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-29T01:00:00+00:00",
+      "window_end": "2026-04-29T02:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-011264",
+        "TXN-000689",
+        "TXN-015330",
+        "TXN-000694",
+        "TXN-015167",
+        "TXN-000688"
+      ],
+      "estimated_exposure": 5934.66,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0077",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-30T05:00:00+00:00",
+      "window_end": "2026-04-30T06:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-000714",
+        "TXN-012224"
+      ],
+      "estimated_exposure": 1736.39,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0078",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-30T11:00:00+00:00",
+      "window_end": "2026-04-30T12:00:00+00:00",
+      "observed": 0.5,
+      "baseline": 0.0,
+      "z_score": 4.22,
+      "affected_transactions": [
+        "TXN-000690",
+        "TXN-011605"
+      ],
+      "estimated_exposure": 3200.85,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0028",
+      "metric": "new_account_rate",
+      "window_start": "2026-04-13T20:00:00+00:00",
+      "window_end": "2026-04-13T21:00:00+00:00",
+      "observed": 3.0,
+      "baseline": 0.0,
+      "z_score": 4.05,
+      "affected_transactions": [
+        "TXN-003091",
+        "TXN-001059",
+        "TXN-001220",
+        "TXN-001562",
+        "TXN-001579",
+        "TXN-001563",
+        "TXN-018502",
+        "TXN-000307"
+      ],
+      "estimated_exposure": 4262.42,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 4.2)",
+        "share of orders scored high risk elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0032",
+      "metric": "new_account_rate",
+      "window_start": "2026-04-14T06:00:00+00:00",
+      "window_end": "2026-04-14T07:00:00+00:00",
+      "observed": 3.0,
+      "baseline": 0.0,
+      "z_score": 4.05,
+      "affected_transactions": [
+        "TXN-010859",
+        "TXN-001580",
+        "TXN-001578",
+        "TXN-007570",
+        "TXN-016306",
+        "TXN-001253",
+        "TXN-001583",
+        "TXN-006856",
+        "TXN-000314",
+        "TXN-000299",
+        "TXN-006881"
+      ],
+      "estimated_exposure": 7998.52,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 3.8)",
+        "share of orders scored high risk elevated (z 4.6)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0033",
+      "metric": "new_account_rate",
+      "window_start": "2026-04-14T09:00:00+00:00",
+      "window_end": "2026-04-14T10:00:00+00:00",
+      "observed": 3.0,
+      "baseline": 0.0,
+      "z_score": 4.05,
+      "affected_transactions": [
+        "TXN-001550",
+        "TXN-002098",
+        "TXN-001594",
+        "TXN-000338",
+        "TXN-002088",
+        "TXN-001585",
+        "TXN-001241",
+        "TXN-000319",
+        "TXN-001576",
+        "TXN-001569"
+      ],
+      "estimated_exposure": 3618.59,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 5.1)",
+        "share of orders scored high risk elevated (z 5.9)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0034",
+      "metric": "new_account_rate",
+      "window_start": "2026-04-14T15:00:00+00:00",
+      "window_end": "2026-04-14T16:00:00+00:00",
+      "observed": 3.0,
+      "baseline": 0.0,
+      "z_score": 4.05,
+      "affected_transactions": [
+        "TXN-010648",
+        "TXN-006894",
+        "TXN-002369",
+        "TXN-001596",
+        "TXN-001546",
+        "TXN-000303",
+        "TXN-001568",
+        "TXN-000366",
+        "TXN-001555",
+        "TXN-012033",
+        "TXN-001079",
+        "TXN-010183"
+      ],
+      "estimated_exposure": 11749.31,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 3.5)",
+        "share of orders scored high risk elevated (z 3.5)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0046",
+      "metric": "high_risk_rate",
+      "window_start": "2026-03-13T01:00:00+00:00",
+      "window_end": "2026-03-13T02:00:00+00:00",
+      "observed": 1.0,
+      "baseline": 0.1429,
+      "z_score": 4.05,
+      "affected_transactions": [
+        "TXN-002898",
+        "TXN-001702",
+        "TXN-001705",
+        "TXN-001676",
+        "TXN-001698"
+      ],
+      "estimated_exposure": 13414.14,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0071",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-24T13:00:00+00:00",
+      "window_end": "2026-04-24T14:00:00+00:00",
+      "observed": 1.0,
+      "baseline": 0.1429,
+      "z_score": 4.05,
+      "affected_transactions": [
+        "TXN-000734"
+      ],
+      "estimated_exposure": 600.45,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0040",
+      "metric": "high_risk_rate",
+      "window_start": "2026-02-18T20:00:00+00:00",
+      "window_end": "2026-02-18T21:00:00+00:00",
+      "observed": 1.0,
+      "baseline": 0.1603,
+      "z_score": 3.94,
+      "affected_transactions": [
+        "TXN-000011",
+        "TXN-003802"
+      ],
+      "estimated_exposure": 1165.59,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 4.2)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0065",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-14T14:00:00+00:00",
+      "window_end": "2026-04-14T15:00:00+00:00",
+      "observed": 0.4615,
+      "baseline": 0.0,
+      "z_score": 3.89,
+      "affected_transactions": [
+        "TXN-001598",
+        "TXN-001100",
+        "TXN-000342",
+        "TXN-011031",
+        "TXN-000353",
+        "TXN-002361",
+        "TXN-009266",
+        "TXN-003747",
+        "TXN-001554",
+        "TXN-000370",
+        "TXN-001877",
+        "TXN-003174",
+        "TXN-007650"
+      ],
+      "estimated_exposure": 18548.86,
+      "contributing_signals": [
+        "orders placed elevated (z 2.0)",
+        "share of payment attempts failing elevated (z 3.2)",
+        "orders from accounts under 7 days old elevated (z 2.7)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0013",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-14T06:00:00+00:00",
+      "window_end": "2026-04-14T07:00:00+00:00",
+      "observed": 0.4545,
+      "baseline": 0.0,
+      "z_score": 3.83,
+      "affected_transactions": [
+        "TXN-010859",
+        "TXN-001580",
+        "TXN-001578",
+        "TXN-007570",
+        "TXN-016306",
+        "TXN-001253",
+        "TXN-001583",
+        "TXN-006856",
+        "TXN-000314",
+        "TXN-000299",
+        "TXN-006881"
+      ],
+      "estimated_exposure": 7998.52,
+      "contributing_signals": [
+        "orders from accounts under 7 days old elevated (z 4.0)",
+        "share of orders scored high risk elevated (z 4.6)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0036",
+      "metric": "high_risk_rate",
+      "window_start": "2026-01-13T06:00:00+00:00",
+      "window_end": "2026-01-13T07:00:00+00:00",
+      "observed": 0.4444,
+      "baseline": 0.0,
+      "z_score": 3.75,
+      "affected_transactions": [
+        "TXN-002387",
+        "TXN-002281",
+        "TXN-009399",
+        "TXN-002374",
+        "TXN-009732",
+        "TXN-016386",
+        "TXN-002250",
+        "TXN-016368",
+        "TXN-006609"
+      ],
+      "estimated_exposure": 4735.5,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 2.8)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0057",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-14T00:00:00+00:00",
+      "window_end": "2026-04-14T01:00:00+00:00",
+      "observed": 0.4444,
+      "baseline": 0.0,
+      "z_score": 3.75,
+      "affected_transactions": [
+        "TXN-001574",
+        "TXN-001577",
+        "TXN-009409",
+        "TXN-000346",
+        "TXN-001907",
+        "TXN-014924",
+        "TXN-001588",
+        "TXN-012206",
+        "TXN-000364",
+        "TXN-001547",
+        "TXN-005280",
+        "TXN-012578",
+        "TXN-007558",
+        "TXN-012934",
+        "TXN-000349",
+        "TXN-001573",
+        "TXN-000363",
+        "TXN-005258"
+      ],
+      "estimated_exposure": 56004.75,
+      "contributing_signals": [
+        "orders placed elevated (z 3.7)",
+        "share of payment attempts failing elevated (z 4.7)",
+        "refunds issued elevated (z 2.0)",
+        "orders from accounts under 7 days old elevated (z 5.4)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0001",
+      "metric": "transaction_rate",
+      "window_start": "2026-04-14T00:00:00+00:00",
+      "window_end": "2026-04-14T01:00:00+00:00",
+      "observed": 18.0,
+      "baseline": 7.0,
+      "z_score": 3.71,
+      "affected_transactions": [
+        "TXN-001574",
+        "TXN-001577",
+        "TXN-009409",
+        "TXN-000346",
+        "TXN-001907",
+        "TXN-014924",
+        "TXN-001588",
+        "TXN-012206",
+        "TXN-000364",
+        "TXN-001547",
+        "TXN-005280",
+        "TXN-012578",
+        "TXN-007558",
+        "TXN-012934",
+        "TXN-000349",
+        "TXN-001573",
+        "TXN-000363",
+        "TXN-005258"
+      ],
+      "estimated_exposure": 56004.75,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 4.7)",
+        "refunds issued elevated (z 2.0)",
+        "orders from accounts under 7 days old elevated (z 5.4)",
+        "share of orders scored high risk elevated (z 3.7)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0070",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-15T20:00:00+00:00",
+      "window_end": "2026-04-15T21:00:00+00:00",
+      "observed": 0.4545,
+      "baseline": 0.025,
+      "z_score": 3.62,
+      "affected_transactions": [
+        "TXN-000301",
+        "TXN-000329",
+        "TXN-005015",
+        "TXN-005025",
+        "TXN-000320",
+        "TXN-000348",
+        "TXN-015523",
+        "TXN-017753",
+        "TXN-007587",
+        "TXN-010466",
+        "TXN-002099"
+      ],
+      "estimated_exposure": 25638.7,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 3.1)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0003",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-02-03T16:00:00+00:00",
+      "window_end": "2026-02-03T17:00:00+00:00",
+      "observed": 0.4286,
+      "baseline": 0.0,
+      "z_score": 3.61,
+      "affected_transactions": [
+        "TXN-002207",
+        "TXN-002164",
+        "TXN-006157",
+        "TXN-002174",
+        "TXN-014426",
+        "TXN-002950",
+        "TXN-006983"
+      ],
+      "estimated_exposure": 6860.03,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 2.0)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0006",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-02-28T05:00:00+00:00",
+      "window_end": "2026-02-28T06:00:00+00:00",
+      "observed": 0.4286,
+      "baseline": 0.0,
+      "z_score": 3.61,
+      "affected_transactions": [
+        "TXN-002323",
+        "TXN-001836",
+        "TXN-001416",
+        "TXN-013757",
+        "TXN-012520",
+        "TXN-005616",
+        "TXN-002303"
+      ],
+      "estimated_exposure": 12774.71,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 3.6)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0022",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-29T10:00:00+00:00",
+      "window_end": "2026-04-29T11:00:00+00:00",
+      "observed": 0.4286,
+      "baseline": 0.0,
+      "z_score": 3.61,
+      "affected_transactions": [
+        "TXN-000716",
+        "TXN-018158",
+        "TXN-012765",
+        "TXN-006889",
+        "TXN-002553",
+        "TXN-000710",
+        "TXN-000697"
+      ],
+      "estimated_exposure": 10163.06,
+      "contributing_signals": [
+        "share of orders scored high risk elevated (z 4.8)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0038",
+      "metric": "high_risk_rate",
+      "window_start": "2026-01-13T11:00:00+00:00",
+      "window_end": "2026-01-13T12:00:00+00:00",
+      "observed": 0.4286,
+      "baseline": 0.0,
+      "z_score": 3.61,
+      "affected_transactions": [
+        "TXN-003169",
+        "TXN-011910",
+        "TXN-010921",
+        "TXN-019202",
+        "TXN-002273",
+        "TXN-002275",
+        "TXN-014513"
+      ],
+      "estimated_exposure": 4862.52,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 2.4)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0041",
+      "metric": "high_risk_rate",
+      "window_start": "2026-02-28T05:00:00+00:00",
+      "window_end": "2026-02-28T06:00:00+00:00",
+      "observed": 0.4286,
+      "baseline": 0.0,
+      "z_score": 3.61,
+      "affected_transactions": [
+        "TXN-002323",
+        "TXN-001836",
+        "TXN-001416",
+        "TXN-013757",
+        "TXN-012520",
+        "TXN-005616",
+        "TXN-002303"
+      ],
+      "estimated_exposure": 12774.71,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 3.6)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0047",
+      "metric": "high_risk_rate",
+      "window_start": "2026-03-15T09:00:00+00:00",
+      "window_end": "2026-03-15T10:00:00+00:00",
+      "observed": 0.4286,
+      "baseline": 0.0,
+      "z_score": 3.61,
+      "affected_transactions": [
+        "TXN-003449",
+        "TXN-005681",
+        "TXN-002238",
+        "TXN-018895",
+        "TXN-005697",
+        "TXN-003442",
+        "TXN-014128"
+      ],
+      "estimated_exposure": 11956.66,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0053",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-13T04:00:00+00:00",
+      "window_end": "2026-04-13T05:00:00+00:00",
+      "observed": 0.4286,
+      "baseline": 0.0,
+      "z_score": 3.61,
+      "affected_transactions": [
+        "TXN-007661",
+        "TXN-008888",
+        "TXN-008856",
+        "TXN-003715",
+        "TXN-008899",
+        "TXN-010649",
+        "TXN-011285"
+      ],
+      "estimated_exposure": 9381.6,
+      "contributing_signals": []
+    },
+    {
+      "spike_id": "SPK-0064",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-14T13:00:00+00:00",
+      "window_end": "2026-04-14T14:00:00+00:00",
+      "observed": 0.4286,
+      "baseline": 0.0,
+      "z_score": 3.61,
+      "affected_transactions": [
+        "TXN-000369",
+        "TXN-001567",
+        "TXN-001557",
+        "TXN-000318",
+        "TXN-007604",
+        "TXN-005321",
+        "TXN-014892"
+      ],
+      "estimated_exposure": 9092.61,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 4.8)",
+        "orders from accounts under 7 days old elevated (z 2.7)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0012",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-14T05:00:00+00:00",
+      "window_end": "2026-04-14T06:00:00+00:00",
+      "observed": 0.4167,
+      "baseline": 0.0,
+      "z_score": 3.51,
+      "affected_transactions": [
+        "TXN-001553",
+        "TXN-001561",
+        "TXN-001549",
+        "TXN-005319",
+        "TXN-001551",
+        "TXN-001240",
+        "TXN-011869",
+        "TXN-010363",
+        "TXN-000365",
+        "TXN-000339",
+        "TXN-003111",
+        "TXN-009723"
+      ],
+      "estimated_exposure": 16506.87,
+      "contributing_signals": [
+        "refunds issued elevated (z 2.7)",
+        "orders from accounts under 7 days old elevated (z 5.4)",
+        "share of orders scored high risk elevated (z 3.5)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0015",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-14T10:00:00+00:00",
+      "window_end": "2026-04-14T11:00:00+00:00",
+      "observed": 0.4167,
+      "baseline": 0.0,
+      "z_score": 3.51,
+      "affected_transactions": [
+        "TXN-005287",
+        "TXN-015048",
+        "TXN-000340",
+        "TXN-000355",
+        "TXN-000298",
+        "TXN-001571",
+        "TXN-000351",
+        "TXN-001222",
+        "TXN-001207",
+        "TXN-001890",
+        "TXN-001560",
+        "TXN-009334"
+      ],
+      "estimated_exposure": 9987.2,
+      "contributing_signals": [
+        "orders from accounts under 7 days old elevated (z 2.7)",
+        "share of orders scored high risk elevated (z 3.5)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0017",
+      "metric": "failed_payment_rate",
+      "window_start": "2026-04-14T15:00:00+00:00",
+      "window_end": "2026-04-14T16:00:00+00:00",
+      "observed": 0.4167,
+      "baseline": 0.0,
+      "z_score": 3.51,
+      "affected_transactions": [
+        "TXN-010648",
+        "TXN-006894",
+        "TXN-002369",
+        "TXN-001596",
+        "TXN-001546",
+        "TXN-000303",
+        "TXN-001568",
+        "TXN-000366",
+        "TXN-001555",
+        "TXN-012033",
+        "TXN-001079",
+        "TXN-010183"
+      ],
+      "estimated_exposure": 11749.31,
+      "contributing_signals": [
+        "orders from accounts under 7 days old elevated (z 4.0)",
+        "share of orders scored high risk elevated (z 3.5)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0059",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-14T05:00:00+00:00",
+      "window_end": "2026-04-14T06:00:00+00:00",
+      "observed": 0.4167,
+      "baseline": 0.0,
+      "z_score": 3.51,
+      "affected_transactions": [
+        "TXN-001553",
+        "TXN-001561",
+        "TXN-001549",
+        "TXN-005319",
+        "TXN-001551",
+        "TXN-001240",
+        "TXN-011869",
+        "TXN-010363",
+        "TXN-000365",
+        "TXN-000339",
+        "TXN-003111",
+        "TXN-009723"
+      ],
+      "estimated_exposure": 16506.87,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 3.5)",
+        "refunds issued elevated (z 2.7)",
+        "orders from accounts under 7 days old elevated (z 5.4)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0062",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-14T10:00:00+00:00",
+      "window_end": "2026-04-14T11:00:00+00:00",
+      "observed": 0.4167,
+      "baseline": 0.0,
+      "z_score": 3.51,
+      "affected_transactions": [
+        "TXN-005287",
+        "TXN-015048",
+        "TXN-000340",
+        "TXN-000355",
+        "TXN-000298",
+        "TXN-001571",
+        "TXN-000351",
+        "TXN-001222",
+        "TXN-001207",
+        "TXN-001890",
+        "TXN-001560",
+        "TXN-009334"
+      ],
+      "estimated_exposure": 9987.2,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 3.5)",
+        "orders from accounts under 7 days old elevated (z 2.7)"
+      ]
+    },
+    {
+      "spike_id": "SPK-0066",
+      "metric": "high_risk_rate",
+      "window_start": "2026-04-14T15:00:00+00:00",
+      "window_end": "2026-04-14T16:00:00+00:00",
+      "observed": 0.4167,
+      "baseline": 0.0,
+      "z_score": 3.51,
+      "affected_transactions": [
+        "TXN-010648",
+        "TXN-006894",
+        "TXN-002369",
+        "TXN-001596",
+        "TXN-001546",
+        "TXN-000303",
+        "TXN-001568",
+        "TXN-000366",
+        "TXN-001555",
+        "TXN-012033",
+        "TXN-001079",
+        "TXN-010183"
+      ],
+      "estimated_exposure": 11749.31,
+      "contributing_signals": [
+        "share of payment attempts failing elevated (z 3.5)",
+        "orders from accounts under 7 days old elevated (z 4.0)"
+      ]
+    }
+  ],
+  "total": 78
+}

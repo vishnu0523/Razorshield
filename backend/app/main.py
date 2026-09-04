@@ -14,6 +14,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import ValidationError
 
 from . import fixtures
@@ -55,6 +56,26 @@ METRICS_PATH = ARTIFACTS_DIR / "metrics.json"
 SPIKES_PATH = ARTIFACTS_DIR / "spikes.json"
 RINGS_PATH = ARTIFACTS_DIR / "rings.json"
 SIMULATION_PATH = ARTIFACTS_DIR / "simulation.json"
+
+def _read_json_artifact(path: Path, regen_cmd: str) -> dict:
+    """Read and parse a JSON artifact as one clear failure mode instead of two
+    silent ones. A file that exists but won't parse means an earlier pipeline
+    run was interrupted mid-write -- the fix is always to regenerate it, never
+    to guess at partial content. Without this, a corrupt file surfaces as an
+    unhandled 500 with no explanation, which is exactly the bug this closes.
+    """
+    try:
+        return json.loads(path.read_text())
+    except json.JSONDecodeError as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                f"{path.name} exists but is not valid JSON -- an earlier "
+                f"pipeline run was likely interrupted before it finished "
+                f"writing. Regenerate it with `{regen_cmd}`. ({exc})"
+            ),
+        ) from exc
+
 
 ALLOWED_ORIGINS = [
     o.strip()
@@ -109,7 +130,7 @@ def metrics() -> MetricsResponse:
     if not _artifacts_present():
         return fixtures.placeholder_metrics()
 
-    raw = json.loads(METRICS_PATH.read_text())
+    raw = _read_json_artifact(METRICS_PATH, "make evaluate")
     try:
         parsed = MetricsResponse.model_validate(raw)
     except ValidationError as exc:
@@ -137,7 +158,7 @@ def feed(limit: int = Query(default=50, ge=1, le=500)) -> FeedResponse:
 def _load_rings() -> list[dict]:
     if not RINGS_PATH.is_file():
         return []
-    return json.loads(RINGS_PATH.read_text())["rings"]
+    return _read_json_artifact(RINGS_PATH, "make rings")["rings"]
 
 
 @app.get("/api/rings", response_model=RingListResponse)
@@ -145,7 +166,16 @@ def rings(limit: int = Query(default=50, ge=1, le=500)) -> RingListResponse:
     raw = _load_rings()
     if not raw:
         return fixtures.placeholder_rings()
-    summaries = [RingSummary.model_validate(r["summary"]) for r in raw[:limit]]
+    try:
+        summaries = [RingSummary.model_validate(r["summary"]) for r in raw[:limit]]
+    except ValidationError as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "artifacts/rings.json violates the frozen contract. Regenerate "
+                f"with `make rings`. {exc.error_count()} error(s)."
+            ),
+        ) from exc
     return RingListResponse(rings=summaries, total=len(raw))
 
 
@@ -257,7 +287,9 @@ def spikes() -> SpikeListResponse:
     if not SPIKES_PATH.is_file():
         return fixtures.placeholder_spikes()
     try:
-        return SpikeListResponse.model_validate(json.loads(SPIKES_PATH.read_text()))
+        return SpikeListResponse.model_validate(
+            _read_json_artifact(SPIKES_PATH, "make spikes")
+        )
     except ValidationError as exc:
         raise HTTPException(
             status_code=500,
@@ -364,7 +396,7 @@ def financial_recompute(req: RecomputeRequest) -> FinancialImpact:
 def _load_simulation() -> dict | None:
     if not SIMULATION_PATH.is_file():
         return None
-    return json.loads(SIMULATION_PATH.read_text())
+    return _read_json_artifact(SIMULATION_PATH, "make simulate")
 
 
 @app.post("/api/simulate/start", response_model=SimulationStartResponse)
@@ -409,3 +441,14 @@ def simulate_step(phase: int = Query(default=1, ge=1, le=9)) -> SimulationStep:
                 f"Regenerate with `make simulate`. {exc.error_count()} error(s)."
             ),
         ) from exc
+
+
+# Serve the built dashboard directly when it exists, so the whole product runs
+# from one process and one command -- no Node toolchain required to just look
+# at it. Mounted last and at the root path, so every /api/* route above still
+# wins on an exact match; this only ever catches what nothing else claimed.
+# Absent in normal frontend development, where Vite serves the dashboard and
+# proxies /api/* to this process instead.
+_FRONTEND_DIST = Path(__file__).resolve().parents[2] / "frontend" / "dist"
+if _FRONTEND_DIST.is_dir():
+    app.mount("/", StaticFiles(directory=_FRONTEND_DIST, html=True), name="dashboard")
