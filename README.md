@@ -871,9 +871,11 @@ money, block payments autonomously, or act on any real account.
 ### The 60-second path (no Node required)
 
 This repo ships with real, already-generated results committed
-(`artifacts/*`, a seeded `razorshield.db`, and a production frontend build in
-`frontend/dist/`) so a fresh clone works immediately — nobody has to run the
-ML pipeline or an `npm install` just to look at it. One process, one command:
+(`artifacts/*` and a production frontend build in `frontend/dist/`) so a
+fresh clone works immediately — nobody has to run the ML pipeline or an
+`npm install` just to look at it. The audit trail seeds itself: the first
+server start replays it from `artifacts/rings.json`, so `razorshield.db`
+isn't committed and never needs a manual reset. One process, one command:
 
 ```bash
 git clone <repo> && cd razorshield

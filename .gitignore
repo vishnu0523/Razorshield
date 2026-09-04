@@ -1,6 +1,5 @@
 .env
 *.db
-!razorshield.db
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -24,3 +23,11 @@ data/features.parquet
 # still regenerates every one of these files byte-for-byte from seed 42 --
 # shipping the snapshot does not weaken that claim, it just means nobody has
 # to run the regeneration before they're allowed to look at the product.
+#
+# razorshield.db is deliberately NOT in that list. Every server start already
+# calls seed() (backend/app/core/seed.py), which is idempotent -- it creates
+# the tables and replays the audit trail from artifacts/rings.json only when
+# the log is empty, and is a no-op otherwise. A committed db bought nothing
+# a fresh clone didn't already get for free, and cost a manual reset before
+# every commit plus Windows file-locking whenever a running server held it
+# open. Never commit it again.
