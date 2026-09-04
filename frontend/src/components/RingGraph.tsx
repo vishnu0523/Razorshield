@@ -156,7 +156,15 @@ export function RingGraph({
   const simRef = useRef<Simulation<Positioned, undefined> | null>(null);
 
   const { simNodes, simLinks } = useMemo(() => {
-    const copies: Positioned[] = nodes.map((n) => ({ ...n, x: WIDTH / 2, y: HEIGHT / 2 }));
+    // Slight random jitter around center, not an exact shared point -- d3-force's
+    // charge and collision forces have no gradient to act on when every node
+    // starts at the identical coordinate, which stalls the first several ticks
+    // before anything visibly separates.
+    const copies: Positioned[] = nodes.map((n) => ({
+      ...n,
+      x: WIDTH / 2 + (Math.random() - 0.5) * 60,
+      y: HEIGHT / 2 + (Math.random() - 0.5) * 60,
+    }));
     const index = new Map(copies.map((n) => [n.id, n]));
     const links: SimLink[] = edges
       .map((e) => ({
@@ -183,9 +191,17 @@ export function RingGraph({
       .force("collide", forceCollide<Positioned>().radius((d) => radius(d) + 6))
       .force("x", forceX(WIDTH / 2).strength(0.04))
       .force("y", forceY(HEIGHT / 2).strength(0.06))
-      .on("tick", () => setTick((t) => t + 1));
+      .stop();
+
+    // Pre-warm synchronously: run the layout to convergence before the first
+    // paint, rather than animating it live from a standing start. Two things
+    // depended on that animation finishing that shouldn't have to wait for
+    // it -- a viewer's first glance, and a screenshot tool that has no way to
+    // know "settled" from "still assembling."
+    for (let i = 0; i < 300; i += 1) sim.tick();
 
     simRef.current = sim;
+    setTick((t) => t + 1);
     return () => {
       sim.stop();
     };

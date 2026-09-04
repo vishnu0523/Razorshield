@@ -13,6 +13,15 @@ refunds — and reports exactly how much money that detection protects.
 > The API serves `artifacts/metrics.json` verbatim, and a test asserts it does
 > not alter the numbers in transit.
 
+**Four things worth knowing before anything else:**
+
+1. **The graph is worth 5 additional rings caught** — 14/15 abuse rings detected with the relationship graph vs. 9/15 with a naive same-device rule, on the same held-out clusters. That's the whole product argument, measured rather than asserted.
+2. **Net protected value is a subtraction, not a headline number** — prevented loss minus what our own false alarms cost the merchant (₹2,11,895), and every assumption behind it is a slider you can drag on the live dashboard, including one that pushes it negative.
+3. **Fusion failed, and we shipped that result anyway** — the four-signal stacker the brief asked for scored *worse* (0.424 vs 0.436 PR-AUC) than the transaction model alone. It's in this README with the reason, not hidden.
+4. **All of this is synthetic** — a benchmark demonstrating recovery of injected fraud patterns under documented assumptions (`ml/config.py`), not a claim about real-world performance. Every number on the dashboard says so on screen.
+
+Run it in one command — no pipeline, no Node — with the [Quick start](#quick-start) below.
+
 ---
 
 ## Why this is different
