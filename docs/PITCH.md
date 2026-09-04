@@ -1,34 +1,41 @@
 # 5-minute pitch script
 
 For the Razorpay AI Buildathon submission video. Timestamps are cumulative —
-read at a normal pace and it lands at 5:00. Record with `make reproduce` →
-`make api` → `make ui` already running so the Live demo tab works live; if
-anything stutters on the day, the screenshots in `docs/screenshots/` are the
-fallback.
+read at a normal pace and it lands at 5:00. Record with the app running at
+`http://localhost:8000` (one command: `python -m uvicorn backend.app.main:app
+--port 8000`, no separate frontend server needed). Click through your demo
+cases once before recording so the AI explanations are cached and can't fail
+mid-take. If anything stutters on the day, the screenshots in
+`docs/screenshots/` are the fallback.
 
 Bracketed lines are screen actions, not spoken words.
 
 ---
 
-## 0:00 — Why now (25s)
+## 0:00 — Intro (10s)
+
+> "Hi, this is Vishnuvardhan — a fourth-year Cybersecurity student from
+> SIMATS Engineering. This is RazorShield, my submission for Track 2, AI
+> Risk Manager."
+
+[Open on the **Live demo** tab. Don't press start yet.]
+
+## 0:10 — Why now (25s)
 
 > "Indian BFSI is getting hit by AI-enabled fraud, and returns and
 > chargebacks are quietly eating merchant margin on top of that. Most fraud
-> tools score one transaction at a time. We built RazorShield to show why
-> that's not enough — and to prove it with numbers, not a demo trick."
+> tools score one transaction at a time. RazorShield shows why that's not
+> enough — and proves it with numbers, not a demo trick."
 
-[Open on the **Live demo** tab, not the measurement tab. Don't press start yet.]
+## 0:35 — What we built (25s)
 
-## 0:25 — What we built (30s)
+> "It scores individual transactions like everyone else does — but it also
+> builds a relationship map across devices, addresses, IPs and coupon codes,
+> and finds the coordinated groups hiding inside data that looks fine row by
+> row. Every number I'm about to show you is measured on a held-out test
+> split the model never saw during training."
 
-> "RazorShield is a risk graph for Razorpay merchants. It scores individual
-> transactions like everyone else does — but it also builds a relationship
-> map across devices, addresses, IPs and coupon codes, and finds the
-> coordinated groups hiding inside data that looks fine row by row. Every
-> number I'm about to show you is measured on a held-out test split the
-> model never saw during training."
-
-## 0:55 — Set up the problem (20s)
+## 1:00 — Set up the problem (15s)
 
 > "Watch what a row-level model misses."
 
@@ -73,7 +80,7 @@ Phases 6–8.
 > unchanged, reasons unchanged, recommended action unchanged. It falls back
 > to a fixed template and says so on screen."
 
-## 2:50 — The money, honestly (40s)
+## 2:50 — The money, honestly (35s)
 
 [Switch to **Measurement**.]
 
@@ -82,15 +89,14 @@ Phases 6–8.
 > rupees. These three numbers on the right are assumptions, not facts — drag
 > one."
 
-[Drag **lost margin** toward 60%.]
+[Drag **Lost margin on a false block** toward 60%.]
 
 > "Push it far enough and RazorShield costs the merchant money. It says so in
-> red instead of hiding it. That's not a bug — it's the point. A number you
-> can't disagree with isn't a number you should trust."
+> red instead of hiding it. That's not a bug — it's the point."
 
 [Reset the slider.]
 
-## 3:30 — The metric that matters (30s)
+## 3:25 — The metric that matters (30s)
 
 > "Fourteen of fifteen real fraud rings caught. Only one of eleven completely
 > innocent groups wrongly flagged — and those innocent groups are a family
@@ -98,7 +104,7 @@ Phases 6–8.
 > simple same-device rule catches nine of fifteen. The graph is worth five
 > more rings, measured against that floor, not just claimed."
 
-## 4:00 — What didn't work (30s)
+## 3:55 — What didn't work (30s)
 
 > "We also have to tell you what failed. The brief asked for a fusion model
 > combining four risk signals. We built it, measured it, and it scored worse
@@ -107,18 +113,18 @@ Phases 6–8.
 > views, four measurements of the same thing. We shipped the honest number,
 > not the one that looks better."
 
-## 4:30 — Defense-only, by design (20s)
+## 4:25 — Defense-only, by design (20s)
 
 > "RazorShield never moves money and never blocks a payment on its own.
 > Razorpay keys are test-mode only, enforced at import — a live key crashes
 > the process before it can touch anything. Everything above five thousand
 > rupees needs a person. This is a detector and an explainer, not an actor."
 
-## 4:50 — Close (10s)
+## 4:45 — Close (15s)
 
 > "Individually boring transactions. A coordinated group hiding in plain
-> sight. Numbers you can re-run yourself with one command: `make reproduce`.
-> That's RazorShield."
+> sight. Numbers you can re-run yourself with one command. That's
+> RazorShield — thank you."
 
 [End on the Measurement tab or the repo README.]
 
