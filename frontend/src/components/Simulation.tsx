@@ -164,7 +164,7 @@ export function Simulation() {
 
       {protectedValue !== null && (
         <section className="panel p-6 sm:p-8">
-          <h3 className="eyebrow">Net protected from this group</h3>
+          <h3 className="eyebrow">Net protected</h3>
           <div className="settle num mt-3 text-5xl font-semibold text-signal">
             {money(protectedValue)}
           </div>

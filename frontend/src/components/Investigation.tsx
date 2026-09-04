@@ -428,12 +428,7 @@ function CaseDetail({ ringId }: { ringId: string }) {
 
       <div className="grid gap-5 lg:grid-cols-2">
         <section className="panel p-6">
-          <h3 className="eyebrow">
-            Why this group was flagged
-            <span className="ml-2 font-normal normal-case tracking-normal opacity-70">
-              ranked by how much each signal moved the score
-            </span>
-          </h3>
+          <h3 className="eyebrow">Why this was flagged</h3>
           <div className="mt-4">
             <Evidence items={evidence} />
           </div>

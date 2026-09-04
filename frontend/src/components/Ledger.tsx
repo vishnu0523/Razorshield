@@ -172,12 +172,7 @@ export function Ledger({ financial }: { financial: FinancialImpact }) {
   return (
     <section className="panel p-6 sm:p-8">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h2 className="eyebrow">
-          Money saved, minus our own mistakes
-          <span className="ml-2 font-normal normal-case tracking-normal opacity-70">
-            held-out test split
-          </span>
-        </h2>
+        <h2 className="eyebrow">Money saved</h2>
         <span className="num text-xs text-faint">
           fraud value we caught {money(exposureShown)}
         </span>

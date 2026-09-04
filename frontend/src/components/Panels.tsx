@@ -131,12 +131,7 @@ export function RingDetection({
 
   return (
     <section className="panel p-6">
-      <h2 className="eyebrow">
-        Fraud groups caught
-        <span className="ml-2 font-normal normal-case tracking-normal opacity-70">
-          whole rings, not single orders
-        </span>
-      </h2>
+      <h2 className="eyebrow">Fraud groups caught</h2>
 
       <div className="mt-5 flex flex-wrap items-end gap-x-10 gap-y-6">
         <div>
@@ -167,7 +162,7 @@ export function RingDetection({
 
       {floor && (
         <div className="mt-7">
-          <div className="eyebrow">Compared with no graph at all</div>
+          <div className="eyebrow">Without the graph</div>
           <table className="mt-3 w-full text-sm">
             <tbody>
               {[
@@ -213,7 +208,7 @@ export function RingDetection({
         </div>
       )}
 
-      <More label="Which innocent groups we tested against">
+      <More label="Who we tested against">
         The test data contains {ring.n_hard_negative_clusters} innocent groups
         built to look exactly like fraud rings — a family sharing one address, an
         office network, a hostel, a reseller who returns a third of what they
