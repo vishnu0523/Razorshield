@@ -67,7 +67,7 @@ Phases 6–8.
 > what sounds convincing. And the rules are fixed: above five thousand
 > rupees, nothing happens without a human, no matter how sure the model is."
 
-[Switch to **Investigations**, open any case, press **Simulate model outage**.]
+[Switch to **Investigations**, open any case, press **Turn off AI**.]
 
 > "The AI only writes the summary — it never decides. Watch: AI's gone. Score
 > unchanged, reasons unchanged, recommended action unchanged. It falls back

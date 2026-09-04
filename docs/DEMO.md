@@ -73,7 +73,7 @@ Then the honesty beat:
 
 > "The AI writes the summary. It does not decide anything."
 
-Switch to **Investigations**, open any case, press **Simulate model outage**.
+Switch to **Investigations**, open any case, press **Turn off AI**.
 
 > "Model's gone. Score unchanged, evidence unchanged, recommended action
 > unchanged. The explanation falls back to a deterministic summary and says so."

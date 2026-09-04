@@ -419,7 +419,7 @@ def explain(
 
     # An explicitly supplied provider means a simulated outage or a test, and
     # must reach that provider for real. Serving those from cache would make
-    # the "Simulate model outage" button show cached model text and prove
+    # the "Turn off AI" button show cached model text and prove
     # nothing, which is the opposite of what it exists to demonstrate.
     use_cache = provider is None
     provider = provider or get_provider()

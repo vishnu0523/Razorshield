@@ -364,7 +364,7 @@ function Investigator({
           onClick={() => regenerate(true)}
           className="num rounded border border-warn/40 px-3 py-1.5 text-xs text-warn hover:bg-warn/10 disabled:opacity-40"
         >
-          Simulate model outage
+          Turn off AI
         </button>
       </div>
     </section>

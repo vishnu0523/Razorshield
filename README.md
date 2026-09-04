@@ -819,7 +819,7 @@ more dangerous than no explanation at all.
 
 ### The failure demo
 
-Every case screen has a **Simulate model outage** button. Press it and the
+Every case screen has a **Turn off AI** button. Press it and the
 explanation degrades to the deterministic summary with a visible banner — while
 the risk score, evidence and recommended action beside it do not move. A test
 asserts precisely that.
