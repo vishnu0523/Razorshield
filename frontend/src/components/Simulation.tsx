@@ -15,6 +15,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { AuditEntry, FeedItem, SimulationStep } from "../types/api";
 import { API_BASE, money } from "../lib/format";
 import { RingGraph } from "./RingGraph";
+import { PipelineLog } from "./PipelineLog";
 
 const STEP_MS = 2600;
 const TOTAL = 9;
@@ -237,6 +238,8 @@ export function Simulation() {
           )}
         </div>
       )}
+
+      <PipelineLog />
     </div>
   );
 }

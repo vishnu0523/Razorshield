@@ -58,6 +58,7 @@ GET_ENDPOINTS = [
     ("GET /api/audit", "/api/audit"),
     ("GET /api/policy/config", "/api/policy/config"),
     ("GET /api/simulate/step", "/api/simulate/step?phase=1"),
+    ("GET /api/pipeline/log", "/api/pipeline/log"),
 ]
 
 

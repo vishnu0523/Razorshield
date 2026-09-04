@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import os
+from datetime import datetime, timezone
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
@@ -49,6 +50,7 @@ from .schemas import (
     FinancialImpact,
     HealthResponse,
     MetricsResponse,
+    PipelineLogResponse,
     PolicyConfigResponse,
     RecomputeRequest,
     RecoveryWorkflow,
@@ -76,6 +78,11 @@ METRICS_PATH = ARTIFACTS_DIR / "metrics.json"
 SPIKES_PATH = ARTIFACTS_DIR / "spikes.json"
 RINGS_PATH = ARTIFACTS_DIR / "rings.json"
 SIMULATION_PATH = ARTIFACTS_DIR / "simulation.json"
+PIPELINE_LOG_PATH = ARTIFACTS_DIR / "pipeline_log.txt"
+
+# The log is shown in full on a scrolling panel; this only bounds a
+# pathological file so one endpoint can't return tens of megabytes.
+MAX_LOG_LINES = 4000
 
 def _read_json_artifact(path: Path, regen_cmd: str) -> dict:
     """Read and parse a JSON artifact as one clear failure mode instead of two
@@ -323,6 +330,31 @@ def ring_explanation(
         result="degraded" if explanation.degraded else "ok",
     )
     return Explanation.model_validate(explanation.to_dict())
+
+
+@app.get("/api/pipeline/log", response_model=PipelineLogResponse)
+def pipeline_log() -> PipelineLogResponse:
+    """The captured stdout of the last `make reproduce` / `run_all.py` run.
+
+    Read-only and after the fact, on purpose. Nothing is executed to serve
+    this -- it is the recorded output of the offline pipeline that produced
+    the artifacts already on screen, so the numbers in the log and the
+    numbers in the dashboard come from the same run and can be compared.
+    """
+    if not PIPELINE_LOG_PATH.is_file():
+        return PipelineLogResponse(
+            available=False, generated_at=None, line_count=0, lines=[]
+        )
+
+    text = PIPELINE_LOG_PATH.read_text(encoding="utf-8", errors="replace")
+    lines = text.splitlines()
+    stat = PIPELINE_LOG_PATH.stat()
+    return PipelineLogResponse(
+        available=True,
+        generated_at=datetime.fromtimestamp(stat.st_mtime, tz=timezone.utc),
+        line_count=len(lines),
+        lines=lines[-MAX_LOG_LINES:],
+    )
 
 
 @app.get("/api/spikes", response_model=SpikeListResponse)

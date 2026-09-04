@@ -84,10 +84,17 @@ function Loading() {
   );
 }
 
-type Tab = "measurement" | "cases" | "recovery" | "demo";
+type Tab = "measurement" | "details" | "cases" | "recovery" | "demo";
 
+// Measurement is deliberately two pages, not one. The first answers "did this
+// save money and did it catch the rings" -- the two questions a reader
+// actually arrives with. Everything that supports those answers (model
+// scores, confusion matrix, dataset, caveats) lives on the second, for the
+// reader who wants to check the working rather than be handed all of it at
+// once.
 const TAB_ITEMS: [Tab, string][] = [
   ["measurement", "Measurement"],
+  ["details", "Model details"],
   ["cases", "Investigations"],
   ["recovery", "Recovery"],
   ["demo", "Live demo"],
@@ -225,23 +232,50 @@ export default function App() {
             <Ledger financial={metrics.data.financial} />
           </div>
 
-          <div className="reveal grid gap-5 lg:grid-cols-2" style={{ ["--i" as string]: 2 }}>
-            <DetectionQuality
-              primary={metrics.data.transaction_model}
-              baseline={metrics.data.baseline_model}
-            />
+          <div className="reveal" style={{ ["--i" as string]: 2 }}>
             <RingDetection
               ring={metrics.data.ring_model}
               floor={metrics.data.ring_baseline_model}
             />
           </div>
 
-          <div className="reveal grid gap-5 lg:grid-cols-2" style={{ ["--i" as string]: 3 }}>
+          <footer className="num pt-2 pb-8 text-xs text-faint">
+            Evaluated {shortDate(metrics.data.generated_at)} · the model scores,
+            dataset and caveats behind these numbers are on{" "}
+            <button
+              onClick={() => changeTab("details")}
+              className="text-signal underline underline-offset-2 hover:text-paper"
+            >
+              Model details
+            </button>
+          </footer>
+        </main>
+      )}
+
+      {metrics.state === "loading" && tab === "details" && <Loading />}
+      {metrics.state === "error" && tab === "details" && (
+        <ApiUnreachable message={metrics.message} />
+      )}
+
+      {metrics.state === "ready" && tab === "details" && (
+        <main
+          key="details"
+          style={pageStyle}
+          className="page-transition mx-auto max-w-6xl space-y-5 px-5 py-6 sm:px-8 sm:py-8"
+        >
+          <div className="reveal" style={{ ["--i" as string]: 0 }}>
+            <DetectionQuality
+              primary={metrics.data.transaction_model}
+              baseline={metrics.data.baseline_model}
+            />
+          </div>
+
+          <div className="reveal grid gap-5 lg:grid-cols-2" style={{ ["--i" as string]: 1 }}>
             <ConfusionMatrix model={metrics.data.transaction_model} />
             <DatasetPanel dataset={metrics.data.dataset} />
           </div>
 
-          <div className="reveal" style={{ ["--i" as string]: 4 }}>
+          <div className="reveal" style={{ ["--i" as string]: 2 }}>
             <Caveats caveats={metrics.data.caveats} />
           </div>
 

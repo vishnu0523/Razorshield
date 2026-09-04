@@ -310,6 +310,19 @@ class SpikeListResponse(Strict):
     total: int = Field(ge=0)
 
 
+class PipelineLogResponse(Strict):
+    """Captured stdout of the last offline pipeline run.
+
+    `available` is False when no run has been recorded yet, which is a normal
+    state for a clone that has not run `make reproduce` -- not an error.
+    """
+
+    available: bool
+    generated_at: datetime | None = None
+    line_count: int = Field(ge=0)
+    lines: list[str]
+
+
 class AuditEntry(Strict):
     entry_id: str
     timestamp: datetime

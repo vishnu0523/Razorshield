@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,16 +31,54 @@ STEPS = [
 ]
 
 
+LOG_PATH = ROOT / "artifacts" / "pipeline_log.txt"
+
+
 def main() -> int:
+    """Run every step, streaming output live and teeing it to an artifact.
+
+    The captured log is what the dashboard shows on its Live demo tab. It is
+    the real stdout of a real run -- the fusion verdict, the ring counts, the
+    test summary -- rather than a screenshot or a retyped summary, so a
+    reader can check the numbers on screen against the run that produced
+    them. Streaming and capturing at once, instead of subprocess capture,
+    because a three-minute pipeline with no visible output looks hung.
+    """
+    lines: list[str] = []
+
+    def emit(text: str) -> None:
+        print(text, flush=True)
+        lines.append(text)
+
+    started = datetime.now(timezone.utc)
+    emit(f"RazorShield pipeline — started {started.isoformat(timespec='seconds')}")
+
     for i, command in enumerate(STEPS, start=1):
         printable = " ".join(command)
-        print(f"\n[{i}/{len(STEPS)}] {printable}", flush=True)
-        completed = subprocess.run(command, cwd=ROOT)
-        if completed.returncode:
-            print(f"\nFailed at step {i}: {printable}", file=sys.stderr)
-            return completed.returncode
+        emit(f"\n[{i}/{len(STEPS)}] {printable}")
+        process = subprocess.Popen(
+            command,
+            cwd=ROOT,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            bufsize=1,
+        )
+        assert process.stdout is not None
+        for line in process.stdout:
+            emit(line.rstrip("\n"))
+        returncode = process.wait()
+        if returncode:
+            emit(f"\nFailed at step {i}: {printable}")
+            LOG_PATH.write_text("\n".join(lines), encoding="utf-8")
+            return returncode
 
-    print("\nRegenerated from seed 42. Nothing above was hardcoded.")
+    emit("\nRegenerated from seed 42. Nothing above was hardcoded.")
+    LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    LOG_PATH.write_text("\n".join(lines), encoding="utf-8")
+    print(f"\npipeline log written: {LOG_PATH.relative_to(ROOT)}")
     return 0
 
 

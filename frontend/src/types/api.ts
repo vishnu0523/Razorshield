@@ -244,6 +244,13 @@ export interface SpikeWindow {
 
 export interface SpikeListResponse { spikes: SpikeWindow[]; total: number }
 
+export interface PipelineLogResponse {
+  available: boolean;
+  generated_at: string | null;
+  line_count: number;
+  lines: string[];
+}
+
 export interface AuditEntry {
   entry_id: string;
   timestamp: string;

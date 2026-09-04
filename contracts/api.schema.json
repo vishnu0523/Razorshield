@@ -3,7 +3,7 @@
   "$id": "https://razorshield.local/contracts/api.schema.json",
   "title": "RazorShield API Contract v1.3",
   "description": "Frozen response contract for every RazorShield endpoint. Backend responses and frontend expectations are both validated against this file. Changing it is a deliberate act, not a side effect.",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "$defs": {
     "RiskLevel": {
       "type": "string",
@@ -1353,6 +1353,38 @@
         }
       ],
       "description": "Regenerates the investigator summary. Pass simulate_failure=true to force the deterministic fallback for the graceful-degradation demo."
+    },
+    "GET /api/pipeline/log": {
+      "description": "Captured stdout of the last offline pipeline run. Additive in contract v1.4.0; read-only, executes nothing.",
+      "type": "object",
+      "required": [
+        "available",
+        "line_count",
+        "lines"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "generated_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "line_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "lines": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
     }
   }
 }
