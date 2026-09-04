@@ -26,6 +26,7 @@ templated text is written to stand on its own.
 
 from __future__ import annotations
 
+import hashlib
 import os
 import re
 from dataclasses import dataclass
@@ -49,6 +50,19 @@ OVERCLAIM_LANGUAGE = re.compile(
 )
 
 MAX_EXPLANATION_CHARS = 900
+
+# Tried in order after whatever GEMINI_MODEL / the constructor asked for.
+GEMINI_FALLBACK_MODELS = (
+    "gemini-2.5-flash",
+    "gemini-3-flash-preview",
+    "gemini-flash-latest",
+    "gemini-2.5-pro",
+)
+
+# ring_id + prompt hash -> validated model text. Process-local and unbounded,
+# which is fine for a fixed set of roughly a hundred detected rings; it is a
+# demo-lifetime memo, not a cache that needs eviction.
+_EXPLANATION_CACHE: dict[tuple[str, str], str] = {}
 
 SYSTEM_PROMPT = (
     "You rewrite fraud-analysis findings for a merchant. You are given only "
@@ -190,32 +204,37 @@ class GeminiProvider:
     def available(self) -> bool:
         return bool(self._api_key)
 
-    def complete(self, system: str, user: str) -> str:
+    def _attempt(self, model: str, system: str, user: str, thinking: bool) -> str:
         import json
         import urllib.request
 
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{self._model}:generateContent?key={self._api_key}"
+        config: dict = {"maxOutputTokens": 800}
+        if thinking:
+            # 2.5-series models spend output budget on internal reasoning
+            # before they emit anything. Left on, the thinking consumes the
+            # allowance and the summary comes back truncated mid-sentence.
+            # This task is a rewrite of evidence we already computed, not a
+            # reasoning problem. Newer models reject the field outright, which
+            # is why complete() retries without it.
+            config["thinkingConfig"] = {"thinkingBudget": 0}
+
+        url = (
+            "https://generativelanguage.googleapis.com/v1beta/models/"
+            f"{model}:generateContent?key={self._api_key}"
+        )
         request = urllib.request.Request(
             url,
             data=json.dumps(
                 {
                     "system_instruction": {"parts": [{"text": system}]},
                     "contents": [{"parts": [{"text": user}]}],
-                    "generationConfig": {
-                        "maxOutputTokens": 800,
-                        # 2.5-series models spend output budget on internal
-                        # reasoning before they emit anything. Left on, the
-                        # thinking consumes the allowance and the summary comes
-                        # back truncated mid-sentence. This task is a rewrite of
-                        # evidence we already computed, not a reasoning problem.
-                        "thinkingConfig": {"thinkingBudget": 0},
-                    },
+                    "generationConfig": config,
                 }
             ).encode(),
             headers={"content-type": "application/json"},
             method="POST",
         )
-        with urllib.request.urlopen(request, timeout=12) as response:
+        with urllib.request.urlopen(request, timeout=15) as response:
             body = json.loads(response.read())
         candidates = body.get("candidates", [])
         if not candidates:
@@ -227,6 +246,38 @@ class GeminiProvider:
         if not parts:
             return ""
         return parts[0].get("text", "").strip()
+
+    def complete(self, system: str, user: str) -> str:
+        """Try the configured model, then documented alternates.
+
+        Free-tier quota is per model, and Google retires model ids without
+        notice -- both of which surface as a dead AI investigator rather than
+        an obvious error. Walking a short list turns "the demo silently lost
+        its language model" into "it used the next one". The configured model
+        is always tried first, so setting GEMINI_MODEL still wins.
+        """
+        import urllib.error
+
+        candidates = [self._model] + [
+            m for m in GEMINI_FALLBACK_MODELS if m != self._model
+        ]
+        last_error: Exception = RuntimeError("no gemini model available")
+        for model in candidates:
+            for thinking in (True, False):
+                try:
+                    return self._attempt(model, system, user, thinking)
+                except urllib.error.HTTPError as exc:
+                    last_error = exc
+                    # 400 usually means this model rejects thinkingConfig, so
+                    # the no-thinking pass is worth trying. Anything else
+                    # (429 quota, 404 retired, 503 overloaded) is a dead end
+                    # for this model -- move to the next one.
+                    if exc.code != 400:
+                        break
+                except Exception as exc:  # noqa: BLE001 - try the next model
+                    last_error = exc
+                    break
+        raise last_error
 
 
 def get_provider() -> Provider:
@@ -366,6 +417,11 @@ def explain(
             f"AI explanation service unavailable — deterministic fallback used: {reason}",
         )
 
+    # An explicitly supplied provider means a simulated outage or a test, and
+    # must reach that provider for real. Serving those from cache would make
+    # the "Simulate model outage" button show cached model text and prove
+    # nothing, which is the opposite of what it exists to demonstrate.
+    use_cache = provider is None
     provider = provider or get_provider()
     if not provider.available():
         return (
@@ -381,14 +437,38 @@ def explain(
             "No language model configured; deterministic explanation used.",
         )
 
+    prompt = build_prompt(ring)
+
+    # A ring's evidence is fixed once detection has run, so its summary is the
+    # same every time it is asked for. Re-calling the API on every page view
+    # spends quota to reproduce identical text, and on a free tier that ends
+    # with the investigator dead mid-demo. Generated once, then served from
+    # memory. Keyed on the prompt, so regenerated artifacts invalidate it.
+    cache_key = (ring["summary"]["ring_id"], hashlib.sha256(prompt.encode()).hexdigest())
+    cached = _EXPLANATION_CACHE.get(cache_key) if use_cache else None
+    if cached is not None:
+        return (
+            Explanation(
+                source="llm",
+                text=cached,
+                facts=facts,
+                inferences=inferences or [deterministic_text],
+                degraded=False,
+            ),
+            "Language model explanation served from cache.",
+        )
+
     try:
-        text = provider.complete(SYSTEM_PROMPT, build_prompt(ring))
+        text = provider.complete(SYSTEM_PROMPT, prompt)
     except Exception as exc:  # noqa: BLE001 - any provider failure degrades
         return fallback(f"{type(exc).__name__}")
 
     ok, reason = validate(text, ring)
     if not ok:
         return fallback(reason)
+
+    if use_cache:
+        _EXPLANATION_CACHE[cache_key] = text.strip()
 
     return (
         Explanation(
