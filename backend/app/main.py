@@ -64,6 +64,11 @@ from .schemas import (
 VERSION = "0.1.0"
 PHASE = 16
 
+MERCHANT_DECISION_REASON = {
+    "APPROVED": "Merchant approved the recommended action from the case screen.",
+    "DISMISSED": "Merchant dismissed the case; no action to be taken.",
+}
+
 ARTIFACTS_DIR = Path(
     os.environ.get("ARTIFACTS_DIR", Path(__file__).resolve().parents[2] / "artifacts")
 )
@@ -367,7 +372,12 @@ def record_decision(ring_id: str, req: DecisionRequest) -> MerchantDecision:
             f"{match['summary']['risk_score']:.0f}"
         ),
         decision=req.decision,
-        reason=req.note or "No note provided.",
+        # Every other actor's reason says why the thing happened, so this one
+        # should too. It used to read "No note provided.", which described the
+        # absence of an optional field the case screen never offers a way to
+        # fill -- an apology in the audit trail for a box that isn't there.
+        # A note supplied through the API still wins.
+        reason=req.note.strip() or MERCHANT_DECISION_REASON[req.decision],
         policy=policy["policy_version"],
         result="recorded",
     )
