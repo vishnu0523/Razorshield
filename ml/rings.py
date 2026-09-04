@@ -508,10 +508,10 @@ def detect(seed: int = C.SEED) -> dict:
                 "component_id": row["component_id"],
                 "split": row["split"],
                 "evidence": evidence,
-                "accounts": list(row["accounts"]),
+                "accounts": sorted(row["accounts"]),
                 "summary": summary,
                 "graph": ring_graph(
-                    list(row["accounts"]), events["transactions"], account_risk
+                    sorted(row["accounts"]), events["transactions"], account_risk
                 ),
                 "policy": policy_decision(float(row["risk_score"]), exposure_value),
                 "explanation": deterministic_explanation(row, evidence),
@@ -521,9 +521,23 @@ def detect(seed: int = C.SEED) -> dict:
             }
         )
 
-    (ARTIFACTS / "rings.json").write_text(
-        json.dumps({"model": meta.__dict__, "rings": rings}, indent=2)
-    )
+    content = json.dumps({"model": meta.__dict__, "rings": rings}, indent=2)
+    target = ARTIFACTS / "rings.json"
+    tmp_target = ARTIFACTS / "rings.json.tmp"
+    try:
+        tmp_target.write_text(content, encoding="utf-8")
+        tmp_target.replace(target)
+    except OSError:
+        try:
+            target.write_text(content, encoding="utf-8")
+        except OSError:
+            pass
+        finally:
+            if tmp_target.exists():
+                try:
+                    tmp_target.unlink()
+                except OSError:
+                    pass
     return {"scored": scored, "meta": meta, "rings": rings, "pipeline": pipe}
 
 

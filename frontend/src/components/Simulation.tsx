@@ -89,6 +89,24 @@ export function Simulation() {
     };
   }, [running, phase]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const targetPhase = parseInt(params.get("phase") || "0", 10);
+    if (targetPhase >= 1 && targetPhase <= TOTAL && phase === 0) {
+      Promise.all(
+        Array.from({ length: targetPhase }, (_, i) =>
+          fetch(`${API_BASE}/api/simulate/step?phase=${i + 1}`).then((r) =>
+            r.json() as Promise<SimulationStep>
+          )
+        )
+      ).then((allSteps) => {
+        setSteps(allSteps);
+        setPhase(targetPhase);
+      });
+    }
+  }, []);
+
   return (
     <div className="space-y-5">
       <section className="panel p-6">

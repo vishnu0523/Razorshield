@@ -106,7 +106,12 @@ def _artifacts_present() -> bool:
 
 def _llm_available() -> bool:
     """Presence of a key only. Never log or return the value itself."""
-    return bool(os.environ.get("LLM_API_KEY"))
+    return bool(
+        os.environ.get("LLM_API_KEY")
+        or os.environ.get("ANTHROPIC_API_KEY")
+        or os.environ.get("OPENAI_API_KEY")
+        or os.environ.get("GEMINI_API_KEY")
+    ) and os.environ.get("RAZORSHIELD_DISABLE_LLM") != "1"
 
 
 @app.get("/api/health", response_model=HealthResponse)

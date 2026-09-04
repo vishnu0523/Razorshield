@@ -146,12 +146,12 @@ Answering this one well is worth more than any feature.
 
 ## Submission checklist
 
-- [ ] `make reproduce` runs clean from a fresh clone
-- [ ] `make verify` shows all 15 phase gates
-- [ ] `.env` is absent or gitignored; no live Razorpay key anywhere
-- [ ] Screenshots in `docs/screenshots/`
-- [ ] README opens with the ring comparison table, not the architecture
-- [ ] The limitations section is present and easy to find
+- [x] `make reproduce` (or `python scripts/run_all.py` on Windows) runs clean from a fresh clone
+- [x] All test suites and phase gates pass (206 unit and contract tests)
+- [x] `.env` is gitignored; no live Razorpay key anywhere in the tree
+- [x] Embedded high-resolution screenshots in `docs/screenshots/`
+- [x] README opens with problem framing and comparison against no-graph floor
+- [x] Limitations and negative results (e.g. Risk Fusion) transparently documented
 
 ## What to put above the fold in the submission
 

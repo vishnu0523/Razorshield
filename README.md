@@ -990,9 +990,25 @@ submission checklist.
 
 ## Screenshots
 
-`docs/screenshots/` — measurement tab, ring investigation graph, live demo at
-the moment of the reveal, and the outage banner with the score unchanged beside
-it.
+### 1. Measurement Tab & Net Protected Value Ledger
+Real held-out reconciliation: prevented loss minus false-positive costs with dynamic assumption sliders.
+![Measurement Ledger](docs/screenshots/01_measurement_ledger.png)
+
+### 2. Merchant Risk Graph & Ring Investigation
+Coordinated abuse ring AR-0063: force-directed relationship graph, accounts, and weighted model evidence.
+![Ring Investigation](docs/screenshots/02_ring_investigations.png)
+
+### 3. Live Simulation at the Moment of Reveal
+Phase 5: individually unremarkable transactions (max score 59) reveal a 17-account coordinated ring scoring 99/100.
+![Live Demo Reveal](docs/screenshots/03_live_demo_reveal.png)
+
+### 4. AI Investigator Outage Resilience
+Simulated LLM outage: explanation gracefully degrades to deterministic facts while risk score, evidence, and policy remain unaffected.
+![Model Outage Resilience](docs/screenshots/04_model_outage_resilience.png)
+
+### 5. Bounded Merchant Recovery Workflows
+Actionable merchant next steps stopping for human review on high exposure cases.
+![Bounded Recovery Workflows](docs/screenshots/05_bounded_recovery_workflows.png)
 
 ---
 

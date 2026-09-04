@@ -107,8 +107,8 @@ class AnthropicProvider:
     name = "anthropic"
 
     def __init__(self, api_key: str | None = None, model: str = "claude-sonnet-4-5"):
-        self._api_key = api_key or os.environ.get("LLM_API_KEY") or ""
-        self._model = model
+        self._api_key = api_key or os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("LLM_API_KEY") or ""
+        self._model = os.environ.get("ANTHROPIC_MODEL", model)
 
     def available(self) -> bool:
         return bool(self._api_key)
@@ -141,12 +141,88 @@ class AnthropicProvider:
         ).strip()
 
 
+class OpenAIProvider:
+    name = "openai"
+
+    def __init__(self, api_key: str | None = None, model: str = "gpt-4o-mini"):
+        self._api_key = api_key or os.environ.get("OPENAI_API_KEY") or os.environ.get("LLM_API_KEY") or ""
+        self._model = os.environ.get("OPENAI_MODEL", model)
+
+    def available(self) -> bool:
+        return bool(self._api_key)
+
+    def complete(self, system: str, user: str) -> str:
+        import json
+        import urllib.request
+
+        request = urllib.request.Request(
+            "https://api.openai.com/v1/chat/completions",
+            data=json.dumps(
+                {
+                    "model": self._model,
+                    "max_tokens": 400,
+                    "messages": [
+                        {"role": "system", "content": system},
+                        {"role": "user", "content": user},
+                    ],
+                }
+            ).encode(),
+            headers={
+                "content-type": "application/json",
+                "authorization": f"Bearer {self._api_key}",
+            },
+            method="POST",
+        )
+        with urllib.request.urlopen(request, timeout=12) as response:
+            body = json.loads(response.read())
+        return body["choices"][0]["message"]["content"].strip()
+
+
+class GeminiProvider:
+    name = "gemini"
+
+    def __init__(self, api_key: str | None = None, model: str = "gemini-1.5-flash"):
+        self._api_key = api_key or os.environ.get("GEMINI_API_KEY") or os.environ.get("LLM_API_KEY") or ""
+        self._model = os.environ.get("GEMINI_MODEL", model)
+
+    def available(self) -> bool:
+        return bool(self._api_key)
+
+    def complete(self, system: str, user: str) -> str:
+        import json
+        import urllib.request
+
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{self._model}:generateContent?key={self._api_key}"
+        request = urllib.request.Request(
+            url,
+            data=json.dumps(
+                {
+                    "system_instruction": {"parts": [{"text": system}]},
+                    "contents": [{"parts": [{"text": user}]}],
+                    "generationConfig": {"maxOutputTokens": 400},
+                }
+            ).encode(),
+            headers={"content-type": "application/json"},
+            method="POST",
+        )
+        with urllib.request.urlopen(request, timeout=12) as response:
+            body = json.loads(response.read())
+        candidates = body.get("candidates", [])
+        if not candidates:
+            return ""
+        return candidates[0]["content"]["parts"][0]["text"].strip()
+
+
 def get_provider() -> Provider:
     """Chosen from the environment. Absent credentials is not an error."""
     if os.environ.get("RAZORSHIELD_DISABLE_LLM") == "1":
         return NullProvider()
-    provider = os.environ.get("LLM_PROVIDER", "anthropic").lower()
-    if provider == "anthropic" and os.environ.get("LLM_API_KEY"):
+    provider = os.environ.get("LLM_PROVIDER", "").lower()
+    if provider == "openai" or (not provider and os.environ.get("OPENAI_API_KEY")):
+        return OpenAIProvider()
+    if provider == "gemini" or (not provider and os.environ.get("GEMINI_API_KEY")):
+        return GeminiProvider()
+    if (provider == "anthropic" or not provider) and (os.environ.get("LLM_API_KEY") or os.environ.get("ANTHROPIC_API_KEY")):
         return AnthropicProvider()
     return NullProvider()
 

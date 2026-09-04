@@ -286,7 +286,15 @@ function Investigator({
   ringId: string;
   initial: ExplanationType;
 }) {
-  const [explanation, setExplanation] = useState<ExplanationType>(initial);
+  const [explanation, setExplanation] = useState<ExplanationType>(() => {
+    if (typeof window !== "undefined") {
+      const p = new URLSearchParams(window.location.search);
+      if (p.get("outage") === "true") {
+        return { ...initial, degraded: true };
+      }
+    }
+    return initial;
+  });
   const [busy, setBusy] = useState(false);
 
   async function regenerate(simulateFailure: boolean) {
@@ -451,7 +459,10 @@ export function Investigation() {
 
   useEffect(() => {
     if (list.state === "ready" && !selected && list.data.rings.length) {
-      setSelected(list.data.rings[0].ring_id);
+      const params = typeof window !== "undefined" ? new URLSearchParams(window.location.search) : null;
+      const targetRing = params?.get("ring");
+      const found = targetRing && list.data.rings.some((r) => r.ring_id === targetRing);
+      setSelected(found ? targetRing : list.data.rings[0].ring_id);
     }
   }, [list, selected]);
 

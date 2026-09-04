@@ -142,13 +142,27 @@ const TAB_ORDER: Tab[] = TAB_ITEMS.map(([key]) => key);
 export default function App() {
   const health = useApi<HealthResponse>("/api/health");
   const metrics = useApi<MetricsResponse>("/api/metrics");
-  const [tab, setTab] = useState<Tab>("measurement");
+  const [tab, setTab] = useState<Tab>(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const qTab = params.get("tab") as Tab;
+      if (qTab && TAB_ORDER.includes(qTab)) return qTab;
+      const hash = window.location.hash.replace("#", "") as Tab;
+      if (hash && TAB_ORDER.includes(hash)) return hash;
+    }
+    return "measurement";
+  });
   const [dir, setDir] = useState(1);
 
   function changeTab(next: Tab) {
     if (next === tab) return;
     setDir(TAB_ORDER.indexOf(next) > TAB_ORDER.indexOf(tab) ? 1 : -1);
     setTab(next);
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      url.searchParams.set("tab", next);
+      window.history.replaceState(null, "", url.toString());
+    }
   }
 
   const pageStyle = { ["--dir" as string]: dir };

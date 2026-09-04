@@ -363,17 +363,31 @@
         "graph": {
           "nodes": [
             {
-              "id": "c:CUST-000363",
+              "id": "c:CUST-000351",
               "type": "customer",
-              "label": "CUST-000363",
-              "risk_score": 14.9,
+              "label": "CUST-000351",
+              "risk_score": 7.0,
               "attributes": {}
             },
             {
-              "id": "c:CUST-000362",
+              "id": "c:CUST-000352",
               "type": "customer",
-              "label": "CUST-000362",
-              "risk_score": 28.1,
+              "label": "CUST-000352",
+              "risk_score": 30.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000353",
+              "type": "customer",
+              "label": "CUST-000353",
+              "risk_score": 23.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000354",
+              "type": "customer",
+              "label": "CUST-000354",
+              "risk_score": 28.8,
               "attributes": {}
             },
             {
@@ -398,31 +412,10 @@
               "attributes": {}
             },
             {
-              "id": "c:CUST-000353",
+              "id": "c:CUST-000358",
               "type": "customer",
-              "label": "CUST-000353",
-              "risk_score": 23.0,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000352",
-              "type": "customer",
-              "label": "CUST-000352",
-              "risk_score": 30.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000365",
-              "type": "customer",
-              "label": "CUST-000365",
-              "risk_score": 38.2,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000361",
-              "type": "customer",
-              "label": "CUST-000361",
-              "risk_score": 24.8,
+              "label": "CUST-000358",
+              "risk_score": 14.6,
               "attributes": {}
             },
             {
@@ -433,41 +426,6 @@
               "attributes": {}
             },
             {
-              "id": "c:CUST-000364",
-              "type": "customer",
-              "label": "CUST-000364",
-              "risk_score": 14.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000367",
-              "type": "customer",
-              "label": "CUST-000367",
-              "risk_score": 28.2,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000354",
-              "type": "customer",
-              "label": "CUST-000354",
-              "risk_score": 28.8,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000358",
-              "type": "customer",
-              "label": "CUST-000358",
-              "risk_score": 14.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000351",
-              "type": "customer",
-              "label": "CUST-000351",
-              "risk_score": 7.0,
-              "attributes": {}
-            },
-            {
               "id": "c:CUST-000360",
               "type": "customer",
               "label": "CUST-000360",
@@ -475,10 +433,52 @@
               "attributes": {}
             },
             {
+              "id": "c:CUST-000361",
+              "type": "customer",
+              "label": "CUST-000361",
+              "risk_score": 24.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000362",
+              "type": "customer",
+              "label": "CUST-000362",
+              "risk_score": 28.1,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000363",
+              "type": "customer",
+              "label": "CUST-000363",
+              "risk_score": 14.9,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000364",
+              "type": "customer",
+              "label": "CUST-000364",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000365",
+              "type": "customer",
+              "label": "CUST-000365",
+              "risk_score": 38.2,
+              "attributes": {}
+            },
+            {
               "id": "c:CUST-000366",
               "type": "customer",
               "label": "CUST-000366",
               "risk_score": 8.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000367",
+              "type": "customer",
+              "label": "CUST-000367",
+              "risk_score": 28.2,
               "attributes": {}
             },
             {
@@ -1268,17 +1268,31 @@
         "graph": {
           "nodes": [
             {
-              "id": "c:CUST-000363",
+              "id": "c:CUST-000351",
               "type": "customer",
-              "label": "CUST-000363",
-              "risk_score": 14.9,
+              "label": "CUST-000351",
+              "risk_score": 7.0,
               "attributes": {}
             },
             {
-              "id": "c:CUST-000362",
+              "id": "c:CUST-000352",
               "type": "customer",
-              "label": "CUST-000362",
-              "risk_score": 28.1,
+              "label": "CUST-000352",
+              "risk_score": 30.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000353",
+              "type": "customer",
+              "label": "CUST-000353",
+              "risk_score": 23.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000354",
+              "type": "customer",
+              "label": "CUST-000354",
+              "risk_score": 28.8,
               "attributes": {}
             },
             {
@@ -1303,31 +1317,10 @@
               "attributes": {}
             },
             {
-              "id": "c:CUST-000353",
+              "id": "c:CUST-000358",
               "type": "customer",
-              "label": "CUST-000353",
-              "risk_score": 23.0,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000352",
-              "type": "customer",
-              "label": "CUST-000352",
-              "risk_score": 30.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000365",
-              "type": "customer",
-              "label": "CUST-000365",
-              "risk_score": 38.2,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000361",
-              "type": "customer",
-              "label": "CUST-000361",
-              "risk_score": 24.8,
+              "label": "CUST-000358",
+              "risk_score": 14.6,
               "attributes": {}
             },
             {
@@ -1338,41 +1331,6 @@
               "attributes": {}
             },
             {
-              "id": "c:CUST-000364",
-              "type": "customer",
-              "label": "CUST-000364",
-              "risk_score": 14.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000367",
-              "type": "customer",
-              "label": "CUST-000367",
-              "risk_score": 28.2,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000354",
-              "type": "customer",
-              "label": "CUST-000354",
-              "risk_score": 28.8,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000358",
-              "type": "customer",
-              "label": "CUST-000358",
-              "risk_score": 14.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000351",
-              "type": "customer",
-              "label": "CUST-000351",
-              "risk_score": 7.0,
-              "attributes": {}
-            },
-            {
               "id": "c:CUST-000360",
               "type": "customer",
               "label": "CUST-000360",
@@ -1380,10 +1338,52 @@
               "attributes": {}
             },
             {
+              "id": "c:CUST-000361",
+              "type": "customer",
+              "label": "CUST-000361",
+              "risk_score": 24.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000362",
+              "type": "customer",
+              "label": "CUST-000362",
+              "risk_score": 28.1,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000363",
+              "type": "customer",
+              "label": "CUST-000363",
+              "risk_score": 14.9,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000364",
+              "type": "customer",
+              "label": "CUST-000364",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000365",
+              "type": "customer",
+              "label": "CUST-000365",
+              "risk_score": 38.2,
+              "attributes": {}
+            },
+            {
               "id": "c:CUST-000366",
               "type": "customer",
               "label": "CUST-000366",
               "risk_score": 8.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000367",
+              "type": "customer",
+              "label": "CUST-000367",
+              "risk_score": 28.2,
               "attributes": {}
             },
             {
@@ -2161,17 +2161,31 @@
         "graph": {
           "nodes": [
             {
-              "id": "c:CUST-000363",
+              "id": "c:CUST-000351",
               "type": "customer",
-              "label": "CUST-000363",
-              "risk_score": 14.9,
+              "label": "CUST-000351",
+              "risk_score": 7.0,
               "attributes": {}
             },
             {
-              "id": "c:CUST-000362",
+              "id": "c:CUST-000352",
               "type": "customer",
-              "label": "CUST-000362",
-              "risk_score": 28.1,
+              "label": "CUST-000352",
+              "risk_score": 30.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000353",
+              "type": "customer",
+              "label": "CUST-000353",
+              "risk_score": 23.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000354",
+              "type": "customer",
+              "label": "CUST-000354",
+              "risk_score": 28.8,
               "attributes": {}
             },
             {
@@ -2196,31 +2210,10 @@
               "attributes": {}
             },
             {
-              "id": "c:CUST-000353",
+              "id": "c:CUST-000358",
               "type": "customer",
-              "label": "CUST-000353",
-              "risk_score": 23.0,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000352",
-              "type": "customer",
-              "label": "CUST-000352",
-              "risk_score": 30.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000365",
-              "type": "customer",
-              "label": "CUST-000365",
-              "risk_score": 38.2,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000361",
-              "type": "customer",
-              "label": "CUST-000361",
-              "risk_score": 24.8,
+              "label": "CUST-000358",
+              "risk_score": 14.6,
               "attributes": {}
             },
             {
@@ -2231,41 +2224,6 @@
               "attributes": {}
             },
             {
-              "id": "c:CUST-000364",
-              "type": "customer",
-              "label": "CUST-000364",
-              "risk_score": 14.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000367",
-              "type": "customer",
-              "label": "CUST-000367",
-              "risk_score": 28.2,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000354",
-              "type": "customer",
-              "label": "CUST-000354",
-              "risk_score": 28.8,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000358",
-              "type": "customer",
-              "label": "CUST-000358",
-              "risk_score": 14.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000351",
-              "type": "customer",
-              "label": "CUST-000351",
-              "risk_score": 7.0,
-              "attributes": {}
-            },
-            {
               "id": "c:CUST-000360",
               "type": "customer",
               "label": "CUST-000360",
@@ -2273,10 +2231,52 @@
               "attributes": {}
             },
             {
+              "id": "c:CUST-000361",
+              "type": "customer",
+              "label": "CUST-000361",
+              "risk_score": 24.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000362",
+              "type": "customer",
+              "label": "CUST-000362",
+              "risk_score": 28.1,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000363",
+              "type": "customer",
+              "label": "CUST-000363",
+              "risk_score": 14.9,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000364",
+              "type": "customer",
+              "label": "CUST-000364",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000365",
+              "type": "customer",
+              "label": "CUST-000365",
+              "risk_score": 38.2,
+              "attributes": {}
+            },
+            {
               "id": "c:CUST-000366",
               "type": "customer",
               "label": "CUST-000366",
               "risk_score": 8.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000367",
+              "type": "customer",
+              "label": "CUST-000367",
+              "risk_score": 28.2,
               "attributes": {}
             },
             {
@@ -3054,17 +3054,31 @@
         "graph": {
           "nodes": [
             {
-              "id": "c:CUST-000363",
+              "id": "c:CUST-000351",
               "type": "customer",
-              "label": "CUST-000363",
-              "risk_score": 14.9,
+              "label": "CUST-000351",
+              "risk_score": 7.0,
               "attributes": {}
             },
             {
-              "id": "c:CUST-000362",
+              "id": "c:CUST-000352",
               "type": "customer",
-              "label": "CUST-000362",
-              "risk_score": 28.1,
+              "label": "CUST-000352",
+              "risk_score": 30.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000353",
+              "type": "customer",
+              "label": "CUST-000353",
+              "risk_score": 23.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000354",
+              "type": "customer",
+              "label": "CUST-000354",
+              "risk_score": 28.8,
               "attributes": {}
             },
             {
@@ -3089,31 +3103,10 @@
               "attributes": {}
             },
             {
-              "id": "c:CUST-000353",
+              "id": "c:CUST-000358",
               "type": "customer",
-              "label": "CUST-000353",
-              "risk_score": 23.0,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000352",
-              "type": "customer",
-              "label": "CUST-000352",
-              "risk_score": 30.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000365",
-              "type": "customer",
-              "label": "CUST-000365",
-              "risk_score": 38.2,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000361",
-              "type": "customer",
-              "label": "CUST-000361",
-              "risk_score": 24.8,
+              "label": "CUST-000358",
+              "risk_score": 14.6,
               "attributes": {}
             },
             {
@@ -3124,41 +3117,6 @@
               "attributes": {}
             },
             {
-              "id": "c:CUST-000364",
-              "type": "customer",
-              "label": "CUST-000364",
-              "risk_score": 14.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000367",
-              "type": "customer",
-              "label": "CUST-000367",
-              "risk_score": 28.2,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000354",
-              "type": "customer",
-              "label": "CUST-000354",
-              "risk_score": 28.8,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000358",
-              "type": "customer",
-              "label": "CUST-000358",
-              "risk_score": 14.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000351",
-              "type": "customer",
-              "label": "CUST-000351",
-              "risk_score": 7.0,
-              "attributes": {}
-            },
-            {
               "id": "c:CUST-000360",
               "type": "customer",
               "label": "CUST-000360",
@@ -3166,10 +3124,52 @@
               "attributes": {}
             },
             {
+              "id": "c:CUST-000361",
+              "type": "customer",
+              "label": "CUST-000361",
+              "risk_score": 24.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000362",
+              "type": "customer",
+              "label": "CUST-000362",
+              "risk_score": 28.1,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000363",
+              "type": "customer",
+              "label": "CUST-000363",
+              "risk_score": 14.9,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000364",
+              "type": "customer",
+              "label": "CUST-000364",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000365",
+              "type": "customer",
+              "label": "CUST-000365",
+              "risk_score": 38.2,
+              "attributes": {}
+            },
+            {
               "id": "c:CUST-000366",
               "type": "customer",
               "label": "CUST-000366",
               "risk_score": 8.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000367",
+              "type": "customer",
+              "label": "CUST-000367",
+              "risk_score": 28.2,
               "attributes": {}
             },
             {
@@ -3947,17 +3947,31 @@
         "graph": {
           "nodes": [
             {
-              "id": "c:CUST-000363",
+              "id": "c:CUST-000351",
               "type": "customer",
-              "label": "CUST-000363",
-              "risk_score": 14.9,
+              "label": "CUST-000351",
+              "risk_score": 7.0,
               "attributes": {}
             },
             {
-              "id": "c:CUST-000362",
+              "id": "c:CUST-000352",
               "type": "customer",
-              "label": "CUST-000362",
-              "risk_score": 28.1,
+              "label": "CUST-000352",
+              "risk_score": 30.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000353",
+              "type": "customer",
+              "label": "CUST-000353",
+              "risk_score": 23.0,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000354",
+              "type": "customer",
+              "label": "CUST-000354",
+              "risk_score": 28.8,
               "attributes": {}
             },
             {
@@ -3982,31 +3996,10 @@
               "attributes": {}
             },
             {
-              "id": "c:CUST-000353",
+              "id": "c:CUST-000358",
               "type": "customer",
-              "label": "CUST-000353",
-              "risk_score": 23.0,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000352",
-              "type": "customer",
-              "label": "CUST-000352",
-              "risk_score": 30.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000365",
-              "type": "customer",
-              "label": "CUST-000365",
-              "risk_score": 38.2,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000361",
-              "type": "customer",
-              "label": "CUST-000361",
-              "risk_score": 24.8,
+              "label": "CUST-000358",
+              "risk_score": 14.6,
               "attributes": {}
             },
             {
@@ -4017,41 +4010,6 @@
               "attributes": {}
             },
             {
-              "id": "c:CUST-000364",
-              "type": "customer",
-              "label": "CUST-000364",
-              "risk_score": 14.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000367",
-              "type": "customer",
-              "label": "CUST-000367",
-              "risk_score": 28.2,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000354",
-              "type": "customer",
-              "label": "CUST-000354",
-              "risk_score": 28.8,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000358",
-              "type": "customer",
-              "label": "CUST-000358",
-              "risk_score": 14.6,
-              "attributes": {}
-            },
-            {
-              "id": "c:CUST-000351",
-              "type": "customer",
-              "label": "CUST-000351",
-              "risk_score": 7.0,
-              "attributes": {}
-            },
-            {
               "id": "c:CUST-000360",
               "type": "customer",
               "label": "CUST-000360",
@@ -4059,10 +4017,52 @@
               "attributes": {}
             },
             {
+              "id": "c:CUST-000361",
+              "type": "customer",
+              "label": "CUST-000361",
+              "risk_score": 24.8,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000362",
+              "type": "customer",
+              "label": "CUST-000362",
+              "risk_score": 28.1,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000363",
+              "type": "customer",
+              "label": "CUST-000363",
+              "risk_score": 14.9,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000364",
+              "type": "customer",
+              "label": "CUST-000364",
+              "risk_score": 14.6,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000365",
+              "type": "customer",
+              "label": "CUST-000365",
+              "risk_score": 38.2,
+              "attributes": {}
+            },
+            {
               "id": "c:CUST-000366",
               "type": "customer",
               "label": "CUST-000366",
               "risk_score": 8.2,
+              "attributes": {}
+            },
+            {
+              "id": "c:CUST-000367",
+              "type": "customer",
+              "label": "CUST-000367",
+              "risk_score": 28.2,
               "attributes": {}
             },
             {
