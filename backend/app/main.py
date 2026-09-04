@@ -17,6 +17,21 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import ValidationError
 
+# .env is read here, not by the launcher, so it works however the app is
+# started -- `make api`, a bare `python -m uvicorn`, or a test run. Without
+# this, `cp .env.example .env` (which the README tells a judge to do) silently
+# does nothing and a configured API key is ignored. Real environment
+# variables still win: override=False, so `.env` fills gaps rather than
+# overruling whatever the operator explicitly exported.
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv(
+        Path(__file__).resolve().parents[2] / ".env", override=False
+    )
+except ImportError:  # pragma: no cover - dotenv ships with uvicorn[standard]
+    pass
+
 from . import fixtures
 from .adapters import llm, razorpay
 from .core import audit

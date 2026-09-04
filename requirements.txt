@@ -3,6 +3,7 @@ fastapi==0.141.1
 uvicorn[standard]==0.34.0
 pydantic==2.13.5
 sqlalchemy==2.0.36
+python-dotenv==1.0.1
 
 # ML (Phases 2-10)
 pandas==2.2.3
