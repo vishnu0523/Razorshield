@@ -172,9 +172,14 @@ export function Ledger({ financial }: { financial: FinancialImpact }) {
   return (
     <section className="panel p-6 sm:p-8">
       <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h2 className="eyebrow">Reconciliation · held-out test split</h2>
+        <h2 className="eyebrow">
+          Money saved, minus our own mistakes
+          <span className="ml-2 font-normal normal-case tracking-normal opacity-70">
+            held-out test split
+          </span>
+        </h2>
         <span className="num text-xs text-faint">
-          detected exposure {money(exposureShown)}
+          fraud value we caught {money(exposureShown)}
         </span>
       </div>
 
@@ -187,7 +192,7 @@ export function Ledger({ financial }: { financial: FinancialImpact }) {
             tone="signal"
           />
           <Line
-            label="False-positive cost"
+            label="Cost of our false alarms"
             value={impact.false_positive_cost}
             sign="−"
             tone="alert"
@@ -240,7 +245,7 @@ export function Ledger({ financial }: { financial: FinancialImpact }) {
             max={1}
             step={0.01}
             format={percent}
-            hint="Share of detected exposure genuinely preventable. Some fraud would have failed anyway."
+            hint="How much of the fraud we caught could really have been stopped. Some of it would have failed on its own anyway."
             onChange={(v) => setKnobs({ ...knobs, recovery_rate: v })}
           />
           <Knob
@@ -250,7 +255,7 @@ export function Ledger({ financial }: { financial: FinancialImpact }) {
             max={1000}
             step={10}
             format={money}
-            hint="Analyst time plus checkout friction when a legitimate order is escalated."
+            hint="What it costs us every time we stop a real customer's order for a human to check."
             onChange={(v) => setKnobs({ ...knobs, cost_per_false_review: v })}
           />
           <Knob
@@ -260,7 +265,7 @@ export function Ledger({ financial }: { financial: FinancialImpact }) {
             max={1}
             step={0.01}
             format={percent}
-            hint="Contribution margin forfeited when a legitimate customer abandons."
+            hint="The profit we lose when a real customer gives up and doesn't buy."
             onChange={(v) => setKnobs({ ...knobs, cost_per_false_block_ratio: v })}
           />
         </div>

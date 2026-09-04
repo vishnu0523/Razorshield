@@ -319,8 +319,8 @@ export function RingGraph({
 
       {truncated && (
         <p className="mt-2 text-xs text-warn">
-          Graph truncated to keep it readable. Every account is shown; the least
-          shared entities were hidden.
+          Trimmed to stay readable. Every account is still shown — only the
+          least-shared devices and addresses were hidden.
         </p>
       )}
 

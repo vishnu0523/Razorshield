@@ -37,10 +37,11 @@ export function Recovery() {
       <section className="panel p-6">
         <div className="flex flex-wrap items-baseline justify-between gap-3">
           <div>
-            <h2 className="eyebrow">Bounded recovery workflows</h2>
+            <h2 className="eyebrow">Recommended next steps</h2>
             <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted">
-              Phase extension: detected risk becomes a merchant-controlled next
-              step. No Razorpay production money action is executed from this demo.
+              Each detected group turns into one action the merchant chooses to
+              take. Nothing here moves money, and no real Razorpay action runs
+              from this demo.
             </p>
           </div>
           <span className="num text-xs text-faint">
@@ -97,7 +98,7 @@ export function Recovery() {
                   workflow.requires_merchant_approval ? "text-warn" : "text-faint"
                 }`}
               >
-                {workflow.requires_merchant_approval ? "approval" : "bounded"}
+                {workflow.requires_merchant_approval ? "needs approval" : "safe to run"}
               </span>
             </div>
           </article>

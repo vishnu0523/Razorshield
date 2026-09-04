@@ -314,7 +314,7 @@ function Investigator({
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="eyebrow">Investigator summary</h3>
         <span className="num text-[0.6875rem] text-faint">
-          {explanation.source === "llm" ? "model written" : "deterministic"}
+          {explanation.source === "llm" ? "AI-written" : "fixed template"}
         </span>
       </div>
 
@@ -323,7 +323,7 @@ function Investigator({
       {explanation.degraded && (
         <div className="mt-4 rounded border border-warn/40 bg-warn/10 px-4 py-3">
           <p className="text-sm text-warn">
-            AI explanation service unavailable — deterministic fallback used.
+            AI is down — fell back to the fixed template.
           </p>
           <p className="mt-1 text-xs text-faint">
             Detection, scoring and policy are unaffected. The risk score and
@@ -377,17 +377,17 @@ function CaseDetail({ ringId }: { ringId: string }) {
               <Badge level={summary.risk_level} />
             </div>
             <p className="num mt-1.5 text-xs text-faint">
-              confidence {summary.confidence.toFixed(2)} · distance from the
-              decision boundary
+              confidence {summary.confidence.toFixed(2)} · how far above the
+              cut-off this sits
             </p>
           </div>
           <div className="text-right">
-            <div className="eyebrow">Exposure</div>
+            <div className="eyebrow">Money at risk</div>
             <div className="num mt-1.5 text-2xl font-semibold text-signal">
               {money(summary.financial_exposure)}
             </div>
             <p className="mt-1 text-xs text-faint">
-              refunds issued plus captured value still open
+              refunds already paid out, plus money still refundable
             </p>
           </div>
         </div>
@@ -406,7 +406,12 @@ function CaseDetail({ ringId }: { ringId: string }) {
 
       <div className="grid gap-5 lg:grid-cols-2">
         <section className="panel p-6">
-          <h3 className="eyebrow">Evidence · weighted by contribution</h3>
+          <h3 className="eyebrow">
+            Why this group was flagged
+            <span className="ml-2 font-normal normal-case tracking-normal opacity-70">
+              ranked by how much each signal moved the score
+            </span>
+          </h3>
           <div className="mt-4">
             <Evidence items={evidence} />
           </div>

@@ -63,7 +63,7 @@ export function DetectionQuality({
         <Stat
           label="PR-AUC"
           value={ratio(primary.pr_auc)}
-          hint={`${lift.toFixed(1)}× the random floor`}
+          hint={`${lift.toFixed(1)}× better than random guessing`}
           emphasis
         />
         <Stat label="Precision" value={ratio(primary.precision)} />
@@ -131,7 +131,12 @@ export function RingDetection({
 
   return (
     <section className="panel p-6">
-      <h2 className="eyebrow">Coordinated abuse · cluster level</h2>
+      <h2 className="eyebrow">
+        Fraud groups caught
+        <span className="ml-2 font-normal normal-case tracking-normal opacity-70">
+          whole rings, not single orders
+        </span>
+      </h2>
 
       <div className="mt-5 flex flex-wrap items-end gap-x-10 gap-y-6">
         <div>
@@ -142,7 +147,7 @@ export function RingDetection({
           </div>
         </div>
         <div>
-          <div className="eyebrow">Legitimate lookalikes flagged for review</div>
+          <div className="eyebrow">Innocent groups wrongly flagged</div>
           <div
             className={`num mt-1.5 text-3xl font-semibold ${
               clean ? "text-signal" : "text-alert"
@@ -162,7 +167,7 @@ export function RingDetection({
 
       {floor && (
         <div className="mt-7">
-          <div className="eyebrow">Measured against detection without the graph</div>
+          <div className="eyebrow">Compared with no graph at all</div>
           <table className="mt-3 w-full text-sm">
             <tbody>
               {[
@@ -192,27 +197,28 @@ export function RingDetection({
           </table>
           {gained !== null && (
             <p className="mt-3 text-sm text-muted">
-              The graph is worth{" "}
-              <span className="num text-signal">{gained} additional rings</span>{" "}
-              caught, at the cost of{" "}
+              The graph catches{" "}
+              <span className="num text-signal">{gained} more fraud groups</span>
+              , and costs us{" "}
               <span className="num text-alert">
                 {ring.n_hard_negatives_flagged - floor.n_hard_negatives_flagged}
               </span>{" "}
-              extra legitimate lookalike flagged for review
+              extra innocent group
               {ring.n_hard_negatives_flagged - floor.n_hard_negatives_flagged === 1
                 ? ""
-                : "s"}
-              .
+                : "s"}{" "}
+              wrongly flagged.
             </p>
           )}
         </div>
       )}
 
-      <More label="What the lookalikes are">
-        The held-out split contains {ring.n_hard_negative_clusters} legitimate
-        clusters built to resemble abuse rings — a family sharing one address, an
-        office network, a hostel, a high-return reseller, a flash-sale cohort.
-        Catching rings is easy. Not accusing these is the hard part.
+      <More label="Which innocent groups we tested against">
+        The test data contains {ring.n_hard_negative_clusters} innocent groups
+        built to look exactly like fraud rings — a family sharing one address, an
+        office network, a hostel, a reseller who returns a third of what they
+        buy, a flash-sale crowd. Catching real rings is easy. Not accusing these
+        is the hard part.
       </More>
     </section>
   );
@@ -259,9 +265,9 @@ export function DatasetPanel({ dataset }: { dataset: DatasetInfo }) {
       <div className="mt-5 grid grid-cols-2 gap-5 sm:grid-cols-4">
         <Stat label="Transactions" value={count(dataset.n_transactions)} />
         <Stat label="Customers" value={count(dataset.n_customers)} />
-        <Stat label="Rings injected" value={count(dataset.n_rings_injected)} />
+        <Stat label="Fraud rings planted" value={count(dataset.n_rings_injected)} />
         <Stat
-          label="Lookalike clusters"
+          label="Innocent groups"
           value={count(dataset.n_hard_negative_clusters)}
         />
       </div>
@@ -293,10 +299,10 @@ export function DatasetPanel({ dataset }: { dataset: DatasetInfo }) {
         </tbody>
       </table>
 
-      <More label="How the split works">
-        Split by time, not at random, so the model never trains on transactions
-        that happened after the ones it scores. The threshold was chosen on
-        validation; the test split was scored once.
+      <More label="How we split the data">
+        Split by date, not at random, so the model never learns from orders that
+        happened after the ones it is scoring. We picked the cut-off on the
+        validation set, then scored the test set exactly once.
       </More>
     </section>
   );
@@ -318,8 +324,8 @@ export function Caveats({ caveats }: { caveats: string[] }) {
           {!open && (
             <p className="mt-1.5 text-sm text-faint">
               {caveats.length} things worth knowing before you trust this page —
-              synthetic data, point-in-time features, a threshold fixed before
-              the test split was touched.
+              the data is made up, the features can't see the future, and the
+              cut-off was locked in before we scored the test set.
             </p>
           )}
         </div>

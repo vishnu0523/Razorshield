@@ -41,7 +41,7 @@ function StatusBar({ health }: { health: HealthResponse | null }) {
           </span>
           <span className="text-[#d8cbb7]">
             explanations:{" "}
-            {health?.llm_available ? "model" : "deterministic"}
+            {health?.llm_available ? "AI enabled" : "fixed template"}
           </span>
         </div>
       </div>
@@ -69,7 +69,8 @@ function EvaluationBanner() {
   return (
     <div className="border border-ink-700 bg-ink-850 px-5 py-4">
       <p className="text-sm text-muted">
-        Synthetic held-out evaluation. Not production Razorpay performance.
+        Made-up test data, scored honestly. These are benchmark results, not
+        real Razorpay performance.
       </p>
     </div>
   );
