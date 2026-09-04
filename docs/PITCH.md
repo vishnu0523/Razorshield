@@ -63,16 +63,15 @@ Phase 5 lands, the graph appears.
 
 Phases 6–8.
 
-> "The evidence is weighted by how much each signal actually moved the
-> decision — not by what reads convincingly. And the policy engine is
-> deterministic: above five thousand rupees, nothing happens without a human,
-> no matter how confident the model is."
+> "Each reason is ranked by how much it actually moved the score — not by
+> what sounds convincing. And the rules are fixed: above five thousand
+> rupees, nothing happens without a human, no matter how sure the model is."
 
 [Switch to **Investigations**, open any case, press **Simulate model outage**.]
 
-> "The AI only writes the summary — it never decides. Model's gone: score
-> unchanged, evidence unchanged, recommended action unchanged. It falls back
-> to a deterministic explanation and says so on screen."
+> "The AI only writes the summary — it never decides. Watch: AI's gone. Score
+> unchanged, reasons unchanged, recommended action unchanged. It falls back
+> to a fixed template and says so on screen."
 
 ## 2:50 — The money, honestly (40s)
 
@@ -94,10 +93,10 @@ Phases 6–8.
 ## 3:30 — The metric that matters (30s)
 
 > "Fourteen of fifteen real fraud rings caught. Only one of eleven completely
-> innocent lookalike groups — a family sharing an address, an office
-> network — wrongly flagged. Without the relationship graph, a simple
-> same-device rule catches nine of fifteen. The graph is worth five
-> additional rings, measured against that floor, not asserted."
+> innocent groups wrongly flagged — and those innocent groups are a family
+> sharing an address, an office network, a hostel. Without the graph, a
+> simple same-device rule catches nine of fifteen. The graph is worth five
+> more rings, measured against that floor, not just claimed."
 
 ## 4:00 — What didn't work (30s)
 
