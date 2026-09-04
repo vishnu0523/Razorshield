@@ -20,6 +20,7 @@ import type {
   PolicyAction,
   RingDetail,
   RingListResponse,
+  RingStatus,
   RingSummary,
 } from "../types/api";
 import { count, money, percent, useApi } from "../lib/format";
@@ -216,15 +217,18 @@ function CaseTimeline({ ringId, refreshKey }: { ringId: string; refreshKey: numb
 
 function DecisionControls({
   ringId,
+  status,
   requiresApproval,
   onRecorded,
 }: {
   ringId: string;
+  status: RingStatus;
   requiresApproval: boolean;
   onRecorded: () => void;
 }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const decided = status === "APPROVED" || status === "DISMISSED";
 
   async function submit(decision: "APPROVED" | "DISMISSED") {
     setBusy(true);
@@ -246,11 +250,26 @@ function DecisionControls({
 
   return (
     <section className="panel p-6">
-      <h3 className="eyebrow">Merchant decision</h3>
+      <div className="flex items-baseline justify-between gap-3">
+        <h3 className="eyebrow">Merchant decision</h3>
+        {decided && (
+          <span
+            className={`num rounded border px-1.5 py-0.5 text-[0.6875rem] tracking-wide ${
+              status === "APPROVED"
+                ? "border-signal/50 text-signal"
+                : "border-ink-600 text-muted"
+            }`}
+          >
+            {status}
+          </span>
+        )}
+      </div>
       <p className="mt-2 text-sm leading-relaxed text-muted">
-        {requiresApproval
-          ? "This case cannot be actioned automatically. Recording a decision appends to the audit trail; nothing is ever overwritten."
-          : "No approval is required for this case. A decision can still be recorded for the trail."}
+        {decided
+          ? "This case already has a decision on record, shown in the trail below. Pressing a button again records a new decision rather than editing the old one — nothing is ever overwritten."
+          : requiresApproval
+            ? "This case cannot be actioned automatically. Recording a decision appends to the audit trail; nothing is ever overwritten."
+            : "No approval is required for this case. A decision can still be recorded for the trail."}
       </p>
       <div className="mt-4 flex gap-3">
         <button
@@ -258,14 +277,14 @@ function DecisionControls({
           onClick={() => submit("APPROVED")}
           className="num rounded border border-signal/50 px-4 py-2 text-sm text-signal transition-colors hover:bg-signal/10 disabled:opacity-40"
         >
-          Approve review
+          {decided ? "Record approval again" : "Approve review"}
         </button>
         <button
           disabled={busy}
           onClick={() => submit("DISMISSED")}
           className="num rounded border border-ink-600 px-4 py-2 text-sm text-muted transition-colors hover:bg-ink-700 disabled:opacity-40"
         >
-          Dismiss case
+          {decided ? "Record dismissal again" : "Dismiss case"}
         </button>
       </div>
       {error && <p className="num mt-3 text-xs text-alert">{error}</p>}
@@ -353,8 +372,11 @@ function Investigator({
 }
 
 function CaseDetail({ ringId }: { ringId: string }) {
-  const detail = useApi<RingDetail>(`/api/rings/${ringId}`);
   const [refreshKey, setRefreshKey] = useState(0);
+  // Keyed on refreshKey too: a recorded decision doesn't change the ring's
+  // own URL, only what the backend derives for it, so the plain path alone
+  // would never refetch and the case would look undecided forever.
+  const detail = useApi<RingDetail>(`/api/rings/${ringId}`, refreshKey);
 
   if (detail.state === "loading")
     return <p className="num p-6 text-sm text-faint">Loading case…</p>;
@@ -450,6 +472,7 @@ function CaseDetail({ ringId }: { ringId: string }) {
         <CaseTimeline ringId={ringId} refreshKey={refreshKey} />
         <DecisionControls
           ringId={ringId}
+          status={summary.status}
           requiresApproval={policy.requires_merchant_approval}
           onRecorded={() => setRefreshKey((k) => k + 1)}
         />

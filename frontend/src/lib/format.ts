@@ -46,7 +46,12 @@ export type Fetched<T> =
   | { state: "error"; message: string }
   | { state: "ready"; data: T };
 
-export function useApi<T>(path: string): Fetched<T> {
+/** `reloadKey` forces a refetch of the same path without the URL changing --
+ *  for data that the backend derives from something other than the resource's
+ *  own address, like a ring's status, which moves when a decision is appended
+ *  to the audit trail rather than when the ring itself is edited. Omit it and
+ *  this behaves exactly as before: fetch once per distinct `path`. */
+export function useApi<T>(path: string, reloadKey?: unknown): Fetched<T> {
   const [result, setResult] = useState<Fetched<T>>({ state: "loading" });
 
   useEffect(() => {
@@ -72,7 +77,8 @@ export function useApi<T>(path: string): Fetched<T> {
     return () => {
       cancelled = true;
     };
-  }, [path]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [path, reloadKey]);
 
   return result;
 }

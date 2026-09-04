@@ -204,6 +204,24 @@ def rings(limit: int = Query(default=50, ge=1, le=500)) -> RingListResponse:
     return RingListResponse(rings=summaries, total=len(raw))
 
 
+def _current_status(match: dict) -> str:
+    """The case's status the way the audit trail sees it, not the way the
+    offline pipeline saw it at generation time.
+
+    `rings.json` bakes in a status when it is written, and a merchant
+    decision after that never touches the file -- it only appends to the
+    audit log. Serving the baked-in value straight through main is exactly
+    the bug README.md promises does not exist ("Case status is derived,
+    never stored... a second, mutable source of truth could disagree with
+    the trail"): the case screen would keep offering Approve/Dismiss on a
+    case that was already decided, because nothing told it otherwise.
+    """
+    for entry in audit.entries(subject_id=match["ring_id"], limit=50):
+        if entry["event"] == "merchant_decision":
+            return entry["decision"]
+    return match["summary"]["status"]
+
+
 @app.get("/api/rings/{ring_id}", response_model=RingDetail)
 def ring_detail(ring_id: str) -> RingDetail:
     raw = _load_rings()
@@ -218,7 +236,7 @@ def ring_detail(ring_id: str) -> RingDetail:
     try:
         return RingDetail.model_validate(
             {
-                "summary": match["summary"],
+                "summary": {**match["summary"], "status": _current_status(match)},
                 "evidence": match["evidence"],
                 "graph": match["graph"],
                 "policy": match["policy"],
