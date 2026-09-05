@@ -158,11 +158,24 @@ class AnthropicProvider:
 
 
 class OpenAIProvider:
+    """OpenAI, or any host that speaks the same chat-completions shape.
+
+    Groq, OpenRouter, Cerebras and Together all implement this endpoint
+    verbatim, and all of them have free tiers far more generous than the one
+    this project would otherwise sit on. Pointing at one is an env change, not
+    a code change, so the demo is not hostage to a single vendor's quota.
+    """
+
     name = "openai"
 
     def __init__(self, api_key: str | None = None, model: str = "gpt-4o-mini"):
         self._api_key = api_key or os.environ.get("OPENAI_API_KEY") or os.environ.get("LLM_API_KEY") or ""
         self._model = os.environ.get("OPENAI_MODEL", model)
+        # Trailing slashes are the obvious way to get a 404 out of this, so
+        # they are stripped rather than diagnosed.
+        self._base_url = os.environ.get(
+            "OPENAI_BASE_URL", "https://api.openai.com/v1"
+        ).rstrip("/")
 
     def available(self) -> bool:
         return bool(self._api_key)
@@ -172,7 +185,7 @@ class OpenAIProvider:
         import urllib.request
 
         request = urllib.request.Request(
-            "https://api.openai.com/v1/chat/completions",
+            f"{self._base_url}/chat/completions",
             data=json.dumps(
                 {
                     "model": self._model,
