@@ -221,6 +221,27 @@ def verify_chain() -> dict:
     return {"valid": True, "checked": len(rows), "broken_at": None, "detail": ""}
 
 
+def last_matching(subject_id: str, event: str) -> dict | None:
+    """Most recent entry for this subject and event type, if any.
+
+    Used to decide whether a new entry would actually record a change or
+    just repeat the last one. A GET endpoint that re-derives the same result
+    on every call (an explanation served from cache, say) is not a new event
+    each time it is viewed -- appending anyway would let read traffic (a
+    judge re-opening a case, a page reload, a test loop) pad the trail with
+    duplicates the append-only design can never remove.
+    """
+    with SessionLocal() as session:
+        row = session.execute(
+            select(AuditRow)
+            .where(AuditRow.subject_id == subject_id)
+            .where(AuditRow.event == event)
+            .order_by(AuditRow.seq.desc())
+            .limit(1)
+        ).scalar_one_or_none()
+    return to_dict(row) if row else None
+
+
 def latest_decision(subject_id: str) -> str | None:
     """Current case status, derived from the log rather than stored separately.
 

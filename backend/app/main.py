@@ -319,16 +319,30 @@ def ring_explanation(
     explanation, log_line = llm.explain(
         match, match["explanation"]["text"], provider=provider
     )
-    audit.append(
-        event="explanation_generated",
-        actor="llm" if explanation.source == "llm" else "system",
-        subject_id=ring_id,
-        input_summary=f"{len(match['evidence'])} structured evidence items",
-        decision=f"explanation source: {explanation.source}",
-        reason=log_line,
-        policy=match["policy"]["policy_version"],
-        result="degraded" if explanation.degraded else "ok",
+    decision = f"explanation source: {explanation.source}"
+    result = "degraded" if explanation.degraded else "ok"
+
+    # This is a GET: viewing a case twice must not double its trail. Only a
+    # change from the last recorded outcome for this ring is a new event --
+    # a repeat is just the same cached (or re-derived) result being read
+    # again, and the append-only log has no way to take a duplicate back.
+    previous = audit.last_matching(ring_id, "explanation_generated")
+    changed = (
+        previous is None
+        or previous["decision"] != decision
+        or previous["result"] != result
     )
+    if changed:
+        audit.append(
+            event="explanation_generated",
+            actor="llm" if explanation.source == "llm" else "system",
+            subject_id=ring_id,
+            input_summary=f"{len(match['evidence'])} structured evidence items",
+            decision=decision,
+            reason=log_line,
+            policy=match["policy"]["policy_version"],
+            result=result,
+        )
     return Explanation.model_validate(explanation.to_dict())
 
 
