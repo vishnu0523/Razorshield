@@ -189,7 +189,13 @@ class OpenAIProvider:
             data=json.dumps(
                 {
                     "model": self._model,
-                    "max_tokens": 400,
+                    # Some OpenAI-compatible hosts serve reasoning models
+                    # (e.g. Groq's gpt-oss line) behind this same endpoint.
+                    # Their hidden reasoning tokens count against max_tokens
+                    # before the visible answer does, so a budget sized for
+                    # plain chat models truncates the answer to nothing on
+                    # a long prompt. Sized generously for either kind.
+                    "max_tokens": 900,
                     "messages": [
                         {"role": "system", "content": system},
                         {"role": "user", "content": user},
@@ -199,6 +205,10 @@ class OpenAIProvider:
             headers={
                 "content-type": "application/json",
                 "authorization": f"Bearer {self._api_key}",
+                # Some OpenAI-compatible hosts (Groq included) sit behind an
+                # edge that blocks Python's default urllib user-agent as
+                # bot traffic. A normal-looking one is enough to pass.
+                "user-agent": "Mozilla/5.0 RazorShield/1.0",
             },
             method="POST",
         )
